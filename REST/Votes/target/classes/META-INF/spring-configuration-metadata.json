@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "file",
+      "type": "com.votespesta.services.FileStorageProperties",
+      "sourceType": "com.votespesta.services.FileStorageProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "file.upload-dir",
+      "type": "java.lang.String",
+      "sourceType": "com.votespesta.services.FileStorageProperties"
+    }
+  ],
+  "hints": []
+}
