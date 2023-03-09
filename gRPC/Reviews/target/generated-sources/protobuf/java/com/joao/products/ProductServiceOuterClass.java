@@ -34,13 +34,11 @@ public final class ProductServiceOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\024ProductService.proto\022\021com.joao.product" +
-      "s\"\035\n\016ProductRequest\022\013\n\003sku\030\001 \001(\t\"g\n\017Prod" +
-      "uctResponse\022\013\n\003sku\030\001 \001(\t\022\023\n\013designation\030" +
-      "\002 \001(\t\022\023\n\013description\030\003 \001(\t\022\r\n\005image\030\004 \001(" +
-      "\t\022\016\n\006status\030\005 \001(\0052e\n\016ProductService\022S\n\ng" +
-      "etProduct\022!.com.joao.products.ProductReq" +
-      "uest\032\".com.joao.products.ProductResponse" +
-      "B\002P\001b\006proto3"
+      "s\"\035\n\016ProductRequest\022\013\n\003sku\030\001 \001(\t\"!\n\017Prod" +
+      "uctResponse\022\016\n\006status\030\001 \001(\0052e\n\016ProductSe" +
+      "rvice\022S\n\ngetProduct\022!.com.joao.products." +
+      "ProductRequest\032\".com.joao.products.Produ" +
+      "ctResponseB\002P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -57,7 +55,7 @@ public final class ProductServiceOuterClass {
     internal_static_com_joao_products_ProductResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_joao_products_ProductResponse_descriptor,
-        new java.lang.String[] { "Sku", "Designation", "Description", "Image", "Status", });
+        new java.lang.String[] { "Status", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

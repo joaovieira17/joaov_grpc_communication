@@ -11,6 +11,7 @@ com\joao\products\ProductRequest.class
 com\products\SpringConfig.class
 com\joao\products\ProductServiceGrpc$ProductServiceBaseDescriptorSupplier.class
 com\joao\products\ProductServiceGrpc$ProductServiceFileDescriptorSupplier.class
+com\products\grpcService\ProductGrpcServiceImpl.class
 com\joao\products\ProductRequestOrBuilder.class
 com\joao\products\ProductServiceGrpc$1.class
 com\products\repositories\ProductRepository.class

@@ -35,7 +35,7 @@ public final class ProductServiceOuterClass {
     java.lang.String[] descriptorData = {
       "\n\024ProductService.proto\022\021com.joao.product" +
       "s\"\035\n\016ProductRequest\022\013\n\003sku\030\001 \001(\t\"!\n\017Prod" +
-      "uctResponse\022\016\n\006status\030\005 \001(\0052e\n\016ProductSe" +
+      "uctResponse\022\016\n\006status\030\001 \001(\0052e\n\016ProductSe" +
       "rvice\022S\n\ngetProduct\022!.com.joao.products." +
       "ProductRequest\032\".com.joao.products.Produ" +
       "ctResponseB\002P\001b\006proto3"

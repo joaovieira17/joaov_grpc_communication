@@ -7,11 +7,7 @@ message ProductRequest {
 }
 
 message ProductResponse {
-  string sku = 1;
-  string designation = 2;
-  string description = 3;
-  string image = 4;
-  int32 status = 5;
+  int32 status = 1;
 }
 
 service ProductService {

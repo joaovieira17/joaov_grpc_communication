@@ -8,55 +8,7 @@ public interface ProductResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string sku = 1;</code>
-   * @return The sku.
-   */
-  java.lang.String getSku();
-  /**
-   * <code>string sku = 1;</code>
-   * @return The bytes for sku.
-   */
-  com.google.protobuf.ByteString
-      getSkuBytes();
-
-  /**
-   * <code>string designation = 2;</code>
-   * @return The designation.
-   */
-  java.lang.String getDesignation();
-  /**
-   * <code>string designation = 2;</code>
-   * @return The bytes for designation.
-   */
-  com.google.protobuf.ByteString
-      getDesignationBytes();
-
-  /**
-   * <code>string description = 3;</code>
-   * @return The description.
-   */
-  java.lang.String getDescription();
-  /**
-   * <code>string description = 3;</code>
-   * @return The bytes for description.
-   */
-  com.google.protobuf.ByteString
-      getDescriptionBytes();
-
-  /**
-   * <code>string image = 4;</code>
-   * @return The image.
-   */
-  java.lang.String getImage();
-  /**
-   * <code>string image = 4;</code>
-   * @return The bytes for image.
-   */
-  com.google.protobuf.ByteString
-      getImageBytes();
-
-  /**
-   * <code>int32 status = 5;</code>
+   * <code>int32 status = 1;</code>
    * @return The status.
    */
   int getStatus();

@@ -43,10 +43,10 @@ private static final long serialVersionUID = 0L;
             com.joao.products.ProductResponse.class, com.joao.products.ProductResponse.Builder.class);
   }
 
-  public static final int STATUS_FIELD_NUMBER = 5;
+  public static final int STATUS_FIELD_NUMBER = 1;
   private int status_;
   /**
-   * <code>int32 status = 5;</code>
+   * <code>int32 status = 1;</code>
    * @return The status.
    */
   @java.lang.Override
@@ -69,7 +69,7 @@ private static final long serialVersionUID = 0L;
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
     if (status_ != 0) {
-      output.writeInt32(5, status_);
+      output.writeInt32(1, status_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -82,7 +82,7 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (status_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(5, status_);
+        .computeInt32Size(1, status_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -348,11 +348,11 @@ private static final long serialVersionUID = 0L;
             case 0:
               done = true;
               break;
-            case 40: {
+            case 8: {
               status_ = input.readInt32();
 
               break;
-            } // case 40
+            } // case 8
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -371,7 +371,7 @@ private static final long serialVersionUID = 0L;
 
     private int status_ ;
     /**
-     * <code>int32 status = 5;</code>
+     * <code>int32 status = 1;</code>
      * @return The status.
      */
     @java.lang.Override
@@ -379,7 +379,7 @@ private static final long serialVersionUID = 0L;
       return status_;
     }
     /**
-     * <code>int32 status = 5;</code>
+     * <code>int32 status = 1;</code>
      * @param value The status to set.
      * @return This builder for chaining.
      */
@@ -390,7 +390,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int32 status = 5;</code>
+     * <code>int32 status = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearStatus() {

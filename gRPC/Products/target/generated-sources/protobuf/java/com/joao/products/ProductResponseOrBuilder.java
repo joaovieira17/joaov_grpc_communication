@@ -8,7 +8,7 @@ public interface ProductResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 status = 5;</code>
+   * <code>int32 status = 1;</code>
    * @return The status.
    */
   int getStatus();

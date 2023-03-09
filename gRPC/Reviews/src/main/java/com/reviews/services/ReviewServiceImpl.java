@@ -55,11 +55,10 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public List<Review> getReviewsByProduct(String sku) throws IOException, InterruptedException {
+    public List<Review> getReviewsByProduct(String sku) {
 
         ProductResponse productResponse = productGrpcService.getProduct(sku);
 
-        //if (repository2.isProduct1(sku)) {
         if (productResponse.getStatus()==200){
 
             return repository.getReviewsByProduct(sku);
@@ -77,7 +76,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public Review create(ReviewDTO rev, String sku) throws IOException, InterruptedException {
+    public Review create(ReviewDTO rev, String sku) {
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
@@ -86,7 +85,9 @@ public class ReviewServiceImpl implements ReviewService{
         User user = userRepository.findByUsername(username);
 
 
-        if (repository2.isProduct1(sku) || repository2.isProduct2(sku)){
+        ProductResponse productResponse = productGrpcService.getProduct(sku);
+
+        if (productResponse.getStatus()==200){
             final Review obj = Review.newFrom(rev,sku,user.getId());
 
             obj.setProductSku(sku);
@@ -100,7 +101,9 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public RatingFrequency getRatingFrequencyOfProduct(String sku) throws IOException, InterruptedException {
-        if(repository2.isProduct1(sku) || repository2.isProduct2(sku)){
+        ProductResponse productResponse = productGrpcService.getProduct(sku);
+
+        if (productResponse.getStatus()==200){
             List<Review> reviews = getReviewsByProduct(sku);
             int rating;
             int one=0, two=0, three=0, four=0, five=0;
@@ -219,9 +222,11 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public List<Review> getReviewsByProductOrderByDateWithoutPage(String sku) throws IOException, InterruptedException {
+    public List<Review> getReviewsByProductOrderByDateWithoutPage(String sku) {
 
-        if (repository2.isProduct1(sku)) {
+        ProductResponse productResponse = productGrpcService.getProduct(sku);
+
+        if (productResponse.getStatus()==200){
             return repository.getReviewsByProductOrderByDateWithoutPage(sku);
         }else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
@@ -230,9 +235,11 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public List<Review> getReviewsByProductOrderByVotesWithoutPage(String sku) throws IOException, InterruptedException {
+    public List<Review> getReviewsByProductOrderByVotesWithoutPage(String sku) {
 
-        if (repository2.isProduct1(sku)) {
+        ProductResponse productResponse = productGrpcService.getProduct(sku);
+
+        if (productResponse.getStatus()==200){
             return repository.getReviewsByProductOrderByVotesWithoutPage(sku);
         }
         else{

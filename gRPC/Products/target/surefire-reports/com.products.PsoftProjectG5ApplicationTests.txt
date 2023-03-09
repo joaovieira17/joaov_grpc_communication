@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.products.PsoftProjectG5ApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.545 s - in com.products.PsoftProjectG5ApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.699 s - in com.products.PsoftProjectG5ApplicationTests
