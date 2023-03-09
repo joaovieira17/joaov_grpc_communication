@@ -18,12 +18,9 @@ public class ProductGrpcServiceImpl extends ProductServiceGrpc.ProductServiceImp
     @Override
     public void getProduct(ProductRequest request, StreamObserver<ProductResponse> responseObserver) {
         Product product = repository.getBySku(request.getSku());
+
         if(product != null){
             ProductResponse response = ProductResponse.newBuilder()
-                    .setSku(product.getSku())
-                    .setDesignation(product.getDesignation())
-                    .setDescription(product.getDescription())
-                    .setImage(product.getImage())
                     .setStatus(200)
                     .build();
             responseObserver.onNext(response);
