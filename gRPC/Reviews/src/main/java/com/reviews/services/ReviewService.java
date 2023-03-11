@@ -35,9 +35,9 @@ public interface ReviewService {
 
     boolean reviewExistence(UUID reviewId);
 
-    List<Review> getReviewsByProductOrderByDateWithoutPage(String sku) throws IOException, InterruptedException;
+    List<Review> getReviewsByProductOrderByDateWithoutPage(String sku);
 
-    List<Review> getReviewsByProductOrderByVotesWithoutPage(String sku) throws IOException, InterruptedException;
+    List<Review> getReviewsByProductOrderByVotesWithoutPage(String sku);
 
     void updateVotes(Vote vote, Review review);
 

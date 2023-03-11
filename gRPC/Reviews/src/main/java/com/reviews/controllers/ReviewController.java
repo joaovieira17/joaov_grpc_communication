@@ -72,7 +72,6 @@ public class ReviewController {
 
     @Operation(summary = "Increase review downVotes")
     @PutMapping(value = "/downvote/{reviewId}")
-    //@ResponseStatus(HttpStatus.CREATED)
     public void downVoteReview(@PathVariable final UUID reviewId){
         service.downVote(reviewId);
     }

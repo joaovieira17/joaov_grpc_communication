@@ -100,7 +100,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public RatingFrequency getRatingFrequencyOfProduct(String sku) throws IOException, InterruptedException {
+    public RatingFrequency getRatingFrequencyOfProduct(String sku) {
         ProductResponse productResponse = productGrpcService.getProduct(sku);
 
         if (productResponse.getStatus()==200){
