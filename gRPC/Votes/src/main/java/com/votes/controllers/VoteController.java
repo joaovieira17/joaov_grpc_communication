@@ -43,17 +43,17 @@ public class VoteController {
         //Review review = helper.getReview(vote.getReviewId());
         ReviewResponse reviewResponse = reviewGrpcService.getReview(vote.getReviewId());
         if (reviewResponse.getCode()==200) {
-        boolean status = service.goodToVote(UUID.fromString(reviewResponse.getReviewId()));
-        if (status) {
-            boolean haveVoted = service.updateVoteReview(vote);
-            if (!haveVoted) {
-                //service.updateVotes(vote, review.getReviewId());
-                voteGrpcService.updateVote(vote.getReviewId(),vote.isVote());
-                return ResponseEntity.ok("Vote changed");
-            } else
-                throw new ResponseStatusException(HttpStatus.CONFLICT,"You have already voted on this review");
-        }else
-            throw new ResponseStatusException(HttpStatus.CONFLICT,"This review isn't approved yet");
+            //boolean status = service.goodToVote(UUID.fromString(reviewResponse.getReviewId()));
+                if (reviewResponse.getStatus()=="APPROVED") {
+                    boolean haveVoted = service.updateVoteReview(vote);
+                        if (!haveVoted) {
+                            //service.updateVotes(vote, review.getReviewId());
+                            voteGrpcService.updateVote(vote.getReviewId(),vote.isVote());
+                            return ResponseEntity.ok("Vote changed");
+                        } else
+                        throw new ResponseStatusException(HttpStatus.CONFLICT,"You have already voted on this review");
+                }else
+                    throw new ResponseStatusException(HttpStatus.CONFLICT,"This review isn't approved yet");
         }else
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Review Not Found");
     }
