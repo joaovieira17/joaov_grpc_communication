@@ -36,6 +36,26 @@ public class HttpRequestHelper {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Review Not Found");
     }
 
+    public boolean reviewExistence(UUID reviewId) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:8084/review/"+reviewId+"/reviewExistence"))
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String body = response.body().toString();
+        boolean result = false;
+        if (body.equals("true")){
+            result=true;
+        }
+        else if(body.equals("false")){
+            result=false;
+        }
+        return result;
+    }
+
     public void upVoteReview(UUID reviewId) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
