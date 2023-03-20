@@ -14,6 +14,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
+import com.github.pemistahl.lingua.api.*;
+import static com.github.pemistahl.lingua.api.Language.*;
+
 
 @Entity
 public class Review {
@@ -51,9 +54,11 @@ public class Review {
     @Column(nullable = true)
     private Long userId;
 
-
     @Column(nullable = true)
     private String productSku;
+
+    @Column(nullable = true)
+    private String language;
 
     private Review(final UUID reviewId,final String status,final Date date, final String text) {
         setStatus(status);
@@ -61,7 +66,7 @@ public class Review {
         setText(text);
     }
 
-    private Review(final UUID reviewId,final String status,final Date date, final String text, final int rating, final int upVotes, final int downVotes, final String funFact, final Long userId,final String productSku) {
+    private Review(final UUID reviewId,final String status,final Date date, final String text, final int rating, final int upVotes, final int downVotes, final String funFact, final Long userId,final String productSku, final String language) {
         this(reviewId,status,date, text);
         setRating(rating);
         setDownVotes(downVotes);
@@ -69,6 +74,7 @@ public class Review {
         getFunFactResponse(date);
         setUserId(userId);
         setProductSku(productSku);
+        setLanguage(language);
     }
 
     public Review() {
@@ -146,6 +152,13 @@ public class Review {
         this.downVotes = downVotes;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
 
     public void updateVote(boolean voteValue){
         if(!voteValue){
@@ -215,6 +228,7 @@ public class Review {
     public static Review newFrom(final ReviewDTO rev,final String productSku, final Long userId) {
         final Review obj = new Review();
         long millis = System.currentTimeMillis();
+        final LanguageDetector detector = LanguageDetectorBuilder.fromLanguages(ENGLISH, FRENCH, GERMAN, SPANISH, PORTUGUESE).build();
         if(!rev.getText().isEmpty() || rev.getRating() != 0){
             obj.status = "PENDING";
             obj.upVotes = 0;
@@ -224,7 +238,8 @@ public class Review {
             obj.text = rev.text;
             obj.getFunFactResponse(obj.date);
             //obj.productSku=sku;
-            return new Review(obj.reviewId, obj.status, obj.date, obj.text, obj.rating, obj.upVotes, obj.downVotes, obj.funFact, userId,productSku);
+            obj.language=detector.detectLanguageOf(rev.text).toString();
+            return new Review(obj.reviewId, obj.status, obj.date, obj.text, obj.rating, obj.upVotes, obj.downVotes, obj.funFact, userId,productSku,obj.language);
         }
         else{
             return obj;

@@ -44,7 +44,7 @@ public class VoteController {
         ReviewResponse reviewResponse = reviewGrpcService.getReview(vote.getReviewId());
         if (reviewResponse.getCode()==200) {
             //boolean status = service.goodToVote(UUID.fromString(reviewResponse.getReviewId()));
-                if (reviewResponse.getStatus()=="APPROVED") {
+                if (reviewResponse.getStatus().equals("APPROVED")) {
                     boolean haveVoted = service.updateVoteReview(vote);
                         if (!haveVoted) {
                             //service.updateVotes(vote, review.getReviewId());
