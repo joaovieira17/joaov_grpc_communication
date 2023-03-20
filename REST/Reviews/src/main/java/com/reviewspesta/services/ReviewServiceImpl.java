@@ -75,7 +75,7 @@ public class ReviewServiceImpl implements ReviewService{
         User user = userRepository.findByUsername(username);
 
 
-        if (repository2.isProduct1(sku) || repository2.isProduct2(sku)){
+        if (repository2.isProduct1(sku)){
             final Review obj = Review.newFrom(rev,sku,user.getId());
 
             obj.setProductSku(sku);
@@ -89,7 +89,7 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public RatingFrequency getRatingFrequencyOfProduct(String sku) throws IOException, InterruptedException {
-        if(repository2.isProduct1(sku) || repository2.isProduct2(sku)){
+        if(repository2.isProduct1(sku)){
             List<Review> reviews = getReviewsByProduct(sku);
             int rating;
             int one=0, two=0, three=0, four=0, five=0;
