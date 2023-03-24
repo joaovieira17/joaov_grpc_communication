@@ -13,13 +13,13 @@ public interface ReviewService {
 
     Review getReview(UUID reviewId);
 
-    Review create(ReviewDTO rev, String sku) throws IOException, InterruptedException;
+    Review create(ReviewDTO rev, UUID sandwichId) throws IOException, InterruptedException;
 
     List<Review> getLocalPendingReviews();
 
-    List<Review> getReviewsByProduct(String sku) throws IOException, InterruptedException; //SIM
+    List<Review> getReviewsBySandwich(UUID sandwichId) throws IOException, InterruptedException; //SIM
 
-    RatingFrequency getRatingFrequencyOfProduct(String sku) throws IOException, InterruptedException;
+    RatingFrequency getRatingFrequencyOfSandwich(UUID sandwichId) throws IOException, InterruptedException;
 
     boolean approveRejectReview(UUID reviewId, boolean status);
 
@@ -35,9 +35,9 @@ public interface ReviewService {
 
     boolean reviewExistence(UUID reviewId);
 
-    List<Review> getReviewsByProductOrderByDateWithoutPage(String sku) throws IOException, InterruptedException;
+    List<Review> getReviewsBySandwichOrderByDateWithoutPage(UUID sandwichId) throws IOException, InterruptedException;
 
-    List<Review> getReviewsByProductOrderByVotesWithoutPage(String sku) throws IOException, InterruptedException;
+    List<Review> getReviewsBySandwichOrderByVotesWithoutPage(UUID sandwichId) throws IOException, InterruptedException;
 
     void updateVotes(Vote vote, Review review);
 

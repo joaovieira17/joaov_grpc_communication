@@ -2,8 +2,6 @@ package com.reviewspesta.services;
 
 import com.reviewspesta.model.*;
 //import com.psoftprojectg5.repositories.ProductRepository;
-import com.reviewspesta.repositories.HttpReviewRepository;
-import com.reviewspesta.repositories.ProductRepository;
 import com.reviewspesta.repositories.ReviewRepository;
 import com.reviewspesta.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +21,11 @@ public class ReviewServiceImpl implements ReviewService{
     @Autowired
     private ReviewRepository repository;
 
-
-    private ProductRepository repository2 = new ProductRepository();
-
     @Autowired
     private UserRepository userRepository;
 
 
     private HttpRequestHelper helper=new HttpRequestHelper();
-
-    private HttpReviewRepository httpRepo= new HttpReviewRepository();
 
 
     @Override
@@ -47,14 +40,14 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public List<Review> getReviewsByProduct(String sku) throws IOException, InterruptedException {
+    public List<Review> getReviewsBySandwich(UUID sandwichId) throws IOException, InterruptedException {
 
-        if (repository2.isProduct1(sku)) {
+        if (helper.doesSandwichExist(sandwichId)) {
 
-            return repository.getReviewsByProduct(sku);
+            return repository.getReviewsBySandwich(sandwichId);
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sandwich Not Found");
         }
 
     }
@@ -66,7 +59,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public Review create(ReviewDTO rev, String sku) throws IOException, InterruptedException {
+    public Review create(ReviewDTO rev, UUID sandwichId) throws IOException, InterruptedException {
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
@@ -75,22 +68,22 @@ public class ReviewServiceImpl implements ReviewService{
         User user = userRepository.findByUsername(username);
 
 
-        if (repository2.isProduct1(sku)){
-            final Review obj = Review.newFrom(rev,sku,user.getId());
+        if (helper.doesSandwichExist(sandwichId)){
+            final Review obj = Review.newFrom(rev,sandwichId,user.getId());
 
-            obj.setProductSku(sku);
+            obj.setSandwichId(sandwichId);
             return repository.save(obj);
         }
         else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sandwich Not Found");
         }
 
     }
 
     @Override
-    public RatingFrequency getRatingFrequencyOfProduct(String sku) throws IOException, InterruptedException {
-        if(repository2.isProduct1(sku)){
-            List<Review> reviews = getReviewsByProduct(sku);
+    public RatingFrequency getRatingFrequencyOfSandwich(UUID sandwichId) throws IOException, InterruptedException {
+        if(helper.doesSandwichExist(sandwichId)){
+            List<Review> reviews = getReviewsBySandwich(sandwichId);
             int rating;
             int one=0, two=0, three=0, four=0, five=0;
             RatingFrequency freq = new RatingFrequency();
@@ -112,11 +105,11 @@ public class ReviewServiceImpl implements ReviewService{
                     five = five + 1;
                 }
             }
-            float globalRating =repository.getAggregatedRating(sku);
+            float globalRating =repository.getAggregatedRating(sandwichId);
             return new RatingFrequency(one, two, three, four, five, globalRating);
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sandwich Not Found");
         }
     }
 
@@ -208,24 +201,24 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public List<Review> getReviewsByProductOrderByDateWithoutPage(String sku) throws IOException, InterruptedException {
+    public List<Review> getReviewsBySandwichOrderByDateWithoutPage(UUID sandwichId) throws IOException, InterruptedException {
 
-        if (repository2.isProduct1(sku)) {
-            return repository.getReviewsByProductOrderByDateWithoutPage(sku);
+        if (helper.doesSandwichExist(sandwichId)) {
+            return repository.getReviewsBySandwichOrderByDateWithoutPage(sandwichId);
         }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sandwich Not Found");
         }
 
     }
 
     @Override
-    public List<Review> getReviewsByProductOrderByVotesWithoutPage(String sku) throws IOException, InterruptedException {
+    public List<Review> getReviewsBySandwichOrderByVotesWithoutPage(UUID sandwichId) throws IOException, InterruptedException {
 
-        if (repository2.isProduct1(sku)) {
-            return repository.getReviewsByProductOrderByVotesWithoutPage(sku);
+        if (helper.doesSandwichExist(sandwichId)) {
+            return repository.getReviewsBySandwichOrderByVotesWithoutPage(sandwichId);
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sandwich Not Found");
         }
     }
 

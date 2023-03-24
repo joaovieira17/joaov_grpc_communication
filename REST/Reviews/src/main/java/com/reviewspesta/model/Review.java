@@ -54,7 +54,7 @@ public class Review {
     private Long userId;
 
     @Column(nullable = true)
-    private String productSku;
+    private UUID sandwichId;
 
     @Column(nullable = true)
     private String language;
@@ -65,14 +65,14 @@ public class Review {
         setText(text);
     }
 
-    private Review(final UUID reviewId,final String status,final Date date, final String text, final int rating, final int upVotes, final int downVotes, final String funFact, final Long userId,final String productSku, final String language) {
+    private Review(final UUID reviewId,final String status,final Date date, final String text, final int rating, final int upVotes, final int downVotes, final String funFact, final Long userId,final UUID sandwichId, final String language) {
         this(reviewId,status,date, text);
         setRating(rating);
         setDownVotes(downVotes);
         setUpVotes(upVotes);
         getFunFactResponse(date);
         setUserId(userId);
-        setProductSku(productSku);
+        setSandwichId(sandwichId);
         setLanguage(language);
     }
 
@@ -164,13 +164,6 @@ public class Review {
         return upVotes == 0 && downVotes == 0;
     }
 
-    public String getProductSku() {
-        return productSku;
-    }
-
-    public void setProductSku(String productSku) {
-        this.productSku = productSku;
-    }
 
     public String getFunFact() {
         return funFact;
@@ -225,7 +218,16 @@ public class Review {
         this.language = language;
     }
 
-    public static Review newFrom(final ReviewDTO rev, final String productSku, final Long userId) {
+
+    public UUID getSandwichId() {
+        return sandwichId;
+    }
+
+    public void setSandwichId(UUID sandwichId) {
+        this.sandwichId = sandwichId;
+    }
+
+    public static Review newFrom(final ReviewDTO rev, final UUID sandwichId, final Long userId) {
         final Review obj = new Review();
         long millis = System.currentTimeMillis();
         final LanguageDetector detector = LanguageDetectorBuilder.fromLanguages(ENGLISH, FRENCH, GERMAN, SPANISH, PORTUGUESE).build();
@@ -239,7 +241,7 @@ public class Review {
             obj.getFunFactResponse(obj.date);
             //obj.productSku=sku;
             obj.language=detector.detectLanguageOf(rev.text).toString();
-            return new Review(obj.reviewId, obj.status, obj.date, obj.text, obj.rating, obj.upVotes, obj.downVotes, obj.funFact, userId,productSku,obj.language);
+            return new Review(obj.reviewId, obj.status, obj.date, obj.text, obj.rating, obj.upVotes, obj.downVotes, obj.funFact, userId,sandwichId,obj.language);
         }
         else{
             return obj;
