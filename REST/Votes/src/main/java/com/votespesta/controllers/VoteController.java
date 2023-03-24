@@ -31,7 +31,7 @@ public class VoteController {
     @Operation(summary = "Creates a vote")
     @PostMapping(value = "/updateVote")
     public ResponseEntity<String> upVoteReview(@Valid @RequestBody final Vote vote ) throws IOException, InterruptedException {
-        Review review = helper.getReview(vote.getReviewId());
+        Review review = helper.getReviewForVote(vote.getReviewId());
         if (review!=null) {
         boolean status = service.goodToVote(review.getReviewId());
         if (status) {

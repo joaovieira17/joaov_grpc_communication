@@ -231,4 +231,17 @@ public class ReviewServiceImpl implements ReviewService{
         User user = userRepository.findByUsername(username);
         return repository.getAllMyReviews(user.getId());
     }
+
+    @Override
+    public ReviewVoteDTO getReviewForVote(UUID reviewId) {
+        Optional<Review> review = Optional.ofNullable(repository.getReviewById(reviewId));
+        if (review.isPresent()) {
+            ReviewVoteDTO reviewVoteDTO = new ReviewVoteDTO();
+            reviewVoteDTO.setReviewId(reviewId);
+            reviewVoteDTO.setStatus(review.get().getStatus());
+            return reviewVoteDTO;
+        }
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Review Not Found");
+    }
 }

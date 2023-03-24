@@ -18,11 +18,11 @@ import java.util.UUID;
 
 public class HttpRequestHelper {
 
-    public Review getReview(UUID reviewId) throws IOException, InterruptedException {
+    public Review getReviewForVote(UUID reviewId) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8084/review/" + reviewId))
+                .uri(URI.create("http://localhost:8084/review/reviewForVote/" + reviewId))
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
 

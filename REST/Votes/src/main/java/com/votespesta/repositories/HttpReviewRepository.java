@@ -11,7 +11,7 @@ public class HttpReviewRepository {
     HttpRequestHelper helper = new HttpRequestHelper();
 
     public boolean isReview(UUID reviewId) throws IOException, InterruptedException {
-        Review review=helper.getReview(reviewId);
+        Review review=helper.getReviewForVote(reviewId);
         if (review==null){
             return false;
         }
@@ -22,7 +22,7 @@ public class HttpReviewRepository {
 
     public Review findReviewById(UUID reviewId) throws IOException, InterruptedException {
 
-        Review review= helper.getReview(reviewId);
+        Review review= helper.getReviewForVote(reviewId);
         return review;
 
     }

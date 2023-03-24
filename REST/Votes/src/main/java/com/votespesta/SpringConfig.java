@@ -1,12 +1,10 @@
 package com.votespesta;
 
-import com.votespesta.services.FileStorageProperties;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityScheme;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.BufferedImageHttpMessageConverter;
@@ -17,7 +15,6 @@ import java.awt.image.BufferedImage;
 
 
 @Configuration
-@EnableConfigurationProperties({ FileStorageProperties.class })
 public class SpringConfig {
 
     @Bean

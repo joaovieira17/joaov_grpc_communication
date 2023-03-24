@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import com.reviewspesta.model.RatingFrequency;
-import com.reviewspesta.model.Review;
-import com.reviewspesta.model.ReviewDTO;
-import com.reviewspesta.model.Vote;
+import com.reviewspesta.model.*;
 
 public interface ReviewService {
 
@@ -42,5 +39,7 @@ public interface ReviewService {
     void updateVotes(Vote vote, Review review);
 
     List<Review> getAllMyLocalReviews();
+
+    ReviewVoteDTO getReviewForVote(UUID reviewId);
 }
 

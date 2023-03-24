@@ -4,7 +4,6 @@ import com.votespesta.model.Review;
 import com.votespesta.model.User;
 import com.votespesta.model.Vote;
 import com.votespesta.repositories.HttpReviewRepository;
-import com.votespesta.repositories.ReviewRepository;
 import com.votespesta.repositories.UserRepository;
 import com.votespesta.repositories.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,12 +24,8 @@ public class VoteServiceImpl implements VoteService {
     @Autowired
     private VoteRepository repository;
 
-    @Autowired
-    private ReviewRepository repository2;
-
     private HttpReviewRepository httpReviewRepository=new HttpReviewRepository();
 
-    HttpRequestHelper helper = new HttpRequestHelper();
     @Autowired
     private UserRepository userRepository;
 
