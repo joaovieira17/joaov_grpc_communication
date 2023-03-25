@@ -32,9 +32,9 @@ public class ReviewController {
     }
 
     @Operation(summary = "Gets a product's aggregated rating and frequency")
-    @GetMapping(value = "/{sku}/rating")
-    public RatingFrequency getRatingFrequency(@PathVariable("sku") final String sku) throws IOException, InterruptedException {
-        return service.getRatingFrequencyOfProduct(sku);
+    @GetMapping(value = "/{sandwichId}/rating")
+    public RatingFrequency getRatingFrequency(@PathVariable("sandwichId") final UUID sandwichId) {
+        return service.getRatingFrequencyOfSandwich(sandwichId);
     }
 
     @Operation(summary = "Gets local pending reviews")
@@ -56,10 +56,10 @@ public class ReviewController {
     }
 
     @Operation(summary = "Create a review")
-    @PostMapping(value = "/{sku}/create")
+    @PostMapping(value = "/{sandwichId}/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Review> createReview(@Valid @RequestBody final ReviewDTO rev, @PathVariable final String sku) throws IOException, InterruptedException {
-        final Review review = service.create(rev, sku);
+    public ResponseEntity<Review> createReview(@Valid @RequestBody final ReviewDTO rev, @PathVariable final UUID sandwichId) {
+        final Review review = service.create(rev, sandwichId);
         return ResponseEntity.ok(review);
     }
 
@@ -104,21 +104,21 @@ public class ReviewController {
     }
 
     @Operation(summary = "Get all database reviews associated with one product ordered by chronologival date without page")
-    @GetMapping(value = "/{sku}/date/here")
-    public Iterable<Review> getReviewsByProductOrderByDateWithoutPage(@PathVariable("sku") final String sku) throws IOException, InterruptedException {
-        return service.getReviewsByProductOrderByDateWithoutPage(sku);
+    @GetMapping(value = "/{sandwichId}/date/here")
+    public Iterable<Review> getReviewsBySandwichOrderByDateWithoutPage(@PathVariable("sandwichId") final UUID sandwichId) {
+        return service.getReviewsBySandwichOrderByDateWithoutPage(sandwichId);
     }
 
     @Operation(summary = "Get all reviews of a product, sorted by number of votes and reverse chronological publishing date")
-    @GetMapping(value = "/{sku}/votes")
-    public Iterable<Review> getReviewsByProductOrderByVotesWithoutPage(@PathVariable("sku") final String sku) throws IOException, InterruptedException {
-        return service.getReviewsByProductOrderByVotesWithoutPage(sku);
+    @GetMapping(value = "/{sandwichId}/votes")
+    public Iterable<Review> getReviewsBySandwichOrderByVotesWithoutPage(@PathVariable("sandwichId") final UUID sandwichId) {
+        return service.getReviewsBySandwichOrderByVotesWithoutPage(sandwichId);
     }
 
-    @Operation(summary = "Gets a specific review by its reviewId")
-    @GetMapping(value="/reviewByProduct/{sku}")
-    public Iterable<Review> getBySku(@PathVariable("sku") final String sku) throws IOException, InterruptedException {
-        return service.getReviewsByProduct(sku);
+    @Operation(summary = "Gets a specific review by its sandwichId")
+    @GetMapping(value="/reviewBySandwich/{sandwichId}")
+    public Iterable<Review> getBySku(@PathVariable("sandwichId") final UUID sandwichId) {
+        return service.getReviewsBySandwich(sandwichId);
     }
 
     @Operation(summary = "Gets all my reviews")

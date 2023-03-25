@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.joao.sandwich;
+
+message SandwichRequest {
+  string sandwichId = 1;
+}
+
+message SandwichResponse {
+  int32 code = 1;
+}
+
+service SandwichService {
+  rpc getSandwich(SandwichRequest) returns (SandwichResponse);
+}

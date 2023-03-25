@@ -1,11 +1,9 @@
 package com.reviews.services;
 
-import com.joao.products.ProductResponse;
-import com.reviews.grpcService.ProductGrpcService;
+
+import com.joao.sandwich.SandwichResponse;
+import com.reviews.grpcService.SandwichGrpcService;
 import com.reviews.model.*;
-//import com.psoftprojectg5.repositories.ProductRepository;
-import com.reviews.repositories.HttpReviewRepository;
-import com.reviews.repositories.ProductRepository;
 import com.reviews.repositories.ReviewRepository;
 import com.reviews.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.io.IOException;
 import java.util.*;
 
 
@@ -25,22 +22,12 @@ public class ReviewServiceImpl implements ReviewService{
     @Autowired
     private ReviewRepository repository;
 
-
-    private ProductRepository repository2 = new ProductRepository();
-
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private SandwichGrpcService sandwichGrpcService;
 
-    private HttpRequestHelper helper=new HttpRequestHelper();
-
-    private HttpReviewRepository httpRepo= new HttpReviewRepository();
-
-    private final ProductGrpcService productGrpcService;
-
-    public ReviewServiceImpl(ProductGrpcService productGrpcService) {
-        this.productGrpcService = productGrpcService;
-    }
 
 
     @Override
@@ -55,13 +42,13 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public List<Review> getReviewsByProduct(String sku) {
+    public List<Review> getReviewsBySandwich(UUID sandwichId) {
 
-        ProductResponse productResponse = productGrpcService.getProduct(sku);
+        SandwichResponse sandwichResponse = sandwichGrpcService.getSandwich(sandwichId);
 
-        if (productResponse.getStatus()==200){
+        if (sandwichResponse.getCode()==200){
 
-            return repository.getReviewsByProduct(sku);
+            return repository.getReviewsBySandwich(sandwichId);
         }
         else{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
@@ -76,7 +63,7 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public Review create(ReviewDTO rev, String sku) {
+    public Review create(ReviewDTO rev, UUID sandwichId) {
 
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
@@ -85,26 +72,26 @@ public class ReviewServiceImpl implements ReviewService{
         User user = userRepository.findByUsername(username);
 
 
-        ProductResponse productResponse = productGrpcService.getProduct(sku);
+        SandwichResponse sandwichResponse = sandwichGrpcService.getSandwich(sandwichId);
 
-        if (productResponse.getStatus()==200){
-            final Review obj = Review.newFrom(rev,sku,user.getId());
+        if (sandwichResponse.getCode()==200){
+            final Review obj = Review.newFrom(rev,sandwichId,user.getId());
 
-            obj.setProductSku(sku);
+            obj.setSandwichId(sandwichId);
             return repository.save(obj);
         }
         else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sandwich Not Found");
         }
 
     }
 
     @Override
-    public RatingFrequency getRatingFrequencyOfProduct(String sku) {
-        ProductResponse productResponse = productGrpcService.getProduct(sku);
+    public RatingFrequency getRatingFrequencyOfSandwich(UUID sandwichId) {
+        SandwichResponse sandwichResponse = sandwichGrpcService.getSandwich(sandwichId);
 
-        if (productResponse.getStatus()==200){
-            List<Review> reviews = getReviewsByProduct(sku);
+        if (sandwichResponse.getCode()==200){
+            List<Review> reviews = getReviewsBySandwich(sandwichId);
             int rating;
             int one=0, two=0, three=0, four=0, five=0;
             RatingFrequency freq = new RatingFrequency();
@@ -126,11 +113,11 @@ public class ReviewServiceImpl implements ReviewService{
                     five = five + 1;
                 }
             }
-            float globalRating =repository.getAggregatedRating(sku);
+            float globalRating =repository.getAggregatedRating(sandwichId);
             return new RatingFrequency(one, two, three, four, five, globalRating);
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sandwich Not Found");
         }
     }
 
@@ -157,12 +144,6 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public void updateVotes(Vote vote, Review review){
-        review.updateVote(vote.isVote());
-        repository.save(review);
-    }
-
-    @Override
     public boolean goodToDel(Review review){
         Boolean del = review.goodToDel(review.getUpVotes(),review.getDownVotes());
         if(del) {
@@ -182,12 +163,6 @@ public class ReviewServiceImpl implements ReviewService{
         User user = userRepository.findByUsername(username);
 
         return Objects.equals(review.getUserId(), user.getId());
-    }
-
-
-    @Override
-    public boolean goodToVote(Review review){
-        return Objects.equals(review.getStatus(), "APPROVED");
     }
 
     @Override
@@ -222,28 +197,28 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public List<Review> getReviewsByProductOrderByDateWithoutPage(String sku) {
+    public List<Review> getReviewsBySandwichOrderByDateWithoutPage(UUID sandwichId) {
 
-        ProductResponse productResponse = productGrpcService.getProduct(sku);
+        SandwichResponse sandwichResponse = sandwichGrpcService.getSandwich(sandwichId);
 
-        if (productResponse.getStatus()==200){
-            return repository.getReviewsByProductOrderByDateWithoutPage(sku);
+        if (sandwichResponse.getCode()==200){
+            return repository.getReviewsBySandwichOrderByDateWithoutPage(sandwichId);
         }else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sandwich Not Found");
         }
 
     }
 
     @Override
-    public List<Review> getReviewsByProductOrderByVotesWithoutPage(String sku) {
+    public List<Review> getReviewsBySandwichOrderByVotesWithoutPage(UUID sandwichId) {
 
-        ProductResponse productResponse = productGrpcService.getProduct(sku);
+        SandwichResponse sandwichResponse = sandwichGrpcService.getSandwich(sandwichId);
 
-        if (productResponse.getStatus()==200){
-            return repository.getReviewsByProductOrderByVotesWithoutPage(sku);
+        if (sandwichResponse.getCode()==200){
+            return repository.getReviewsBySandwichOrderByVotesWithoutPage(sandwichId);
         }
         else{
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Sandwich Not Found");
         }
     }
 

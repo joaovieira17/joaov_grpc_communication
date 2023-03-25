@@ -1,25 +1,23 @@
 package com.reviews.services;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
 import com.reviews.model.RatingFrequency;
 import com.reviews.model.Review;
 import com.reviews.model.ReviewDTO;
-import com.reviews.model.Vote;
 
 public interface ReviewService {
 
     Review getReview(UUID reviewId);
 
-    Review create(ReviewDTO rev, String sku) throws IOException, InterruptedException;
+    Review create(ReviewDTO rev, UUID sandwichId);
 
     List<Review> getLocalPendingReviews();
 
-    List<Review> getReviewsByProduct(String sku) throws IOException, InterruptedException; //SIM
+    List<Review> getReviewsBySandwich(UUID sandwichId);
 
-    RatingFrequency getRatingFrequencyOfProduct(String sku) throws IOException, InterruptedException;
+    RatingFrequency getRatingFrequencyOfSandwich(UUID sandwichId);
 
     boolean approveRejectReview(UUID reviewId, boolean status);
 
@@ -27,19 +25,15 @@ public interface ReviewService {
 
     boolean belongsToUser(Review review);
 
-    boolean goodToVote(Review review);
-
     void upVote(UUID reviewId);
 
     void downVote(UUID reviewId);
 
     boolean reviewExistence(UUID reviewId);
 
-    List<Review> getReviewsByProductOrderByDateWithoutPage(String sku);
+    List<Review> getReviewsBySandwichOrderByDateWithoutPage(UUID sandwichId);
 
-    List<Review> getReviewsByProductOrderByVotesWithoutPage(String sku);
-
-    void updateVotes(Vote vote, Review review);
+    List<Review> getReviewsBySandwichOrderByVotesWithoutPage(UUID sandwichId);
 
     List<Review> getAllMyLocalReviews();
 }
