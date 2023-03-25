@@ -1,0 +1,17 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.joao.reviews;
+
+message ReviewRequest {
+  string reviewId = 1;
+}
+
+message ReviewResponse {
+  int32 code =1;
+  string reviewId=2;
+  string status = 3;
+}
+
+service ReviewService {
+  rpc getReview(ReviewRequest) returns (ReviewResponse);
+}
