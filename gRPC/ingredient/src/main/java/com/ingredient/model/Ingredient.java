@@ -1,15 +1,15 @@
 package com.ingredient.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.util.UUID;
+
+import java.io.Serializable;
 
 @Entity
 public class Ingredient implements Serializable {
