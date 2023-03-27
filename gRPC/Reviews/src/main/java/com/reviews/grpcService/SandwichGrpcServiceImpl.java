@@ -18,7 +18,7 @@ public class SandwichGrpcServiceImpl implements SandwichGrpcService{
     private ManagedChannel channel;
 
     public SandwichGrpcServiceImpl() {
-        channel = ManagedChannelBuilder.forAddress("localhost", 9090)
+        channel = ManagedChannelBuilder.forAddress("localhost", 9091)
                 .usePlaintext()
                 .build();
     }

@@ -1,5 +1,6 @@
 package com.sandwich.services;
 
+import com.sandwich.grpcService.IngredientGrpcService;
 import com.sandwich.model.Catalog;
 import com.sandwich.model.Ingredient;
 import com.sandwich.model.Sandwich;
@@ -11,7 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,6 +22,12 @@ public class SandwichServiceImpl implements SandwichService{
     private SandwichRepository repository;
 
     private HttpRequestHelper helper = new HttpRequestHelper();
+
+    private final IngredientGrpcService ingredientGrpcService;
+
+    public SandwichServiceImpl(IngredientGrpcService ingredientGrpcService) {
+        this.ingredientGrpcService = ingredientGrpcService;
+    }
 
     @Override
     public List<Catalog> getCatalog() {
@@ -49,8 +55,8 @@ public class SandwichServiceImpl implements SandwichService{
         List<Ingredient> listOfIngredients= sandwich.getListOfIngredients();
 
         for(int i=0; i<listOfIngredients.size();i++){
-            boolean isIngredient = helper.doesIngredientExist(listOfIngredients.get(i).getName());
-            if(!isIngredient){
+            int code = ingredientGrpcService.getIngredient(listOfIngredients.get(i).getName()).getCode();
+            if(code == 404){
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND,"That ingredient does not exist: "+listOfIngredients.get(i).getName());
             }
         }

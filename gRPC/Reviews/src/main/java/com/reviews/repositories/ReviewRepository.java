@@ -14,13 +14,13 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT r FROM Review r WHERE r.reviewId = :reviewId")
     Review getReviewById(@Param("reviewId") UUID reviewId);
 
-    @Query("SELECT r FROM Review r WHERE r.sandwichId = :sku  ORDER BY r.date desc")
+    @Query("SELECT r FROM Review r WHERE r.sandwichId = :sandwichId  ORDER BY r.date desc")
     List <Review> getReviewsBySandwichOrderByDateWithoutPage(@Param("sandwichId") UUID sandwichId);
 
-    @Query("SELECT r FROM Review r WHERE r.sandwichId = :sku and r.status = 'APPROVED' ORDER BY r.upVotes desc, r.date desc")
+    @Query("SELECT r FROM Review r WHERE r.sandwichId = :sandwichId and r.status = 'APPROVED' ORDER BY r.upVotes desc, r.date desc")
     List <Review> getReviewsBySandwichOrderByVotesWithoutPage(@Param("sandwichId") UUID sandwichId);
 
-    @Query("SELECT AVG(r.rating) FROM Review r WHERE r.sandwichId = :sku")
+    @Query("SELECT AVG(r.rating) FROM Review r WHERE r.sandwichId = :sandwichId")
     Float getAggregatedRating(@Param("sandwichId") UUID sandwichId);
 
     @Query("SELECT r FROM Review r WHERE r.status ='PENDING'")
@@ -29,7 +29,7 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     @Query("SELECT r FROM Review r WHERE r.userId = :userId")
     List<Review> getAllMyReviews(@Param("userId") Long userId);
 
-    @Query("SELECT r FROM Review r WHERE r.sandwichId =:sku")
+    @Query("SELECT r FROM Review r WHERE r.sandwichId =:sandwichId")
     List<Review> getReviewsBySandwich(@Param("sandwichId") UUID sandwichId);
 
 }

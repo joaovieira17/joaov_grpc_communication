@@ -25,9 +25,12 @@ public class ReviewServiceImpl implements ReviewService{
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private SandwichGrpcService sandwichGrpcService;
 
+    private final SandwichGrpcService sandwichGrpcService;
+
+    public ReviewServiceImpl(SandwichGrpcService sandwichGrpcService) {
+        this.sandwichGrpcService = sandwichGrpcService;
+    }
 
 
     @Override

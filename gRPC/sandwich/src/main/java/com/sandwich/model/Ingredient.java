@@ -1,7 +1,8 @@
 package com.sandwich.model;
 
-import jakarta.persistence.Embeddable;
 
+
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.UUID;
 
