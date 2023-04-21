@@ -26,21 +26,27 @@ public class IngredientController {
 
     //@Operation(summary = "Gets a specific ingredient by its ID")
     @GetMapping("/{ingredientId}")
-    public ResponseEntity<Ingredient> getBySandwichId(@PathVariable("ingredientId") final UUID ingredientId) {
+    public ResponseEntity<Ingredient> getByIngredientId(@PathVariable("ingredientId") final UUID ingredientId) {
         final Ingredient ingredient = service.getByIngredientId(ingredientId);
         return ResponseEntity.ok().body(ingredient);
     }
 
     @GetMapping("/existence/{name}")
-    public ResponseEntity<Boolean> checkSandwichExistence(@PathVariable("name") final String name) {
+    public ResponseEntity<Boolean> checkIngredientExistence(@PathVariable("name") final String name) {
         boolean exists = service.ingredientExistence(name.toLowerCase());
+        return ResponseEntity.ok().body(exists);
+    }
+
+    @GetMapping("/existenceByKey/{publicKey}")
+    public ResponseEntity<Boolean> checkIngredientExistenceByKey(@PathVariable("publicKey") final String publicKey) {
+        boolean exists = service.ingredientExistenceByKey(publicKey.toLowerCase());
         return ResponseEntity.ok().body(exists);
     }
 
     //@Operation(summary = "Create a ingredient")
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Ingredient> createSandwich(@Valid @RequestBody final Ingredient ingredient) {
+    public ResponseEntity<Ingredient> createIngredient(@Valid @RequestBody final Ingredient ingredient) {
         final Ingredient ingredient1 = service.createIngredient(ingredient);
         return ResponseEntity.ok(ingredient1);
     }
@@ -48,7 +54,7 @@ public class IngredientController {
     //@Operation(summary = "Deletes a ingredient")
     @DeleteMapping(value = "/delete/{ingredientId}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> deleteSandwich(@PathVariable("ingredientId")final UUID ingredientId){
+    public ResponseEntity<String> deleteIngredient(@PathVariable("ingredientId")final UUID ingredientId){
         return ResponseEntity.ok(service.deleteIngredient(ingredientId));
     }
 

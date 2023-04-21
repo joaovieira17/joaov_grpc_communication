@@ -51,7 +51,7 @@ public class SandwichServiceImpl implements SandwichService{
     }
 
     @Override
-    public Sandwich createSandwich(Sandwich sandwich) throws IOException, InterruptedException {
+    public Sandwich createSandwich(Sandwich sandwich) {
         List<Ingredient> listOfIngredients= sandwich.getListOfIngredients();
 
         for(int i=0; i<listOfIngredients.size();i++){

@@ -48,7 +48,23 @@ public class IngredientServiceImpl implements IngredientService{
     }
 
     @Override
+    public boolean ingredientExistenceByKey(String publicKey) {
+        String key = publicKey.toLowerCase();
+
+        if(repository.getByPublicKey(key)!=null){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public Ingredient createIngredient(Ingredient ingredient) {
+        String publicKey = ingredient.getPublicKey().toLowerCase();
+
+        if(!repository.getByPublicKey(publicKey).isEmpty()){
+            throw new ResponseStatusException(HttpStatus.CONFLICT,"There is one ingredient with that key");
+        }
+
         String name1= Normalizer.normalize(ingredient.getName(), Normalizer.Form.NFD).replaceAll("\\p{Mn}", "");
 
         List<Ingredient> listOfIngredients=new ArrayList<>();

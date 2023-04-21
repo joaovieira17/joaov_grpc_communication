@@ -13,8 +13,11 @@ public interface IngredientService {
     //gets a specific Ingredient by its ID
     Ingredient getByIngredientId(UUID ingredientId);
 
-    //verifies if the Ingredient exists
+    //verifies if the Ingredient exists by its name
     boolean ingredientExistence(String name);
+
+    //verifies if the Ingredient exists by its public Key
+    boolean ingredientExistenceByKey(String publicKey);
 
     //creates an Ingredient
     Ingredient createIngredient(Ingredient ingredient);
