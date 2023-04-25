@@ -20,7 +20,7 @@ public interface IngredientRepository extends JpaRepository<Ingredient, UUID> {
     List<Ingredient> getByName(@Param("name") String name);
 
     @Query("SELECT f FROM Ingredient f WHERE LOWER(f.publicKey) like %:publicKey%")
-    List<Ingredient> getByPublicKey(@Param("publicKey") String publicKey);
+    Ingredient getByPublicKey(@Param("publicKey") String publicKey);
 
 
 }

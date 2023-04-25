@@ -1,5 +1,6 @@
 package com.sandwich.services;
 
+import com.sandwich.dtos.CreateSandwichDTO;
 import com.sandwich.model.Catalog;
 import com.sandwich.model.Sandwich;
 
@@ -15,11 +16,14 @@ public interface SandwichService {
     //gets a specific sandwich by its ID
     Sandwich getBySandwichId(UUID sandwichId);
 
+    //gets a specific sandwich by its public key
+    Sandwich getByPublicKey (String publicKey);
+
     //verifies if the sandwich exists
     boolean sandwichExistence(UUID sandwichId);
 
     //creates a sandwich
-    Sandwich createSandwich(Sandwich sandwich) throws IOException, InterruptedException;
+    Sandwich createSandwich(CreateSandwichDTO sandwichDTO) throws IOException, InterruptedException;
 
     //deletes a sandwich
     String deleteSandwich (UUID sandwichId);

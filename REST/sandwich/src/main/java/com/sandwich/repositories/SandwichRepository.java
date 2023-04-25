@@ -20,5 +20,7 @@ public interface SandwichRepository extends JpaRepository<Sandwich, UUID> {
     @Query("SELECT f FROM Sandwich f WHERE f.designation= :designation")
     Sandwich getSandwichByDesignation(@Param("designation") String designation);
 
+    @Query("SELECT f FROM Sandwich f WHERE f.publicKey= :publicKey")
+    Sandwich getSandwichByPublicKey(@Param("publicKey") String publicKey);
 
 }

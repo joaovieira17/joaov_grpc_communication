@@ -1,5 +1,6 @@
 package com.ingredient.services;
 
+import com.ingredient.dtos.IngredientToSend;
 import com.ingredient.model.Ingredient;
 
 import java.util.List;
@@ -12,6 +13,9 @@ public interface IngredientService {
 
     //gets a specific Ingredient by its ID
     Ingredient getByIngredientId(UUID ingredientId);
+
+    //gets a specific Ingredient by its public key
+    IngredientToSend getByPublicKey(String publicKey);
 
     //verifies if the Ingredient exists by its name
     boolean ingredientExistence(String name);

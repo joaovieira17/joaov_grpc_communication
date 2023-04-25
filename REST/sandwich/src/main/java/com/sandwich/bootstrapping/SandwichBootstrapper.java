@@ -39,62 +39,62 @@ public class SandwichBootstrapper implements CommandLineRunner {
         list2.add(bacon);
 
         if (repository.getBySandwichId(UUID.fromString("d728f1ce-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p1 = new Sandwich(UUID.fromString("d728f1ce-c747-11ed-afa1-0242ac120002"),"Baguette1","boa", list1 );
+            Sandwich p1 = new Sandwich(UUID.fromString("d728f1ce-c747-11ed-afa1-0242ac120002"),"bag1","Baguette1","boa", list1 );
             repository.save(p1);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d728f552-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p2 = new Sandwich(UUID.fromString("d728f552-c747-11ed-afa1-0242ac120002"),"Baguette2","top",list1);
+            Sandwich p2 = new Sandwich(UUID.fromString("d728f552-c747-11ed-afa1-0242ac120002"),"bag2","Baguette2","top",list1);
             repository.save(p2);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d728f7e6-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p3 = new Sandwich(UUID.fromString("d728f7e6-c747-11ed-afa1-0242ac120002"),"Baguette3","fixe",list1);
+            Sandwich p3 = new Sandwich(UUID.fromString("d728f7e6-c747-11ed-afa1-0242ac120002"),"bag3","Baguette3","fixe",list1);
             repository.save(p3);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d728fa02-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p4 = new Sandwich(UUID.fromString("d728fa02-c747-11ed-afa1-0242ac120002"),"Baguette4","ao contrário",list1);
+            Sandwich p4 = new Sandwich(UUID.fromString("d728fa02-c747-11ed-afa1-0242ac120002"),"bag4","Baguette4","ao contrário",list1);
             repository.save(p4);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d72901be-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p5 = new Sandwich(UUID.fromString("d72901be-c747-11ed-afa1-0242ac120002"),"Baguette5","Em formato de coração",list1);
+            Sandwich p5 = new Sandwich(UUID.fromString("d72901be-c747-11ed-afa1-0242ac120002"),"bag5","Baguette5","Em formato de coração",list1);
             repository.save(p5);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d7290402-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p6 = new Sandwich(UUID.fromString("d7290402-c747-11ed-afa1-0242ac120002"),"Baguette6","verde",list1);
+            Sandwich p6 = new Sandwich(UUID.fromString("d7290402-c747-11ed-afa1-0242ac120002"),"bag6","Baguette6","verde",list1);
             repository.save(p6);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d729059c-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p7 = new Sandwich(UUID.fromString("d729059c-c747-11ed-afa1-0242ac120002"),"Baguette7","Em muita quantidade",list1);
+            Sandwich p7 = new Sandwich(UUID.fromString("d729059c-c747-11ed-afa1-0242ac120002"),"bag7","Baguette7","Em muita quantidade",list1);
             repository.save(p7);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d7290718-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p8 = new Sandwich(UUID.fromString("d7290718-c747-11ed-afa1-0242ac120002"),"Baguette8","pequena",list2);
+            Sandwich p8 = new Sandwich(UUID.fromString("d7290718-c747-11ed-afa1-0242ac120002"),"bag8","Baguette8","pequena",list2);
             repository.save(p8);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d7290830-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p9 = new Sandwich(UUID.fromString("d7290830-c747-11ed-afa1-0242ac120002"),"Baguette9","grande",list2);
+            Sandwich p9 = new Sandwich(UUID.fromString("d7290830-c747-11ed-afa1-0242ac120002"),"bag9","Baguette9","grande",list2);
             repository.save(p9);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d7290a9c-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p10 = new Sandwich(UUID.fromString("d7290a9c-c747-11ed-afa1-0242ac120002"),"Baguette10","yay",list2);
+            Sandwich p10 = new Sandwich(UUID.fromString("d7290a9c-c747-11ed-afa1-0242ac120002"),"bag10","Baguette10","yay",list2);
             repository.save(p10);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d7290c36-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p11 = new Sandwich(UUID.fromString("d7290c36-c747-11ed-afa1-0242ac120002"),"Baguette11","maravilha",list2);
+            Sandwich p11 = new Sandwich(UUID.fromString("d7290c36-c747-11ed-afa1-0242ac120002"),"bag11","Baguette11","maravilha",list2);
             repository.save(p11);
         }
 
         if (repository.getBySandwichId(UUID.fromString("d729478c-c747-11ed-afa1-0242ac120002"))==null) {
-            Sandwich p12 = new Sandwich(UUID.fromString("d729478c-c747-11ed-afa1-0242ac120002"),"Baguette12","mais do mesmo",list2);
+            Sandwich p12 = new Sandwich(UUID.fromString("d729478c-c747-11ed-afa1-0242ac120002"),"bag12","Baguette12","mais do mesmo",list2);
             repository.save(p12);
         }
 

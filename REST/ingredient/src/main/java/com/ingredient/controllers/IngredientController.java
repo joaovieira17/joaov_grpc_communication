@@ -1,5 +1,6 @@
 package com.ingredient.controllers;
 
+import com.ingredient.dtos.IngredientToSend;
 import com.ingredient.model.Ingredient;
 import com.ingredient.services.IngredientService;
 import javax.validation.Valid;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-//@Tag(name = "Sandwiches", description = "Endpoints for managing sandwiches")
+//@Tag(name = "Ingredients", description = "Endpoints for managing ingredients")
 @RestController
 @RequestMapping("/ingredient")
 public class IngredientController {
@@ -28,6 +29,12 @@ public class IngredientController {
     @GetMapping("/{ingredientId}")
     public ResponseEntity<Ingredient> getByIngredientId(@PathVariable("ingredientId") final UUID ingredientId) {
         final Ingredient ingredient = service.getByIngredientId(ingredientId);
+        return ResponseEntity.ok().body(ingredient);
+    }
+
+    @GetMapping("/getByKey/{publicKey}")
+    public ResponseEntity<IngredientToSend> getByPublicKey(@PathVariable("publicKey") final String publicKey) {
+        final IngredientToSend ingredient = service.getByPublicKey(publicKey);
         return ResponseEntity.ok().body(ingredient);
     }
 
@@ -51,7 +58,7 @@ public class IngredientController {
         return ResponseEntity.ok(ingredient1);
     }
 
-    //@Operation(summary = "Deletes a ingredient")
+    //@Operation(summary = "Deletes an ingredient")
     @DeleteMapping(value = "/delete/{ingredientId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> deleteIngredient(@PathVariable("ingredientId")final UUID ingredientId){

@@ -1,5 +1,8 @@
 package com.sandwich.services;
 
+import com.sandwich.dtos.CreateSandwichDTO;
+import com.sandwich.dtos.IngredientKeyDTO;
+import com.sandwich.dtos.IngredientResponseDTO;
 import com.sandwich.model.Catalog;
 import com.sandwich.model.Ingredient;
 import com.sandwich.model.Sandwich;
@@ -10,10 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class SandwichServiceImpl implements SandwichService{
@@ -38,6 +38,16 @@ public class SandwichServiceImpl implements SandwichService{
     }
 
     @Override
+    public Sandwich getByPublicKey(String publicKey) {
+        Optional<Sandwich> sandwichOptional = Optional.ofNullable(repository.getSandwichByPublicKey(publicKey));
+        if(sandwichOptional.isPresent()){
+            return sandwichOptional.get();
+        }
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Sandwich Not Found");
+    }
+
+    @Override
     public boolean sandwichExistence(UUID sandwichId) {
         Optional<Sandwich> sandwichOptional=repository.findById(sandwichId);
         boolean isPresent=sandwichOptional.isPresent();
@@ -45,18 +55,25 @@ public class SandwichServiceImpl implements SandwichService{
     }
 
     @Override
-    public Sandwich createSandwich(Sandwich sandwich) throws IOException, InterruptedException {
-        List<Ingredient> listOfIngredients= sandwich.getListOfIngredients();
+    public Sandwich createSandwich(CreateSandwichDTO sandwichDTO) throws IOException, InterruptedException {
+        List<IngredientKeyDTO> listOfIngredientsDTO1= sandwichDTO.getListOfIngredients();
+        Set<IngredientKeyDTO> setSemDuplicados = new LinkedHashSet<>(listOfIngredientsDTO1);
+        List<IngredientKeyDTO> listOfIngredientsDTO = new ArrayList<>(setSemDuplicados);
 
-        for(int i=0; i<listOfIngredients.size();i++){
-            boolean isIngredient = helper.doesIngredientExist(listOfIngredients.get(i).getName());
-            if(!isIngredient){
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"That ingredient does not exist: "+listOfIngredients.get(i).getName());
+        List<Ingredient> listOfIngredients = new ArrayList<>();
+        for(int i=0; i<listOfIngredientsDTO.size();i++){
+            IngredientResponseDTO ingredientResponseDTO = helper.IngredientByKey(listOfIngredientsDTO.get(i).getPublicKey());
+            if(ingredientResponseDTO.getCode()==404){
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"That ingredient does not exist: "+listOfIngredientsDTO.get(i).getPublicKey());
             }
+
+            Ingredient ingredient = new Ingredient(ingredientResponseDTO.getName());
+            listOfIngredients.add(ingredient);
         }
-        if(repository.getSandwichByDesignation(sandwich.getDesignation())!=null){
+        if(repository.getSandwichByDesignation(sandwichDTO.getDesignation())!=null){
             throw new ResponseStatusException(HttpStatus.CONFLICT, "That name is already used");
         }
+        Sandwich sandwich = new Sandwich(sandwichDTO.getSandwichId(),sandwichDTO.getPublicKey(),sandwichDTO.getDesignation(),sandwichDTO.getDescription(),listOfIngredients);
         return repository.save(sandwich);
     }
 

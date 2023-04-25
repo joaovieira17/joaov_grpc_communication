@@ -1,5 +1,6 @@
 package com.ingredient.services;
 
+import com.ingredient.dtos.IngredientToSend;
 import com.ingredient.model.Ingredient;
 import com.ingredient.repositories.IngredientRepository;
 import com.ingredient.utils.StringUtils;
@@ -28,7 +29,19 @@ public class IngredientServiceImpl implements IngredientService{
         if (ingredientOptional.isPresent())
             return ingredientOptional.get();
         else
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Sandwich Not Found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Ingredient Not Found");
+    }
+
+    @Override
+    public IngredientToSend getByPublicKey(String publicKey) {
+        Optional<Ingredient> ingredientOptional = Optional.ofNullable(repository.getByPublicKey(publicKey));
+        if (ingredientOptional.isPresent()) {
+            String name = ingredientOptional.get().getName();
+            return new IngredientToSend(200, name);
+        }else {
+            //throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ingredient Not Found");
+            return new IngredientToSend(404,"Not Found");
+        }
     }
 
     @Override
@@ -61,7 +74,7 @@ public class IngredientServiceImpl implements IngredientService{
     public Ingredient createIngredient(Ingredient ingredient) {
         String publicKey = ingredient.getPublicKey().toLowerCase();
 
-        if(!repository.getByPublicKey(publicKey).isEmpty()){
+        if(repository.getByPublicKey(publicKey)!=null){
             throw new ResponseStatusException(HttpStatus.CONFLICT,"There is one ingredient with that key");
         }
 

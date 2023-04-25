@@ -1,5 +1,6 @@
 package com.sandwich.controllers;
 
+import com.sandwich.dtos.CreateSandwichDTO;
 import com.sandwich.model.Catalog;
 import com.sandwich.model.Sandwich;
 import com.sandwich.services.SandwichService;
@@ -33,6 +34,12 @@ public class SandwichController {
         return ResponseEntity.ok().body(sandwich);
     }
 
+    @GetMapping("/GetByKey/{publicKey}")
+    public ResponseEntity<Sandwich> getByKey(@PathVariable("publicKey") final String publicKey) {
+        final Sandwich sandwich = service.getByPublicKey(publicKey);
+        return ResponseEntity.ok().body(sandwich);
+    }
+
     @GetMapping("/existence/{sandwichId}")
     public ResponseEntity<Boolean> checkSandwichExistence(@PathVariable("sandwichId") final UUID sandwichId) {
         boolean exists = service.sandwichExistence(sandwichId);
@@ -42,9 +49,9 @@ public class SandwichController {
     //@Operation(summary = "Create a sandwich")
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Sandwich> createSandwich(@Valid @RequestBody final Sandwich sandwich) throws IOException, InterruptedException {
-        final Sandwich sandwich1 = service.createSandwich(sandwich);
-        return ResponseEntity.ok(sandwich1);
+    public ResponseEntity<Sandwich> createSandwich(@Valid @RequestBody final CreateSandwichDTO createSandwichDTO) throws IOException, InterruptedException {
+        final Sandwich sandwich = service.createSandwich(createSandwichDTO);
+        return ResponseEntity.ok(sandwich);
     }
 
     //@Operation(summary = "Deletes a sandwich")
