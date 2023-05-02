@@ -129,6 +129,12 @@ public class ReviewController {
         return service.getAllMyLocalReviews();
     }
 
+    @Operation(summary = "Get Reviews by a specific language")
+    @GetMapping(value = "/reviewByLanguage/{language}")
+    public Iterable<Review> getByLanguage(@PathVariable("language") final String language){
+        return service.getReviewByLanguage(language);
+    }
+
     @Operation(summary = "Gets a specific review by its reviewId in response to vote Requests")
     @GetMapping("/reviewForVote/{reviewId}")
     public ResponseEntity<ReviewVoteDTO> getByReviewIdForVote(@PathVariable("reviewId") final UUID reviewId) {

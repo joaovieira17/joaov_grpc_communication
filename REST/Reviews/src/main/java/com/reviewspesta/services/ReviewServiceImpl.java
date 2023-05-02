@@ -233,6 +233,11 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
+    public List<Review> getReviewByLanguage(String language) {
+        return repository.getReviewByLanguage(language);
+    }
+
+    @Override
     public ReviewVoteDTO getReviewForVote(UUID reviewId) {
         Optional<Review> review = Optional.ofNullable(repository.getReviewById(reviewId));
         if (review.isPresent()) {

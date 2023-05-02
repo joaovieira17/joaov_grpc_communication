@@ -40,6 +40,8 @@ public interface ReviewService {
 
     List<Review> getAllMyLocalReviews();
 
+    List<Review> getReviewByLanguage(String language);
+
     ReviewVoteDTO getReviewForVote(UUID reviewId);
 }
 

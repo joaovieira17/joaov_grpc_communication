@@ -32,4 +32,7 @@ public interface ReviewRepository extends JpaRepository<Review, UUID> {
     @Query("SELECT r FROM Review r WHERE r.sandwichId =:sandwichId")
     List<Review> getReviewsBySandwich(@Param("sandwichId") UUID sandwichId);
 
+    @Query("SELECT r FROM Review r WHERE r.language = UPPER(:language) ")
+    List<Review> getReviewByLanguage(@Param("language") String language);
+
 }

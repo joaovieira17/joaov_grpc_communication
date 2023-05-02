@@ -70,7 +70,7 @@ public class HttpRequestHelper {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/sandwich/existence/"+ sandwichId ))
+                .uri(URI.create("http://localhost:8081/sandwich/existence/"+ sandwichId ))
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
