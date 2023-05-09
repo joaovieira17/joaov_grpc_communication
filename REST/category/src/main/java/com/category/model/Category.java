@@ -35,13 +35,13 @@ public class Category implements Serializable {
 
     public Category(UUID categoryId, String publicKey, String name) {
         this.categoryId = categoryId;
-        this.publicKey = publicKey;
-        this.name = name;
+        setPublicKey(publicKey);
+        setName(name);
     }
 
     public Category(String publicKey, String name) {
-        this.publicKey = publicKey;
-        this.name = name;
+        setPublicKey(publicKey);
+        setName(name);
     }
 
     public Category() {
@@ -51,14 +51,13 @@ public class Category implements Serializable {
         return categoryId;
     }
 
-    public void setCategoryId(UUID categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public String getPublicKey() {
         return publicKey;
     }
 
+    /*if (sku.length()!=12 || !sku.matches("[a-zA-Z0-9]+")) {
+            throw new IllegalArgumentException("'SKU' has not a correct format");
+        }*/
     public void setPublicKey(String publicKey) {
         if (publicKey == null || publicKey.isEmpty()) {
             throw new IllegalArgumentException("'publicKey' is a mandatory attribute of Category");
@@ -68,6 +67,9 @@ public class Category implements Serializable {
         }
         if (publicKey.length()>5){
             throw new IllegalArgumentException("'publicKey' has a maximum of 5 characters");
+        }
+        if (!publicKey.matches("[a-zA-Z0-9]+")){
+            throw new IllegalArgumentException("'publicKey' has invalid characters");
         }
         this.publicKey = publicKey;
     }
