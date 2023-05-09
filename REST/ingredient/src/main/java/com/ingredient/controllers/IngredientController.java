@@ -1,5 +1,6 @@
 package com.ingredient.controllers;
 
+import com.ingredient.dtos.CreateIngredientDTO;
 import com.ingredient.dtos.IngredientToSend;
 import com.ingredient.model.Ingredient;
 import com.ingredient.services.IngredientService;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.UUID;
 
 //@Tag(name = "Ingredients", description = "Endpoints for managing ingredients")
@@ -53,7 +55,7 @@ public class IngredientController {
     //@Operation(summary = "Create a ingredient")
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Ingredient> createIngredient(@Valid @RequestBody final Ingredient ingredient) {
+    public ResponseEntity<Ingredient> createIngredient(@Valid @RequestBody final CreateIngredientDTO ingredient) throws IOException, InterruptedException {
         final Ingredient ingredient1 = service.createIngredient(ingredient);
         return ResponseEntity.ok(ingredient1);
     }

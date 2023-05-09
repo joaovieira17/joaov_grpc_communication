@@ -1,56 +1,36 @@
-package com.ingredient.model;
+package com.ingredient.dtos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.ingredient.model.Category;
 
-//import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Entity
-public class Ingredient implements Serializable {
+public class CreateIngredientDTO implements Serializable {
 
-    @Id
-    @NotNull
-    @NotBlank
-    @Column(nullable = false, unique = true)
     private UUID ingredientId = UUID.randomUUID();
 
-    @Column(nullable = false, unique = true)
-    @NotNull
-    @NotBlank
-    @Size(min = 3, max = 5)
     private String publicKey;
 
-    @Column(nullable = false, unique = true)
-    @NotNull
-    @NotBlank
-    @Size(min = 1, max = 25)
     private String name;
 
-    @Column(nullable = false)
-    private Category category;
+    //private CategoryKeyDTO categoryKeyDTO;
+    private String categoryKey;
 
     //Construtor
-    public Ingredient(String publicKey ,String name, Category category) {
+    public CreateIngredientDTO(String publicKey , String name, String categoryKey) {
         setPublicKey(publicKey);
         setName(name);
-        setCategory(category);
+        setCategoryKey(categoryKey);
     }
 
-    public Ingredient(UUID ingredientId,String publicKey, String name, Category category) {
+    public CreateIngredientDTO(UUID ingredientId, String publicKey, String name, String categoryKey) {
         this.ingredientId = ingredientId;
         setPublicKey(publicKey);
         setName(name);
-        setCategory(category);
+        setCategoryKey(categoryKey);
     }
 
-    public Ingredient() {
+    public CreateIngredientDTO() {
 
     }
 
@@ -94,14 +74,20 @@ public class Ingredient implements Serializable {
         }
         this.name = name;
     }
-
-    public Category getCategory() {
-        return category;
+/*
+    public CategoryKeyDTO getCategoryKeyDTO() {
+        return categoryKeyDTO;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryKeyDTO(CategoryKeyDTO categoryKeyDTO) {
+        this.categoryKeyDTO = categoryKeyDTO;
+    }*/
+
+    public String getCategoryKey() {
+        return categoryKey;
+    }
+
+    public void setCategoryKey(String categoryKey) {
+        this.categoryKey = categoryKey;
     }
 }
-
-
