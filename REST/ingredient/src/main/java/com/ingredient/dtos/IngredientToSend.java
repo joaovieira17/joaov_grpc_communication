@@ -6,9 +6,12 @@ public class IngredientToSend {
 
     private String name;
 
-    public IngredientToSend(int code, String name) {
+    private String category;
+
+    public IngredientToSend(int code, String name, String category) {
         this.code = code;
         this.name = name;
+        this.category = category;
     }
 
     public int getCode() {
@@ -25,5 +28,13 @@ public class IngredientToSend {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

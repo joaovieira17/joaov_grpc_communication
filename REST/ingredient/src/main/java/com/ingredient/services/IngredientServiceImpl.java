@@ -43,10 +43,11 @@ public class IngredientServiceImpl implements IngredientService{
         Optional<Ingredient> ingredientOptional = Optional.ofNullable(repository.getByPublicKey(publicKey));
         if (ingredientOptional.isPresent()) {
             String name = ingredientOptional.get().getName();
-            return new IngredientToSend(200, name);
+            String category = ingredientOptional.get().getCategory().getCategoryName();
+            return new IngredientToSend(200, name, category);
         }else {
             //throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ingredient Not Found");
-            return new IngredientToSend(404,"Not Found");
+            return new IngredientToSend(404,"Not Found", "");
         }
     }
 

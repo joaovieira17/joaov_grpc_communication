@@ -21,12 +21,12 @@ public class SandwichBootstrapper implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Ingredient tomate=new Ingredient("tomate");
-        Ingredient alface=new Ingredient("alface");
-        Ingredient cogumelos=new Ingredient("cogumelos");
-        Ingredient salsichas=new Ingredient("salsichas");
-        Ingredient bacon= new Ingredient("bacon");
-        Ingredient fiambre=new Ingredient("fiambre");
+        Ingredient tomate=new Ingredient("tomate", "Fruta");
+        Ingredient alface=new Ingredient("alface", "Horticolas");
+        Ingredient cogumelos=new Ingredient("cogumelos", "Horticolas");
+        Ingredient salsichas=new Ingredient("salsichas", "Carnes e ovos");
+        Ingredient bacon= new Ingredient("bacon", "Carnes e ovos");
+        Ingredient fiambre=new Ingredient("fiambre", "Carnes e ovos");
 
         List<Ingredient> list1 = new ArrayList<>();
         list1.add(tomate);

@@ -45,6 +45,7 @@ public class SandwichController {
     public ResponseEntity<Sandwich> createSandwich(@Valid @RequestBody final Sandwich sandwich) throws IOException, InterruptedException {
         final Sandwich sandwich1 = service.createSandwich(sandwich);
         return ResponseEntity.ok(sandwich1);
+        //return ResponseEntity.status(HttpStatus.CREATED).body(sandwich1);
     }
 
     //@Operation(summary = "Deletes a sandwich")

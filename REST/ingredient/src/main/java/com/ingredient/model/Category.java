@@ -28,8 +28,8 @@ public class Category {
         if (categoryName == null || categoryName.isEmpty()) {
             throw new IllegalArgumentException("'Name' is a mandatory attribute of Category");
         }
-        if (categoryName.length()>25){
-            throw new IllegalArgumentException("'Name' has a maximum of 25 characters");
+        if (categoryName.length()>50){
+            throw new IllegalArgumentException("'Name' has a maximum of 50 characters");
         }
         if (categoryName.trim().length() == 0){
             throw new IllegalArgumentException("'Name' cannot have only white spaces");

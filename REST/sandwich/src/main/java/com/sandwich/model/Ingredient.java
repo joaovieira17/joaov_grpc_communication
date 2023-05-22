@@ -11,9 +11,12 @@ public class Ingredient implements Serializable {
 
     private String name;
 
+    private String category;
+
     //Construtor
-    public Ingredient(String name) {
+    public Ingredient(String name, String category) {
         setName(name);
+        this.category = category;
     }
 
     public Ingredient() {
@@ -39,6 +42,14 @@ public class Ingredient implements Serializable {
             throw new IllegalArgumentException("'Name' cannot have only white spaces");
         }
         this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
 

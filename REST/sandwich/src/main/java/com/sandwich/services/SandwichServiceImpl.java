@@ -67,7 +67,7 @@ public class SandwichServiceImpl implements SandwichService{
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND,"That ingredient does not exist: "+listOfIngredientsDTO.get(i).getPublicKey());
             }
 
-            Ingredient ingredient = new Ingredient(ingredientResponseDTO.getName());
+            Ingredient ingredient = new Ingredient(ingredientResponseDTO.getName(), ingredientResponseDTO.getCategory());
             listOfIngredients.add(ingredient);
         }
         if(repository.getSandwichByDesignation(sandwichDTO.getDesignation())!=null){
