@@ -46,12 +46,18 @@ public class SandwichController {
         return ResponseEntity.ok().body(exists);
     }
 
+    @GetMapping("/existenceByKey/{publicKey}")
+    public ResponseEntity<Boolean> checkSandwichExistenceByKey(@PathVariable("publicKey") final String publicKey) {
+        boolean exists = service.sandwichExistenceByKey(publicKey);
+        return ResponseEntity.ok().body(exists);
+    }
+
     //@Operation(summary = "Create a sandwich")
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Sandwich> createSandwich(@Valid @RequestBody final CreateSandwichDTO createSandwichDTO) throws IOException, InterruptedException {
         final Sandwich sandwich = service.createSandwich(createSandwichDTO);
-        return ResponseEntity.ok(sandwich);
+        return ResponseEntity.status(HttpStatus.CREATED).body(sandwich);
     }
 
     //@Operation(summary = "Deletes a sandwich")

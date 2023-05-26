@@ -22,6 +22,8 @@ public interface SandwichService {
     //verifies if the sandwich exists
     boolean sandwichExistence(UUID sandwichId);
 
+    boolean sandwichExistenceByKey(String publicKey);
+
     //creates a sandwich
     Sandwich createSandwich(CreateSandwichDTO sandwichDTO) throws IOException, InterruptedException;
 

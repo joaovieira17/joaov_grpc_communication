@@ -55,6 +55,14 @@ public class SandwichServiceImpl implements SandwichService{
     }
 
     @Override
+    public boolean sandwichExistenceByKey(String publicKey) {
+        Optional<Sandwich> sandwichOptional = Optional.ofNullable(repository.getSandwichByPublicKey(publicKey));
+
+        boolean isPresent= sandwichOptional.isPresent();
+        return isPresent;
+    }
+
+    @Override
     public Sandwich createSandwich(CreateSandwichDTO sandwichDTO) throws IOException, InterruptedException {
         List<IngredientKeyDTO> listOfIngredientsDTO1= sandwichDTO.getListOfIngredients();
         Set<IngredientKeyDTO> setSemDuplicados = new LinkedHashSet<>(listOfIngredientsDTO1);

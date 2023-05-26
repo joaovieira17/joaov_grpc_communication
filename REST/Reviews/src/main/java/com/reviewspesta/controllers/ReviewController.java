@@ -61,7 +61,7 @@ public class ReviewController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Review> createReview(@Valid @RequestBody final ReviewDTO rev, @PathVariable final UUID sandwichId) throws IOException, InterruptedException {
         final Review review = service.create(rev, sandwichId);
-        return ResponseEntity.ok(review);
+        return ResponseEntity.status(HttpStatus.CREATED).body(review);
     }
 
     @Operation(summary = "Increase review upVotes")
