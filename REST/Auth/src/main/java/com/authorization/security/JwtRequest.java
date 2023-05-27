@@ -1,4 +1,4 @@
-package com.restpesta.security;
+package com.authorization.security;
 
 
 public class JwtRequest {

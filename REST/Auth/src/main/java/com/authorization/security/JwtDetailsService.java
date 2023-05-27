@@ -1,7 +1,7 @@
-package com.restpesta.security;
+package com.authorization.security;
 
-import com.restpesta.model.User;
-import com.restpesta.repositories.UserRepository;
+import com.authorization.model.User;
+import com.authorization.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

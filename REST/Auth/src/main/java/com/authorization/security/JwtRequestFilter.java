@@ -1,4 +1,4 @@
-package com.restpesta.security;
+package com.authorization.security;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import org.slf4j.Logger;

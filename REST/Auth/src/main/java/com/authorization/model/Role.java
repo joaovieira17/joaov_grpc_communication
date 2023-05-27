@@ -1,4 +1,4 @@
-package com.restpesta.model;
+package com.authorization.model;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 import org.springframework.security.core.GrantedAuthority;

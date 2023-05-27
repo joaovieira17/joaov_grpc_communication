@@ -1,4 +1,4 @@
-package com.restpesta.model;
+package com.authorization.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

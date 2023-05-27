@@ -1,10 +1,10 @@
-package com.restpesta.controllers;
+package com.authorization.controllers;
 
-import com.restpesta.repositories.UserRepository;
-import com.restpesta.security.JwtRequest;
-import com.restpesta.security.JwtResponse;
-import com.restpesta.security.JwtUserDetails;
-import com.restpesta.security.JwtUtils;
+import com.authorization.repositories.UserRepository;
+import com.authorization.security.JwtRequest;
+import com.authorization.security.JwtResponse;
+import com.authorization.security.JwtUserDetails;
+import com.authorization.security.JwtUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
