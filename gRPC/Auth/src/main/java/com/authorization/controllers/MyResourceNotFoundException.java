@@ -1,4 +1,4 @@
-package com.restpesta.controllers;
+package com.authorization.controllers;
 
 import java.net.MalformedURLException;
 

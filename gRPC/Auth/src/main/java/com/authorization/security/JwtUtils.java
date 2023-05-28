@@ -1,4 +1,4 @@
-package com.restpesta.security;
+package com.authorization.security;
 
 
 import io.jsonwebtoken.*;
@@ -14,10 +14,10 @@ import java.util.Date;
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${psoft.app.jwtSecret}")
+    @Value("${pesta.app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${psoft.app.jwtExpirationMs}")
+    @Value("${pesta.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
     public String generateJwtToken(Authentication authentication) {
@@ -25,7 +25,9 @@ public class JwtUtils {
         JwtUserDetails userPrincipal = (JwtUserDetails) authentication.getPrincipal();
 
         return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
+                .setSubject(userPrincipal.getAuthorities().toString())
+                .setId(String.valueOf((userPrincipal.getId())))
+                //.setSubject((userPrincipal.getUsername()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)

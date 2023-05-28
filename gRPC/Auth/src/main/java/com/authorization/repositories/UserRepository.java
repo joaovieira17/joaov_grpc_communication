@@ -1,6 +1,6 @@
-package com.restpesta.repositories;
+package com.authorization.repositories;
 
-import com.restpesta.model.User;
+import com.authorization.model.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

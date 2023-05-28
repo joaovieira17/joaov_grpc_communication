@@ -1,7 +1,7 @@
-package com.restpesta.security;
+package com.authorization.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.restpesta.model.User;
+import com.authorization.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,8 +1,8 @@
-package com.restpesta.bootstrapping;
+package com.authorization.bootstrapping;
 
-import com.restpesta.model.Role;
-import com.restpesta.model.User;
-import com.restpesta.repositories.UserRepository;
+import com.authorization.model.Role;
+import com.authorization.model.User;
+import com.authorization.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
