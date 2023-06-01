@@ -11,6 +11,9 @@ import java.util.UUID;
 
 public interface ReviewRepository extends JpaRepository<Review, UUID> {
 
+    @Query("SELECT r FROM Review r")
+    List<Review> getEveryReview();
+
     @Query("SELECT r FROM Review r WHERE r.reviewId = :reviewId")
     Review getReviewById(@Param("reviewId") UUID reviewId);
 
@@ -23,8 +26,8 @@ public interface ReviewRepository extends JpaRepository<Review, UUID> {
     @Query("SELECT AVG(r.rating) FROM Review r WHERE r.sandwichId = :sandwichId")
     Float getAggregatedRating(@Param("sandwichId") UUID sandwichId);
 
-    @Query("SELECT r FROM Review r WHERE r.status ='PENDING'")
-    List <Review> getAllPendingReviews();
+    /*@Query("SELECT r FROM Review r WHERE r.status ='PENDING'")
+    List <Review> getAllPendingReviews();*/
 
     @Query("SELECT r FROM Review r WHERE r.userId = :userId")
     List<Review> getAllMyReviews(@Param("userId") Long userId);

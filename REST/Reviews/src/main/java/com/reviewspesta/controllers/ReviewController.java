@@ -25,6 +25,12 @@ public class ReviewController {
     @Autowired
     private ReviewService service;
 
+    @Operation(summary = "Gets every review ")
+    @GetMapping("/list")
+    public Iterable<Review> getEveryReview() {
+        return service.getEveryReview();
+    }
+
     @Operation(summary = "Gets a specific review by its reviewId")
     @GetMapping("/{reviewId}")
     public ResponseEntity<Review> getByReviewId(@PathVariable("reviewId") final UUID reviewId) {
@@ -38,14 +44,14 @@ public class ReviewController {
         return service.getRatingFrequencyOfSandwich(sandwichId);
     }
 
-    @Operation(summary = "Gets local pending reviews")
+    /*@Operation(summary = "Gets local pending reviews")
     @GetMapping(value = "/pending")
     public Iterable<Review> getLocalPendingReviews()  {
         return service.getLocalPendingReviews();
-    }
+    }*/
 
 
-    @Operation(summary = "Approve or Reject a pending review")
+    /*@Operation(summary = "Approve or Reject a pending review")
     @PutMapping(value = "/{reviewId}/approve/{reviewStatus}")
     public ResponseEntity<String> approveRejectReview(@PathVariable("reviewId") final UUID reviewId, @PathVariable ("reviewStatus") final boolean reviewStatus){
         boolean status = service.approveRejectReview(reviewId,reviewStatus);
@@ -54,7 +60,7 @@ public class ReviewController {
 
         }else
             return ResponseEntity.ok("O status da review foi mudado");
-    }
+    }*/
 
     @Operation(summary = "Create a review")
     @PostMapping(value = "/{sandwichId}/create")

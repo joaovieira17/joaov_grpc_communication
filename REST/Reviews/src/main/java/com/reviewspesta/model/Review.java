@@ -232,7 +232,7 @@ public class Review {
         long millis = System.currentTimeMillis();
         final LanguageDetector detector = LanguageDetectorBuilder.fromLanguages(ENGLISH, FRENCH, GERMAN, SPANISH, PORTUGUESE).build();
         if(!rev.getText().isEmpty() || rev.getRating() != 0){
-            obj.status = "PENDING";
+            obj.status = "APPROVED";
             obj.upVotes = 0;
             obj.downVotes = 0;
             obj.date = new Date(millis);

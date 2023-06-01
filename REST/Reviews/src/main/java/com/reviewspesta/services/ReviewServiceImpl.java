@@ -29,6 +29,11 @@ public class ReviewServiceImpl implements ReviewService{
 
 
     @Override
+    public List<Review> getEveryReview() {
+        return repository.getEveryReview();
+    }
+
+    @Override
     public Review getReview(UUID reviewId) {
 
         Optional<Review> review = Optional.ofNullable(repository.getReviewById(reviewId));
@@ -52,11 +57,11 @@ public class ReviewServiceImpl implements ReviewService{
 
     }
 
-    @Override
+    /*@Override
     public List<Review> getLocalPendingReviews() {
         List<Review> thisPending= repository.getAllPendingReviews();
         return thisPending;
-    }
+    }*/
 
     @Override
     public Review create(ReviewDTO rev, UUID sandwichId) throws IOException, InterruptedException {
@@ -67,6 +72,13 @@ public class ReviewServiceImpl implements ReviewService{
 
         User user = userRepository.findByUsername(username);
 
+        List<String> forbiddenWords = List.of("cafe", "morango", "colher");
+
+        for (int i=0; i<forbiddenWords.size();i++){
+            if (rev.getText().toLowerCase().contains(forbiddenWords.get(i))){
+                throw new ResponseStatusException(HttpStatus.CONFLICT,"You can't use that word:"+ forbiddenWords.get(i));
+            }
+        }
 
         if (helper.doesSandwichExist(sandwichId)){
             final Review obj = Review.newFrom(rev,sandwichId,user.getId());
@@ -113,7 +125,7 @@ public class ReviewServiceImpl implements ReviewService{
         }
     }
 
-    @Override
+    /*@Override
     public boolean approveRejectReview(UUID reviewId, boolean status){
 
         Review review = repository.getReviewById(reviewId);
@@ -133,7 +145,7 @@ public class ReviewServiceImpl implements ReviewService{
             return false;
         }
 
-    }
+    }*/
 
     @Override
     public void updateVotes(Vote vote, Review review){
@@ -249,4 +261,23 @@ public class ReviewServiceImpl implements ReviewService{
         else
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Review Not Found");
     }
+
+    /*@Override
+    public String changeReviewStatus(UUID reviewId, boolean isGood) {
+        Review review = repository.getReviewById(reviewId);
+        if (review!=null){
+
+            if(isGood){
+                return "The status is maintained";
+            }else{
+                review.setStatus("DELETED");
+                repository.save(review);
+                return "The status has changed";
+            }
+
+        }
+        else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Review Not Found");
+        }
+    }*/
 }

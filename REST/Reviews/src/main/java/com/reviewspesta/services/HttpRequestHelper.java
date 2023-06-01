@@ -1,8 +1,5 @@
 package com.reviewspesta.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.reviewspesta.model.Product;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -12,7 +9,7 @@ import java.util.UUID;
 
 public class HttpRequestHelper {
 
-    public Product getProduct(String sku) throws IOException, InterruptedException {
+    /*public Product getProduct(String sku) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -64,7 +61,7 @@ public class HttpRequestHelper {
             result=false;
         }
         return result;
-    }
+    }*/
 
     public boolean doesSandwichExist(UUID sandwichId) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
