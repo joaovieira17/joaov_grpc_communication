@@ -1,7 +1,10 @@
 package com.ingredient.services;
 
+import com.ingredient.dtos.CreateIngredientDTO;
+import com.ingredient.dtos.IngredientToSend;
 import com.ingredient.model.Ingredient;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,11 +16,17 @@ public interface IngredientService {
     //gets a specific Ingredient by its ID
     Ingredient getByIngredientId(UUID ingredientId);
 
-    //verifies if the Ingredient exists
+    //gets a specific Ingredient by its public key
+    IngredientToSend getByPublicKey(String publicKey);
+
+    //verifies if the Ingredient exists by its name
     boolean ingredientExistence(String name);
 
+    //verifies if the Ingredient exists by its public Key
+    boolean ingredientExistenceByKey(String publicKey);
+
     //creates an Ingredient
-    Ingredient createIngredient(Ingredient ingredient);
+    Ingredient createIngredient(CreateIngredientDTO createIngredientDTO) throws IOException, InterruptedException;
 
     //deletes an Ingredient
     String deleteIngredient (UUID ingredientId);

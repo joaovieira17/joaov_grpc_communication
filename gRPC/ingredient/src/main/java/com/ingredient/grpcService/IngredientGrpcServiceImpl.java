@@ -1,5 +1,6 @@
 package com.ingredient.grpcService;
 
+import com.ingredient.dtos.IngredientToSend;
 import com.ingredient.model.Ingredient;
 import com.ingredient.repositories.IngredientRepository;
 import com.ingredient.services.IngredientService;
@@ -23,17 +24,21 @@ public class IngredientGrpcServiceImpl extends IngredientServiceGrpc.IngredientS
 
     @Override
     public void getIngredient(IngredientRequest request, StreamObserver<IngredientResponse> responseObserver) {
-        boolean ingredientExistence=service.ingredientExistence(request.getNameOfIngredient());
+        IngredientToSend ingredient = service.getByPublicKey(request.getPublicKey());
 
-        if (ingredientExistence){
+        if (ingredient != null){
             IngredientResponse response = IngredientResponse.newBuilder()
                     .setCode(200)
+                    .setName(ingredient.getName())
+                    .setCategory(ingredient.getCategory())
                     .build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         }else{
             IngredientResponse response = IngredientResponse.newBuilder()
                     .setCode(404)
+                    .setName("")
+                    .setCategory("")
                     .build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
