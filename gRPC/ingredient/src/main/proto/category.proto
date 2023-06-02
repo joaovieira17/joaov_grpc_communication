@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.joao.category;
+
+message CategoryRequest {
+  string publicKey = 1;
+}
+
+message CategoryResponse {
+  int32 code = 1;
+  string name = 2;
+}
+
+service CategoryService {
+  rpc getCategory(CategoryRequest) returns (CategoryResponse);
+}
