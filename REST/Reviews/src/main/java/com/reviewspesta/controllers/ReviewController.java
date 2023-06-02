@@ -131,8 +131,8 @@ public class ReviewController {
 
     @Operation(summary = "Gets all my reviews")
     @GetMapping(value = "/myReview")
-    public Iterable<Review> getAllMyLocalReviews() {
-        return service.getAllMyLocalReviews();
+    public Iterable<Review> getAllMyReviews() {
+        return service.getAllMyReviews();
     }
 
     @Operation(summary = "Get Reviews by a specific language")

@@ -3,11 +3,9 @@ package com.reviewspesta.services;
 import com.reviewspesta.model.*;
 //import com.psoftprojectg5.repositories.ProductRepository;
 import com.reviewspesta.repositories.ReviewRepository;
-import com.reviewspesta.repositories.UserRepository;
+import com.reviewspesta.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,7 +20,7 @@ public class ReviewServiceImpl implements ReviewService{
     private ReviewRepository repository;
 
     @Autowired
-    private UserRepository userRepository;
+    private JwtUtils jwtUtils;
 
 
     private HttpRequestHelper helper=new HttpRequestHelper();
@@ -57,20 +55,10 @@ public class ReviewServiceImpl implements ReviewService{
 
     }
 
-    /*@Override
-    public List<Review> getLocalPendingReviews() {
-        List<Review> thisPending= repository.getAllPendingReviews();
-        return thisPending;
-    }*/
-
     @Override
     public Review create(ReviewDTO rev, UUID sandwichId) throws IOException, InterruptedException {
 
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-        String username = userDetails.getUsername();
-
-        User user = userRepository.findByUsername(username);
+        Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
 
         List<String> forbiddenWords = List.of("cafe", "morango", "colher");
 
@@ -81,7 +69,7 @@ public class ReviewServiceImpl implements ReviewService{
         }
 
         if (helper.doesSandwichExist(sandwichId)){
-            final Review obj = Review.newFrom(rev,sandwichId,user.getId());
+            final Review obj = Review.newFrom(rev,sandwichId,userId);
 
             obj.setSandwichId(sandwichId);
             return repository.save(obj);
@@ -125,28 +113,6 @@ public class ReviewServiceImpl implements ReviewService{
         }
     }
 
-    /*@Override
-    public boolean approveRejectReview(UUID reviewId, boolean status){
-
-        Review review = repository.getReviewById(reviewId);
-        try {
-            if (Objects.equals(review.getStatus(), "PENDING")) {
-                if (status) {
-                    review.setStatus("APPROVED");
-                } else {
-                    review.setStatus("REJECTED");
-                }
-                repository.save(review);
-                return true;
-            }else {
-                return false;
-            }
-        }catch (NullPointerException e){
-            return false;
-        }
-
-    }*/
-
     @Override
     public void updateVotes(Vote vote, Review review){
         review.updateVote(vote.isVote());
@@ -166,13 +132,9 @@ public class ReviewServiceImpl implements ReviewService{
 
     @Override
     public boolean belongsToUser(Review review){
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-        String username = userDetails.getUsername();
 
-        User user = userRepository.findByUsername(username);
-
-        return Objects.equals(review.getUserId(), user.getId());
+        Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
+        return Objects.equals(review.getUserId(), userId);
     }
 
 
@@ -236,12 +198,9 @@ public class ReviewServiceImpl implements ReviewService{
 
 
     @Override
-    public List<Review> getAllMyLocalReviews(){
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-        String username = userDetails.getUsername();
-        User user = userRepository.findByUsername(username);
-        return repository.getAllMyReviews(user.getId());
+    public List<Review> getAllMyReviews(){
+        Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
+        return repository.getAllMyReviews(userId);
     }
 
     @Override
@@ -261,23 +220,4 @@ public class ReviewServiceImpl implements ReviewService{
         else
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Review Not Found");
     }
-
-    /*@Override
-    public String changeReviewStatus(UUID reviewId, boolean isGood) {
-        Review review = repository.getReviewById(reviewId);
-        if (review!=null){
-
-            if(isGood){
-                return "The status is maintained";
-            }else{
-                review.setStatus("DELETED");
-                repository.save(review);
-                return "The status has changed";
-            }
-
-        }
-        else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Review Not Found");
-        }
-    }*/
 }

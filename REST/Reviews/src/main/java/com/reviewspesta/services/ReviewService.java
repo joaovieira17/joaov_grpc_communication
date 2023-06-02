@@ -14,13 +14,9 @@ public interface ReviewService {
 
     Review create(ReviewDTO rev, UUID sandwichId) throws IOException, InterruptedException;
 
-    //List<Review> getLocalPendingReviews();
-
     List<Review> getReviewsBySandwich(UUID sandwichId) throws IOException, InterruptedException; //SIM
 
     RatingFrequency getRatingFrequencyOfSandwich(UUID sandwichId) throws IOException, InterruptedException;
-
-    //boolean approveRejectReview(UUID reviewId, boolean status);
 
     boolean goodToDel(Review review);
 
@@ -40,7 +36,7 @@ public interface ReviewService {
 
     void updateVotes(Vote vote, Review review);
 
-    List<Review> getAllMyLocalReviews();
+    List<Review> getAllMyReviews();
 
     List<Review> getReviewByLanguage(String language);
 

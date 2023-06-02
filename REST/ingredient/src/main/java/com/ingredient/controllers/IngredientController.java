@@ -57,7 +57,7 @@ public class IngredientController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Ingredient> createIngredient(@Valid @RequestBody final CreateIngredientDTO ingredient) throws IOException, InterruptedException {
         final Ingredient ingredient1 = service.createIngredient(ingredient);
-        return ResponseEntity.ok(ingredient1);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ingredient1);
     }
 
     //@Operation(summary = "Deletes an ingredient")
