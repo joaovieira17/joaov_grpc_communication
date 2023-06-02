@@ -1,15 +1,16 @@
 package com.category.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "my_user")
+//@Table(name = "my_user")
 public class User implements Serializable {
 
 	@Id

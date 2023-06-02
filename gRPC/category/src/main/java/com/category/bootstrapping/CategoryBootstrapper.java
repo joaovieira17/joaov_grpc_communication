@@ -20,7 +20,7 @@ public class CategoryBootstrapper implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if (repository.getByCategoryId(UUID.fromString("d828f1ce-c747-11ed-afa1-0242ac120001"))==null) {
-            Category p1 = new Category(UUID.fromString("d828f1ce-c747-11ed-afa1-0242ac120001"),"certu","Cereais e derivados, Tuberculos" );
+            Category p1 = new Category(UUID.fromString("d828f1ce-c747-11ed-afa1-0242ac120001"),"certu","Cereais, derivados e Tuberculos" );
             repository.save(p1);
         }
 

@@ -1,9 +1,10 @@
 package com.category.model;
 
-import jakarta.persistence.Column;
+/*import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.Id;*/
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -82,7 +83,7 @@ public class Category implements Serializable {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("'Name' is a mandatory attribute of Category");
         }
-        if (name.length()>25){
+        if (name.length()>40){
             throw new IllegalArgumentException("'Name' has a maximum of 40 characters");
         }
         if (name.trim().length() == 0){
