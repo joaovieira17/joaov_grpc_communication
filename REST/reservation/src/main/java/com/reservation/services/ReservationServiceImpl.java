@@ -4,7 +4,6 @@ import com.reservation.dtos.CreateReservationDTO;
 import com.reservation.model.Reservation;
 import com.reservation.model.ReservationItem;
 import com.reservation.repositories.ReservationRepository;
-import com.reservation.repositories.UserRepository;
 import com.reservation.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,9 +21,6 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Autowired
     private ReservationRepository repository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private JwtUtils jwtUtils;
