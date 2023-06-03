@@ -9,11 +9,11 @@ import java.util.UUID;
 
 public class HttpRequestHelper {
 
-    public boolean doesSandwichExist(String sandwichPublicKey) throws IOException, InterruptedException {
+    public boolean doesSandwichExist(UUID sandwichId) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8081/sandwich/existenceByKey/"+ sandwichPublicKey ))
+                .uri(URI.create("http://localhost:8081/sandwich/existence/"+ sandwichId ))
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
 

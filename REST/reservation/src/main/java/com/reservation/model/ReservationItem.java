@@ -5,37 +5,25 @@ import jakarta.persistence.Embeddable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.UUID;
 
 @Embeddable
 public class ReservationItem {
 
     @NotNull
     @NotBlank
-    @Size(min = 3, max = 5)
-    private String sandwichPublicKey;
+    private UUID sandwichId;
 
     @NotNull
     @NotBlank
     private int quantity;
 
-    public String getSandwichPublicKey() {
-        return sandwichPublicKey;
+    public UUID getSandwichId() {
+        return sandwichId;
     }
 
-    public void setSandwichPublicKey(String sandwichPublicKey) {
-        if (sandwichPublicKey == null || sandwichPublicKey.isEmpty()) {
-            throw new IllegalArgumentException("'sandwichPublicKey' is a mandatory attribute of Category");
-        }
-        if (sandwichPublicKey.length()<3){
-            throw new IllegalArgumentException("'sandwichPublicKey' has a minimum of 3 characters");
-        }
-        if (sandwichPublicKey.length()>5){
-            throw new IllegalArgumentException("'sandwichPublicKey' has a maximum of 5 characters");
-        }
-        if (!sandwichPublicKey.matches("[a-zA-Z0-9]+")){
-            throw new IllegalArgumentException("'sandwichPublicKey' has invalid characters");
-        }
-        this.sandwichPublicKey = sandwichPublicKey;
+    public void setSandwichId(UUID sandwichId) {
+        this.sandwichId = sandwichId;
     }
 
     public int getQuantity() {

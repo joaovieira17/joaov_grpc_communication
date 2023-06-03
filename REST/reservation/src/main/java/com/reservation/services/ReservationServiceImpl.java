@@ -87,9 +87,9 @@ public class ReservationServiceImpl implements ReservationService{
         List<ReservationItem> reservationItemList = createReservationDTO.getItemList();
 
         for(int i=0; i<reservationItemList.size();i++){
-            boolean sandwichExistence = helper.doesSandwichExist(createReservationDTO.getItemList().get(i).getSandwichPublicKey());
+            boolean sandwichExistence = helper.doesSandwichExist(createReservationDTO.getItemList().get(i).getSandwichId());
             if(!sandwichExistence){
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"That sandwich does not exist: "+createReservationDTO.getItemList().get(i).getSandwichPublicKey());
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"That sandwich does not exist: "+createReservationDTO.getItemList().get(i).getSandwichId());
             }
         }
 
