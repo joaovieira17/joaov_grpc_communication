@@ -32,8 +32,14 @@ public class CategoryController {
     }
 
     @GetMapping("/getByKey/{publicKey}")
-    public ResponseEntity<CategoryToSend> getByPublicKey(@PathVariable("publicKey") final String publicKey) {
-        final CategoryToSend ingredient = service.getByPublicKey(publicKey);
+    public ResponseEntity<Category> getByPublicKey(@PathVariable("publicKey") final String publicKey) {
+        final Category ingredient = service.getByPublicKey(publicKey);
+        return ResponseEntity.ok().body(ingredient);
+    }
+
+    @GetMapping("/getToSend/{ingredientId}")
+    public ResponseEntity<CategoryToSend> getToSend(@PathVariable("ingredientId") final UUID ingredientId) {
+        final CategoryToSend ingredient = service.getToSend(ingredientId);
         return ResponseEntity.ok().body(ingredient);
     }
 
@@ -54,7 +60,7 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Category> createCategory(@Valid @RequestBody final Category category) {
         final Category category1 = service.createCategory(category);
-        return ResponseEntity.ok(category1);
+        return ResponseEntity.status(HttpStatus.CREATED).body(category1);
     }
 
     //@Operation(summary = "Deletes an ingredient")

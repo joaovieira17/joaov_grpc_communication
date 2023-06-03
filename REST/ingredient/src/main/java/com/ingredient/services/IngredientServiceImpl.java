@@ -39,8 +39,17 @@ public class IngredientServiceImpl implements IngredientService{
     }
 
     @Override
-    public IngredientToSend getByPublicKey(String publicKey) {
-        Optional<Ingredient> ingredientOptional = Optional.ofNullable(repository.getByPublicKey(publicKey));
+    public Ingredient getByPublicKey(String publicKey) {
+        Optional<Ingredient> ingredientOptional= Optional.ofNullable(repository.getByPublicKey(publicKey));
+        if (ingredientOptional.isPresent())
+            return ingredientOptional.get();
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Ingredient Not Found");
+    }
+
+    @Override
+    public IngredientToSend getToSend(UUID ingredientId) {
+        Optional<Ingredient> ingredientOptional = Optional.ofNullable(repository.getByIngredientId(ingredientId));
         if (ingredientOptional.isPresent()) {
             String name = ingredientOptional.get().getName();
             String category = ingredientOptional.get().getCategory().getCategoryName();

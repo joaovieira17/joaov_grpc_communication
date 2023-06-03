@@ -60,7 +60,7 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Category> createCategory(@Valid @RequestBody final Category category) {
         final Category category1 = service.createCategory(category);
-        return ResponseEntity.ok(category1);
+        return ResponseEntity.status(HttpStatus.CREATED).body(category1);
     }
 
     //@Operation(summary = "Deletes an ingredient")

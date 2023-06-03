@@ -70,9 +70,9 @@ public class SandwichServiceImpl implements SandwichService{
 
         List<Ingredient> listOfIngredients = new ArrayList<>();
         for(int i=0; i<listOfIngredientsDTO.size();i++){
-            IngredientResponseDTO ingredientResponseDTO = helper.IngredientByKey(listOfIngredientsDTO.get(i).getPublicKey());
+            IngredientResponseDTO ingredientResponseDTO = helper.IngredientByKey(listOfIngredientsDTO.get(i).getPrivateKey());
             if(ingredientResponseDTO.getCode()==404){
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"That ingredient does not exist: "+listOfIngredientsDTO.get(i).getPublicKey());
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND,"That ingredient does not exist: "+listOfIngredientsDTO.get(i).getPrivateKey());
             }
 
             Ingredient ingredient = new Ingredient(ingredientResponseDTO.getName(), ingredientResponseDTO.getCategory());

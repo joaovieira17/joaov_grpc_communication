@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.UUID;
 
 public class HttpRequestHelper {
 
@@ -32,11 +33,11 @@ public class HttpRequestHelper {
     }
 
 
-    public IngredientResponseDTO IngredientByKey(String ingredientKey) throws IOException, InterruptedException {
+    public IngredientResponseDTO IngredientByKey(UUID ingredientKey) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://localhost:8080/ingredient/getByKey/"+ ingredientKey ))
+                .uri(URI.create("http://localhost:8080/ingredient/getToSend/"+ ingredientKey ))
                 .build();
         HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
 

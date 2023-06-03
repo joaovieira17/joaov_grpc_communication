@@ -17,7 +17,9 @@ public interface IngredientService {
     Ingredient getByIngredientId(UUID ingredientId);
 
     //gets a specific Ingredient by its public key
-    IngredientToSend getByPublicKey(String publicKey);
+    Ingredient getByPublicKey(String publicKey);
+
+    IngredientToSend getToSend(UUID ingredientId);
 
     //verifies if the Ingredient exists by its name
     boolean ingredientExistence(String name);

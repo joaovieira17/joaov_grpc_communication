@@ -14,16 +14,16 @@ public class CreateIngredientDTO implements Serializable {
     private String name;
 
     //private CategoryKeyDTO categoryKeyDTO;
-    private String categoryKey;
+    private UUID categoryKey;
 
     //Construtor
-    public CreateIngredientDTO(String publicKey , String name, String categoryKey) {
+    public CreateIngredientDTO(String publicKey , String name, UUID categoryKey) {
         setPublicKey(publicKey);
         setName(name);
         setCategoryKey(categoryKey);
     }
 
-    public CreateIngredientDTO(UUID ingredientId, String publicKey, String name, String categoryKey) {
+    public CreateIngredientDTO(UUID ingredientId, String publicKey, String name, UUID categoryKey) {
         this.ingredientId = ingredientId;
         setPublicKey(publicKey);
         setName(name);
@@ -83,11 +83,11 @@ public class CreateIngredientDTO implements Serializable {
         this.categoryKeyDTO = categoryKeyDTO;
     }*/
 
-    public String getCategoryKey() {
+    public UUID getCategoryKey() {
         return categoryKey;
     }
 
-    public void setCategoryKey(String categoryKey) {
+    public void setCategoryKey(UUID categoryKey) {
         this.categoryKey = categoryKey;
     }
 }
