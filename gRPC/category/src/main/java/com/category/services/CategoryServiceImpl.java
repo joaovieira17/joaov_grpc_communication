@@ -37,8 +37,8 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public CategoryToSend getByPublicKey(String publicKey) {
-        Optional<Category> categoryOptional = Optional.ofNullable(repository.getByPublicKey(publicKey));
+    public CategoryToSend getToSend(UUID categoryId) {
+        Optional<Category> categoryOptional = Optional.ofNullable(repository.getByCategoryId(categoryId));
         if (categoryOptional.isPresent()) {
             String name = categoryOptional.get().getName();
             return new CategoryToSend(200, name);
@@ -46,6 +46,15 @@ public class CategoryServiceImpl implements CategoryService{
             //throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Ingredient Not Found");
             return new CategoryToSend(404,"Not Found");
         }
+    }
+
+    @Override
+    public Category getByPublicKey(String publicKey) {
+        Optional<Category> categoryOptional= Optional.ofNullable(repository.getByPublicKey(publicKey));
+        if (categoryOptional.isPresent())
+            return categoryOptional.get();
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Category Not Found");
     }
 
     @Override

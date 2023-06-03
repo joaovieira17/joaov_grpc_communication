@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @GrpcService
 public class IngredientGrpcServiceImpl extends IngredientServiceGrpc.IngredientServiceImplBase {
@@ -24,7 +25,7 @@ public class IngredientGrpcServiceImpl extends IngredientServiceGrpc.IngredientS
 
     @Override
     public void getIngredient(IngredientRequest request, StreamObserver<IngredientResponse> responseObserver) {
-        IngredientToSend ingredient = service.getByPublicKey(request.getPublicKey());
+        IngredientToSend ingredient = service.getIngredientToSend(UUID.fromString(request.getPrivateKey()));
 
         if (ingredient != null){
             IngredientResponse response = IngredientResponse.newBuilder()

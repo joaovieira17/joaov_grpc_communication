@@ -11,6 +11,8 @@ import io.grpc.ManagedChannelBuilder;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class CategoryGrpcServiceImpl implements CategoryGrpcService{
 
@@ -25,11 +27,11 @@ public class CategoryGrpcServiceImpl implements CategoryGrpcService{
     }
 
     @Override
-    public CategoryResponse getCategory(String publicKey) {
+    public CategoryResponse getCategory(UUID privateKey) {
         categoryServiceStub= CategoryServiceGrpc.newBlockingStub(channel);
         CategoryResponse categoryResponse = categoryServiceStub.getCategory(
                 CategoryRequest.newBuilder()
-                        .setPublicKey(publicKey)
+                        .setPrivateKey(privateKey.toString())
                         .build()
         );
         return categoryResponse;

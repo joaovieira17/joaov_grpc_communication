@@ -9,6 +9,8 @@ import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.UUID;
+
 @GrpcService
 public class CategoryGrpcServiceImpl extends CategoryServiceGrpc.CategoryServiceImplBase {
 
@@ -18,7 +20,7 @@ public class CategoryGrpcServiceImpl extends CategoryServiceGrpc.CategoryService
     @Override
     public void getCategory(CategoryRequest request, StreamObserver<CategoryResponse> responseObserver) {
 
-        CategoryToSend category = service.getByPublicKey(request.getPublicKey());
+        CategoryToSend category = service.getToSend(UUID.fromString(request.getPrivateKey()));
 
         if (category != null){
             CategoryResponse response = CategoryResponse.newBuilder()

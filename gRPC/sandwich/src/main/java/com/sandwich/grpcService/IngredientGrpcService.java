@@ -4,5 +4,5 @@ import com.joao.ingredient.IngredientResponse;
 
 public interface IngredientGrpcService {
 
-IngredientResponse getIngredient(String nameOfIngredient);
+IngredientResponse getIngredient(String publicKey);
 }

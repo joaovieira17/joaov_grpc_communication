@@ -124,7 +124,6 @@
 				<version>1.7.1</version>
 			</extension>
 		</extensions>
-		<!--notgRPC -->
 		<plugins>
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -133,6 +132,7 @@
 					<useFile>false</useFile>
 				</configuration>
 			</plugin>
+			<!--notgRPC -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

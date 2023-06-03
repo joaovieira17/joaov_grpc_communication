@@ -1,6 +1,5 @@
 package com.sandwich.grpcService;
 
-import com.joao.ingredient.IngredientResponse;
 import com.joao.sandwich.SandwichRequest;
 import com.joao.sandwich.SandwichResponse;
 import com.joao.sandwich.SandwichServiceGrpc;
@@ -21,19 +20,18 @@ public class SandwichGrpcServiceImpl extends SandwichServiceGrpc.SandwichService
     public void getSandwich(SandwichRequest request, StreamObserver<SandwichResponse> responseObserver) {
         boolean sandwichExistence= service.sandwichExistence(UUID.fromString(request.getSandwichId()));
 
+        SandwichResponse response;
         if(sandwichExistence){
-            SandwichResponse response = SandwichResponse.newBuilder()
+            response = SandwichResponse.newBuilder()
                     .setCode(200)
                     .build();
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
         }else{
-            SandwichResponse response = SandwichResponse.newBuilder()
+            response = SandwichResponse.newBuilder()
                     .setCode(404)
                     .build();
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
         }
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
         super.getSandwich(request, responseObserver);
     }
 }

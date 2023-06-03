@@ -32,8 +32,14 @@ public class CategoryController {
     }
 
     @GetMapping("/getByKey/{publicKey}")
-    public ResponseEntity<CategoryToSend> getByPublicKey(@PathVariable("publicKey") final String publicKey) {
-        final CategoryToSend ingredient = service.getByPublicKey(publicKey);
+    public ResponseEntity<Category> getByPublicKey(@PathVariable("publicKey") final String publicKey) {
+        final Category ingredient = service.getByPublicKey(publicKey);
+        return ResponseEntity.ok().body(ingredient);
+    }
+
+    @GetMapping("/getToSend/{ingredientId}")
+    public ResponseEntity<CategoryToSend> getToSend(@PathVariable("ingredientId") final UUID ingredientId) {
+        final CategoryToSend ingredient = service.getToSend(ingredientId);
         return ResponseEntity.ok().body(ingredient);
     }
 

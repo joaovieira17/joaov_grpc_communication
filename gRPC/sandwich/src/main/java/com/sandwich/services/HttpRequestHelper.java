@@ -1,6 +1,7 @@
 package com.sandwich.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sandwich.dtos.IngredientResponseDTO;
 
 import java.io.IOException;
 import java.net.URI;
@@ -27,6 +28,21 @@ public class HttpRequestHelper {
         else if(body.equals("false")){
             result=false;
         }
+        return result;
+    }
+
+
+    public IngredientResponseDTO IngredientByKey(String ingredientKey) throws IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:8080/ingredient/getByKey/"+ ingredientKey ))
+                .build();
+        HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        String body = response.body().toString();
+        var result = objectMapper.readValue(body, IngredientResponseDTO.class);
         return result;
     }
 }

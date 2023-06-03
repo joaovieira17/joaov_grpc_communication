@@ -16,7 +16,9 @@ public interface CategoryService {
     Category getByCategoryId(UUID categoryId);
 
     //gets a specific Ingredient by its public key
-    CategoryToSend getByPublicKey(String publicKey);
+    Category getByPublicKey(String publicKey);
+
+    CategoryToSend getToSend(UUID categoryId);
 
     //verifies if the Category exists by its name
     boolean categoryExistence(String name);

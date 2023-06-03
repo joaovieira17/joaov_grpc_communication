@@ -1,8 +1,9 @@
-package com.ingredient.dtos;
+package com.sandwich.dtos;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class CategoryKeyDTO {
+public class IngredientKeyDTO {
 
     private UUID privateKey;
 

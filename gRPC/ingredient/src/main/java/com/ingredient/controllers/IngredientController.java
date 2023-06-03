@@ -35,8 +35,14 @@ public class IngredientController {
     }
 
     @GetMapping("/getByKey/{publicKey}")
-    public ResponseEntity<IngredientToSend> getByPublicKey(@PathVariable("publicKey") final String publicKey) {
-        final IngredientToSend ingredient = service.getByPublicKey(publicKey);
+    public ResponseEntity<Ingredient> getByPublicKey(@PathVariable("publicKey") final String publicKey) {
+        final Ingredient ingredient = service.getByPublicKey(publicKey);
+        return ResponseEntity.ok().body(ingredient);
+    }
+
+    @GetMapping("/getToSend/{ingredientId}")
+    public ResponseEntity<IngredientToSend> getByPublicKey(@PathVariable("ingredientId") final UUID ingredientId) {
+        final IngredientToSend ingredient = service.getIngredientToSend(ingredientId);
         return ResponseEntity.ok().body(ingredient);
     }
 

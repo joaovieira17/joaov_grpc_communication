@@ -22,11 +22,11 @@ public class IngredientGrpcServiceImpl implements IngredientGrpcService{
     }
 
     @Override
-    public IngredientResponse getIngredient(String nameOfIngredient) {
+    public IngredientResponse getIngredient(String privateKey) {
         ingredientServiceStub= IngredientServiceGrpc.newBlockingStub(channel);
         IngredientResponse ingredientResponse = ingredientServiceStub.getIngredient(
                 IngredientRequest.newBuilder()
-                        .setNameOfIngredient(nameOfIngredient)
+                        .setPublicKey(privateKey)
                         .build()
         );
         return ingredientResponse;
