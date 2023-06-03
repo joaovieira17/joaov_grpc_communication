@@ -44,23 +44,6 @@ public class ReviewController {
         return service.getRatingFrequencyOfSandwich(sandwichId);
     }
 
-    /*@Operation(summary = "Gets local pending reviews")
-    @GetMapping(value = "/pending")
-    public Iterable<Review> getLocalPendingReviews()  {
-        return service.getLocalPendingReviews();
-    }*/
-
-
-    /*@Operation(summary = "Approve or Reject a pending review")
-    @PutMapping(value = "/{reviewId}/approve/{reviewStatus}")
-    public ResponseEntity<String> approveRejectReview(@PathVariable("reviewId") final UUID reviewId, @PathVariable ("reviewStatus") final boolean reviewStatus){
-        boolean status = service.approveRejectReview(reviewId,reviewStatus);
-        if(!status){
-            throw new ResponseStatusException(HttpStatus.CONFLICT,"The review id you gave it's not associated with a review or this is not in PENDING status");
-
-        }else
-            return ResponseEntity.ok("O status da review foi mudado");
-    }*/
 
     @Operation(summary = "Create a review")
     @PostMapping(value = "/{sandwichId}/create")
@@ -139,13 +122,6 @@ public class ReviewController {
     @GetMapping(value = "/reviewByLanguage/{language}")
     public Iterable<Review> getByLanguage(@PathVariable("language") final String language){
         return service.getReviewByLanguage(language);
-    }
-
-    @Operation(summary = "Gets a specific review by its reviewId in response to vote Requests")
-    @GetMapping("/reviewForVote/{reviewId}")
-    public ResponseEntity<ReviewVoteDTO> getByReviewIdForVote(@PathVariable("reviewId") final UUID reviewId) {
-        final ReviewVoteDTO reviewVoteDTO = service.getReviewForVote(reviewId);
-        return ResponseEntity.ok().body(reviewVoteDTO);
     }
 
 }

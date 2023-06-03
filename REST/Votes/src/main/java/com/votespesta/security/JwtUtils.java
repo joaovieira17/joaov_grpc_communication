@@ -1,41 +1,37 @@
 package com.votespesta.security;
 
 
+
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-
-import java.util.Date;
 
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${psoft.app.jwtSecret}")
+    @Value("${pesta.app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${psoft.app.jwtExpirationMs}")
-    private int jwtExpirationMs;
+    private String jwt;
 
-    public String generateJwtToken(Authentication authentication) {
-
-        JwtUserDetails userPrincipal = (JwtUserDetails) authentication.getPrincipal();
-
-        return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
-                .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
-                .signWith(SignatureAlgorithm.HS512, jwtSecret)
-                .compact();
+    public String getJwt() {
+        return jwt;
     }
 
-    public String getUserNameFromJwtToken(String token) {
+    public void setJwt(String jwt) {
+        this.jwt = jwt;
+    }
+
+    public String getUserFromJwtToken(String token) {
+        return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getId();
+    }
+
+    public String getAuthorityFromJwtToken(String token){
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
     }
-
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);

@@ -1,20 +1,14 @@
 package com.votespesta.services;
 
-import com.votespesta.model.Review;
-import com.votespesta.model.User;
 import com.votespesta.model.Vote;
-import com.votespesta.repositories.HttpReviewRepository;
-import com.votespesta.repositories.UserRepository;
 import com.votespesta.repositories.VoteRepository;
+import com.votespesta.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.UUID;
 
 
@@ -24,21 +18,17 @@ public class VoteServiceImpl implements VoteService {
     @Autowired
     private VoteRepository repository;
 
-    private HttpReviewRepository httpReviewRepository=new HttpReviewRepository();
+    private HttpRequestHelper helper = new HttpRequestHelper();
 
     @Autowired
-    private UserRepository userRepository;
+    private JwtUtils jwtUtils;
 
     @Override
     public boolean getVoteExistence(UUID reviewId){
 
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-        String username = userDetails.getUsername();
+        Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
 
-        User user = userRepository.findByUsername(username);
-
-        Vote voteValue = repository.findByUserAndId(user.getId(), reviewId);
+        Vote voteValue = repository.findByUserAndId(userId, reviewId);
 
         if (voteValue!=null){
             return true;
@@ -48,66 +38,38 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public boolean updateVoteReview (Vote vote) {
+    public String voteInReview (Vote vote) throws IOException, InterruptedException {
 
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-        String username = userDetails.getUsername();
+        Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
+        vote.setUserId(userId);
 
-        User user = userRepository.findByUsername(username);
-        vote.setUserId(user.getId());
+        if (!helper.reviewExistence(vote.getReviewId())){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Review Not Found");
+        }
 
-        try {
-            Vote voteValue = repository.findByUserAndId(user.getId(), vote.getReviewId());
-            if(voteValue == null){
+        Vote voteValue = repository.findByUserAndId(userId, vote.getReviewId());
+        if(voteValue == null){
                 repository.save(vote);
-                return false;
+                if(vote.isVote()){
+                    helper.upVoteReview(vote.getReviewId());
+                }
+                else if (!vote.isVote()){
+                    helper.downVoteReview(vote.getReviewId());
+                }
             }else{
-                return true;
+                throw new ResponseStatusException(HttpStatus.CONFLICT,"You have already voted on this review");
             }
-        }catch(NullPointerException e){
-            //repository.save(vote);
-            return true;
-        }
+        return "Vote has changed";
+
     }
 
-
-    @Override
-    public void updateVotes(Vote vote, Review review) throws IOException, InterruptedException {
-
-        if (httpReviewRepository.isReview(review.getReviewId()) && vote.isVote()){
-            httpReviewRepository.upVoteReview(review.getReviewId());
-        }
-        else if(httpReviewRepository.isReview(review.getReviewId()) && !vote.isVote()){
-            httpReviewRepository.downVoteReview(review.getReviewId());
-        }
-        else{
-            throw new IllegalArgumentException("A review não existe");
-        }
-    }
-
-    @Override
-    public boolean goodToVote(UUID reviewId) throws IOException, InterruptedException {
-        if (httpReviewRepository.isReview(reviewId)){
-        Review review=httpReviewRepository.findReviewById(reviewId);
-
-        return Objects.equals(review.getStatus(), "APPROVED");
-        }else{
-            throw new IOException("This review does not exists");
-       }
-    }
 
     @Override
     public Vote getVote(UUID reviewId){
 
-        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-        String username = userDetails.getUsername();
+        Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
 
-        User user = userRepository.findByUsername(username);
-
-        Vote vote = repository.findByUserAndId(user.getId(), reviewId);
-
+        Vote vote = repository.findByUserAndId(userId, reviewId);
 
         if(vote!=null) {
             return vote;

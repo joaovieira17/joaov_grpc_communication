@@ -208,16 +208,4 @@ public class ReviewServiceImpl implements ReviewService{
         return repository.getReviewByLanguage(language);
     }
 
-    @Override
-    public ReviewVoteDTO getReviewForVote(UUID reviewId) {
-        Optional<Review> review = Optional.ofNullable(repository.getReviewById(reviewId));
-        if (review.isPresent()) {
-            ReviewVoteDTO reviewVoteDTO = new ReviewVoteDTO();
-            reviewVoteDTO.setReviewId(reviewId);
-            reviewVoteDTO.setStatus(review.get().getStatus());
-            return reviewVoteDTO;
-        }
-        else
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Review Not Found");
-    }
 }
