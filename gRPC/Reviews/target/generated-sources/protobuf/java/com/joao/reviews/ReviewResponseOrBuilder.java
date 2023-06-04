@@ -12,28 +12,4 @@ public interface ReviewResponseOrBuilder extends
    * @return The code.
    */
   int getCode();
-
-  /**
-   * <code>string reviewId = 2;</code>
-   * @return The reviewId.
-   */
-  java.lang.String getReviewId();
-  /**
-   * <code>string reviewId = 2;</code>
-   * @return The bytes for reviewId.
-   */
-  com.google.protobuf.ByteString
-      getReviewIdBytes();
-
-  /**
-   * <code>string status = 3;</code>
-   * @return The status.
-   */
-  java.lang.String getStatus();
-  /**
-   * <code>string status = 3;</code>
-   * @return The bytes for status.
-   */
-  com.google.protobuf.ByteString
-      getStatusBytes();
 }

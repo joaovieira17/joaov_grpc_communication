@@ -24,8 +24,6 @@ public class ReviewGrpcServiceImpl extends ReviewServiceGrpc.ReviewServiceImplBa
         if(review != null){
             ReviewResponse response = ReviewResponse.newBuilder()
                     .setCode(200)
-                    .setReviewId(review.getReviewId().toString())
-                    .setStatus(review.getStatus())
                     .build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();

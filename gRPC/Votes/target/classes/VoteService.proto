@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.joao.votes;
+
+message VotesRequest {
+  string reviewId = 1;
+  bool vote = 2;
+}
+
+message VotesResponse {
+  int32 code = 1;
+}
+
+service VotesService {
+  rpc updateVote(VotesRequest) returns (VotesResponse);
+}

@@ -3,7 +3,6 @@ package com.reviewspesta.controllers;
 import com.reviewspesta.model.RatingFrequency;
 import com.reviewspesta.model.Review;
 import com.reviewspesta.model.ReviewDTO;
-import com.reviewspesta.model.ReviewVoteDTO;
 import com.reviewspesta.services.ReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -139,13 +138,6 @@ public class ReviewController {
     @GetMapping(value = "/reviewByLanguage/{language}")
     public Iterable<Review> getByLanguage(@PathVariable("language") final String language){
         return service.getReviewByLanguage(language);
-    }
-
-    @Operation(summary = "Gets a specific review by its reviewId in response to vote Requests")
-    @GetMapping("/reviewForVote/{reviewId}")
-    public ResponseEntity<ReviewVoteDTO> getByReviewIdForVote(@PathVariable("reviewId") final UUID reviewId) {
-        final ReviewVoteDTO reviewVoteDTO = service.getReviewForVote(reviewId);
-        return ResponseEntity.ok().body(reviewVoteDTO);
     }
 
 }

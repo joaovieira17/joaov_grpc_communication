@@ -8,8 +8,6 @@ message ReviewRequest {
 
 message ReviewResponse {
   int32 code =1;
-  string reviewId=2;
-  string status = 3;
 }
 
 service ReviewService {

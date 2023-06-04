@@ -34,12 +34,11 @@ public final class ReviewServiceOuterClass {
   static {
     java.lang.String[] descriptorData = {
       "\n\023ReviewService.proto\022\020com.joao.reviews\"" +
-      "!\n\rReviewRequest\022\020\n\010reviewId\030\001 \001(\t\"@\n\016Re" +
-      "viewResponse\022\014\n\004code\030\001 \001(\005\022\020\n\010reviewId\030\002" +
-      " \001(\t\022\016\n\006status\030\003 \001(\t2_\n\rReviewService\022N\n" +
-      "\tgetReview\022\037.com.joao.reviews.ReviewRequ" +
-      "est\032 .com.joao.reviews.ReviewResponseB\002P" +
-      "\001b\006proto3"
+      "!\n\rReviewRequest\022\020\n\010reviewId\030\001 \001(\t\"\036\n\016Re" +
+      "viewResponse\022\014\n\004code\030\001 \001(\0052_\n\rReviewServ" +
+      "ice\022N\n\tgetReview\022\037.com.joao.reviews.Revi" +
+      "ewRequest\032 .com.joao.reviews.ReviewRespo" +
+      "nseB\002P\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -56,7 +55,7 @@ public final class ReviewServiceOuterClass {
     internal_static_com_joao_reviews_ReviewResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_joao_reviews_ReviewResponse_descriptor,
-        new java.lang.String[] { "Code", "ReviewId", "Status", });
+        new java.lang.String[] { "Code", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

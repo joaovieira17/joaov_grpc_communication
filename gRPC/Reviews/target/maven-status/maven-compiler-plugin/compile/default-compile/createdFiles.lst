@@ -6,14 +6,15 @@ com\joao\reviews\ReviewServiceGrpc$1.class
 com\joao\sandwich\SandwichRequest$1.class
 com\joao\sandwich\SandwichServiceGrpc$3.class
 com\joao\sandwich\SandwichServiceGrpc$SandwichServiceMethodDescriptorSupplier.class
+com\reviewspesta\grpcService\SandwichGrpcService.class
 com\reviewspesta\services\ReviewService.class
-com\reviewspesta\services\HttpRequestHelper.class
 com\reviewspesta\model\Review.class
 com\joao\sandwich\SandwichRequestOrBuilder.class
 com\joao\sandwich\SandwichResponse$1.class
 com\reviewspesta\security\JwtUtils.class
 com\joao\sandwich\SandwichServiceGrpc$MethodHandlers.class
 com\reviewspesta\controllers\ReviewController.class
+com\reviewspesta\grpcService\SandwichGrpcServiceImpl.class
 com\joao\sandwich\SandwichServiceGrpc.class
 com\joao\reviews\ReviewServiceGrpc$2.class
 com\joao\sandwich\SandwichServiceGrpc$SandwichServiceBaseDescriptorSupplier.class
@@ -22,6 +23,7 @@ com\joao\votes\VotesServiceGrpc$2.class
 com\joao\reviews\ReviewServiceGrpc$MethodHandlers.class
 com\joao\sandwich\SandwichServiceGrpc$2.class
 com\reviewspesta\model\Role.class
+com\reviewspesta\grpcService\AppConfig$1.class
 com\reviewspesta\model\User.class
 com\joao\reviews\ReviewServiceGrpc$ReviewServiceMethodDescriptorSupplier.class
 com\reviewspesta\security\JwtRequestFilter.class
@@ -32,7 +34,6 @@ com\reviewspesta\services\ReviewServiceImpl.class
 com\joao\sandwich\SandwichServiceGrpc$SandwichServiceFutureStub.class
 com\joao\sandwich\SandwichResponse.class
 com\joao\votes\VotesServiceGrpc$VotesServiceFutureStub.class
-com\reviewspesta\model\ReviewVoteDTO.class
 com\joao\reviews\ReviewServiceGrpc$ReviewServiceBaseDescriptorSupplier.class
 com\joao\votes\VotesResponse$Builder.class
 com\joao\votes\VotesServiceGrpc$VotesServiceBaseDescriptorSupplier.class
@@ -62,6 +63,7 @@ com\reviewspesta\model\Vote.class
 com\joao\reviews\ReviewRequestOrBuilder.class
 com\joao\votes\VotesRequestOrBuilder.class
 com\joao\sandwich\SandwichServiceGrpc$SandwichServiceStub.class
+com\reviewspesta\grpcService\VoteGrpcServiceImpl.class
 com\joao\votes\VoteService.class
 com\reviewspesta\controllers\MyResourceNotFoundException.class
 com\joao\sandwich\SandwichResponseOrBuilder.class
@@ -76,6 +78,8 @@ com\joao\votes\VotesServiceGrpc$VotesServiceFileDescriptorSupplier.class
 com\joao\votes\VotesServiceGrpc$MethodHandlers.class
 com\joao\sandwich\SandwichRequest.class
 com\joao\sandwich\SandwichServiceOuterClass.class
+com\reviewspesta\grpcService\ReviewGrpcServiceImpl.class
+com\reviewspesta\grpcService\AppConfig.class
 com\joao\votes\VotesServiceGrpc$VotesServiceImplBase.class
 com\joao\reviews\ReviewResponse$1.class
 com\joao\votes\VotesServiceGrpc$VotesServiceBlockingStub.class

@@ -16,8 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ReviewResponse() {
-    reviewId_ = "";
-    status_ = "";
   }
 
   @java.lang.Override
@@ -56,82 +54,6 @@ private static final long serialVersionUID = 0L;
     return code_;
   }
 
-  public static final int REVIEWID_FIELD_NUMBER = 2;
-  private volatile java.lang.Object reviewId_;
-  /**
-   * <code>string reviewId = 2;</code>
-   * @return The reviewId.
-   */
-  @java.lang.Override
-  public java.lang.String getReviewId() {
-    java.lang.Object ref = reviewId_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      reviewId_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string reviewId = 2;</code>
-   * @return The bytes for reviewId.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getReviewIdBytes() {
-    java.lang.Object ref = reviewId_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      reviewId_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int STATUS_FIELD_NUMBER = 3;
-  private volatile java.lang.Object status_;
-  /**
-   * <code>string status = 3;</code>
-   * @return The status.
-   */
-  @java.lang.Override
-  public java.lang.String getStatus() {
-    java.lang.Object ref = status_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      status_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string status = 3;</code>
-   * @return The bytes for status.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getStatusBytes() {
-    java.lang.Object ref = status_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      status_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -149,12 +71,6 @@ private static final long serialVersionUID = 0L;
     if (code_ != 0) {
       output.writeInt32(1, code_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(reviewId_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, reviewId_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, status_);
-    }
     getUnknownFields().writeTo(output);
   }
 
@@ -167,12 +83,6 @@ private static final long serialVersionUID = 0L;
     if (code_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, code_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(reviewId_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, reviewId_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(status_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, status_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -191,10 +101,6 @@ private static final long serialVersionUID = 0L;
 
     if (getCode()
         != other.getCode()) return false;
-    if (!getReviewId()
-        .equals(other.getReviewId())) return false;
-    if (!getStatus()
-        .equals(other.getStatus())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -208,10 +114,6 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CODE_FIELD_NUMBER;
     hash = (53 * hash) + getCode();
-    hash = (37 * hash) + REVIEWID_FIELD_NUMBER;
-    hash = (53 * hash) + getReviewId().hashCode();
-    hash = (37 * hash) + STATUS_FIELD_NUMBER;
-    hash = (53 * hash) + getStatus().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -342,10 +244,6 @@ private static final long serialVersionUID = 0L;
       super.clear();
       code_ = 0;
 
-      reviewId_ = "";
-
-      status_ = "";
-
       return this;
     }
 
@@ -373,8 +271,6 @@ private static final long serialVersionUID = 0L;
     public com.joao.reviews.ReviewResponse buildPartial() {
       com.joao.reviews.ReviewResponse result = new com.joao.reviews.ReviewResponse(this);
       result.code_ = code_;
-      result.reviewId_ = reviewId_;
-      result.status_ = status_;
       onBuilt();
       return result;
     }
@@ -426,14 +322,6 @@ private static final long serialVersionUID = 0L;
       if (other.getCode() != 0) {
         setCode(other.getCode());
       }
-      if (!other.getReviewId().isEmpty()) {
-        reviewId_ = other.reviewId_;
-        onChanged();
-      }
-      if (!other.getStatus().isEmpty()) {
-        status_ = other.status_;
-        onChanged();
-      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -465,16 +353,6 @@ private static final long serialVersionUID = 0L;
 
               break;
             } // case 8
-            case 18: {
-              reviewId_ = input.readStringRequireUtf8();
-
-              break;
-            } // case 18
-            case 26: {
-              status_ = input.readStringRequireUtf8();
-
-              break;
-            } // case 26
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -518,158 +396,6 @@ private static final long serialVersionUID = 0L;
     public Builder clearCode() {
       
       code_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object reviewId_ = "";
-    /**
-     * <code>string reviewId = 2;</code>
-     * @return The reviewId.
-     */
-    public java.lang.String getReviewId() {
-      java.lang.Object ref = reviewId_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        reviewId_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string reviewId = 2;</code>
-     * @return The bytes for reviewId.
-     */
-    public com.google.protobuf.ByteString
-        getReviewIdBytes() {
-      java.lang.Object ref = reviewId_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        reviewId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string reviewId = 2;</code>
-     * @param value The reviewId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setReviewId(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      reviewId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string reviewId = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearReviewId() {
-      
-      reviewId_ = getDefaultInstance().getReviewId();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string reviewId = 2;</code>
-     * @param value The bytes for reviewId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setReviewIdBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      reviewId_ = value;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object status_ = "";
-    /**
-     * <code>string status = 3;</code>
-     * @return The status.
-     */
-    public java.lang.String getStatus() {
-      java.lang.Object ref = status_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        status_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string status = 3;</code>
-     * @return The bytes for status.
-     */
-    public com.google.protobuf.ByteString
-        getStatusBytes() {
-      java.lang.Object ref = status_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        status_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string status = 3;</code>
-     * @param value The status to set.
-     * @return This builder for chaining.
-     */
-    public Builder setStatus(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      status_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string status = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearStatus() {
-      
-      status_ = getDefaultInstance().getStatus();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string status = 3;</code>
-     * @param value The bytes for status to set.
-     * @return This builder for chaining.
-     */
-    public Builder setStatusBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      status_ = value;
       onChanged();
       return this;
     }

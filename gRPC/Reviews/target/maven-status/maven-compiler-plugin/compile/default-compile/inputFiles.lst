@@ -1,4 +1,4 @@
-C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\services\HttpRequestHelper.java
+C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\grpcService\ReviewGrpcServiceImpl.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\model\Vote.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\grpc-java\com\joao\sandwich\SandwichServiceGrpc.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\controllers\RestResponseEntityExceptionHandler.java
@@ -15,7 +15,6 @@ C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Re
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\model\Role.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\SpringConfig.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\sandwich\SandwichResponseOrBuilder.java
-C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\model\ReviewVoteDTO.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\model\ReviewDTO.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\sandwich\SandwichResponse.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\services\ReviewService.java
@@ -25,12 +24,16 @@ C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Re
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\reviews\ReviewResponse.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\controllers\MyResourceNotFoundException.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\reviews\ReviewServiceOuterClass.java
+C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\grpcService\AppConfig.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\reviews\ReviewRequestOrBuilder.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\votes\VotesResponseOrBuilder.java
+C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\grpcService\VoteGrpcServiceImpl.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\grpc-java\com\joao\reviews\ReviewServiceGrpc.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\sandwich\SandwichRequest.java
+C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\grpcService\SandwichGrpcService.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\sandwich\SandwichRequestOrBuilder.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\security\WebSecurityConfig.java
+C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\grpcService\SandwichGrpcServiceImpl.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\votes\VoteService.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\votes\VotesRequestOrBuilder.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\sandwich\SandwichServiceOuterClass.java

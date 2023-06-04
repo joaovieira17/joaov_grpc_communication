@@ -39,9 +39,5 @@ public interface ReviewService {
     List<Review> getAllMyReviews();
 
     List<Review> getReviewByLanguage(String language);
-
-    ReviewVoteDTO getReviewForVote(UUID reviewId);
-
-    //String changeReviewStatus(UUID reviewId, boolean isGood);
 }
 
