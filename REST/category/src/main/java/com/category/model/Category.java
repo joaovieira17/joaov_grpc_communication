@@ -71,7 +71,10 @@ public class Category implements Serializable {
         if (!publicKey.matches("[a-zA-Z0-9]+")){
             throw new IllegalArgumentException("'publicKey' has invalid characters");
         }
-        this.publicKey = publicKey;
+        if (publicKey.trim().length() == 0){
+            throw new IllegalArgumentException("'Name' cannot have only white spaces");
+        }
+        this.publicKey = publicKey.trim();
     }
 
     public String getName() {

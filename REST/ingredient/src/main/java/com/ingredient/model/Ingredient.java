@@ -75,7 +75,13 @@ public class Ingredient implements Serializable {
         if (publicKey.length()>5){
             throw new IllegalArgumentException("'publicKey' has a maximum of 5 characters");
         }
-        this.publicKey = publicKey;
+        if (publicKey.trim().length() == 0){
+            throw new IllegalArgumentException("'publicKey' cannot have white spaces");
+        }
+        if (!publicKey.matches("[a-zA-Z0-9]+")){
+            throw new IllegalArgumentException("'publicKey' has invalid characters");
+        }
+        this.publicKey = publicKey.trim();
     }
 
     public String getName() {
