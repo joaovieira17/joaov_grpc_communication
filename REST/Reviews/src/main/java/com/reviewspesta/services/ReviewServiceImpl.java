@@ -113,11 +113,6 @@ public class ReviewServiceImpl implements ReviewService{
         }
     }
 
-    @Override
-    public void updateVotes(Vote vote, Review review){
-        review.updateVote(vote.isVote());
-        repository.save(review);
-    }
 
     @Override
     public boolean goodToDel(Review review){
@@ -137,11 +132,6 @@ public class ReviewServiceImpl implements ReviewService{
         return Objects.equals(review.getUserId(), userId);
     }
 
-
-    @Override
-    public boolean goodToVote(Review review){
-        return Objects.equals(review.getStatus(), "APPROVED");
-    }
 
     @Override
     public void upVote(UUID reviewId){

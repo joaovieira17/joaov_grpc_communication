@@ -1,6 +1,6 @@
 package com.reviewspesta.services;
 
-import java.io.IOException;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -22,8 +22,6 @@ public interface ReviewService {
 
     boolean belongsToUser(Review review);
 
-    boolean goodToVote(Review review);
-
     void upVote(UUID reviewId);
 
     void downVote(UUID reviewId);
@@ -33,8 +31,6 @@ public interface ReviewService {
     List<Review> getReviewsBySandwichOrderByDateWithoutPage(UUID sandwichId);
 
     List<Review> getReviewsBySandwichOrderByVotesWithoutPage(UUID sandwichId);
-
-    void updateVotes(Vote vote, Review review);
 
     List<Review> getAllMyReviews();
 

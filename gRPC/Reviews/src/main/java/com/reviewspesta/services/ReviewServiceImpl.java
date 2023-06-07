@@ -3,7 +3,6 @@ package com.reviewspesta.services;
 import com.joao.sandwich.SandwichResponse;
 import com.reviewspesta.grpcService.SandwichGrpcService;
 import com.reviewspesta.model.*;
-//import com.psoftprojectg5.repositories.ProductRepository;
 import com.reviewspesta.repositories.ReviewRepository;
 import com.reviewspesta.security.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.io.IOException;
 import java.util.*;
 
 
@@ -125,12 +123,6 @@ public class ReviewServiceImpl implements ReviewService{
     }
 
     @Override
-    public void updateVotes(Vote vote, Review review){
-        review.updateVote(vote.isVote());
-        repository.save(review);
-    }
-
-    @Override
     public boolean goodToDel(Review review){
         Boolean del = review.goodToDel(review.getUpVotes(),review.getDownVotes());
         if(del) {
@@ -148,11 +140,6 @@ public class ReviewServiceImpl implements ReviewService{
         return Objects.equals(review.getUserId(), userId);
     }
 
-
-    @Override
-    public boolean goodToVote(Review review){
-        return Objects.equals(review.getStatus(), "APPROVED");
-    }
 
     @Override
     public void upVote(UUID reviewId){

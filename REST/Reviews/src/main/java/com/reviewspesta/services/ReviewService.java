@@ -22,8 +22,6 @@ public interface ReviewService {
 
     boolean belongsToUser(Review review);
 
-    boolean goodToVote(Review review);
-
     void upVote(UUID reviewId);
 
     void downVote(UUID reviewId);
@@ -34,7 +32,6 @@ public interface ReviewService {
 
     List<Review> getReviewsBySandwichOrderByVotesWithoutPage(UUID sandwichId) throws IOException, InterruptedException;
 
-    void updateVotes(Vote vote, Review review);
 
     List<Review> getAllMyReviews();
 

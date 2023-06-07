@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.UUID;
 
 @Tag(name = "Reviews", description = "Endpoints for managing reviews")
@@ -39,32 +38,14 @@ public class ReviewController {
 
     @Operation(summary = "Gets a product's aggregated rating and frequency")
     @GetMapping(value = "/{sandwichId}/rating")
-    public RatingFrequency getRatingFrequency(@PathVariable("sandwichId") final UUID sandwichId) throws IOException, InterruptedException {
+    public RatingFrequency getRatingFrequency(@PathVariable("sandwichId") final UUID sandwichId) {
         return service.getRatingFrequencyOfSandwich(sandwichId);
     }
-
-    /*@Operation(summary = "Gets local pending reviews")
-    @GetMapping(value = "/pending")
-    public Iterable<Review> getLocalPendingReviews()  {
-        return service.getLocalPendingReviews();
-    }*/
-
-
-    /*@Operation(summary = "Approve or Reject a pending review")
-    @PutMapping(value = "/{reviewId}/approve/{reviewStatus}")
-    public ResponseEntity<String> approveRejectReview(@PathVariable("reviewId") final UUID reviewId, @PathVariable ("reviewStatus") final boolean reviewStatus){
-        boolean status = service.approveRejectReview(reviewId,reviewStatus);
-        if(!status){
-            throw new ResponseStatusException(HttpStatus.CONFLICT,"The review id you gave it's not associated with a review or this is not in PENDING status");
-
-        }else
-            return ResponseEntity.ok("O status da review foi mudado");
-    }*/
 
     @Operation(summary = "Create a review")
     @PostMapping(value = "/{sandwichId}/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Review> createReview(@Valid @RequestBody final ReviewDTO rev, @PathVariable final UUID sandwichId) throws IOException, InterruptedException {
+    public ResponseEntity<Review> createReview(@Valid @RequestBody final ReviewDTO rev, @PathVariable final UUID sandwichId){
         final Review review = service.create(rev, sandwichId);
         return ResponseEntity.status(HttpStatus.CREATED).body(review);
     }
@@ -112,19 +93,19 @@ public class ReviewController {
 
     @Operation(summary = "Get all database reviews associated with one product ordered by chronologival date without page")
     @GetMapping(value = "/{sandwichId}/date/here")
-    public Iterable<Review> getReviewsByProductOrderByDateWithoutPage(@PathVariable("sandwichId") final UUID sandwichId) throws IOException, InterruptedException {
+    public Iterable<Review> getReviewsByProductOrderByDateWithoutPage(@PathVariable("sandwichId") final UUID sandwichId)  {
         return service.getReviewsBySandwichOrderByDateWithoutPage(sandwichId);
     }
 
     @Operation(summary = "Get all reviews of a product, sorted by number of votes and reverse chronological publishing date")
     @GetMapping(value = "/{sandwichId}/votes")
-    public Iterable<Review> getReviewsByProductOrderByVotesWithoutPage(@PathVariable("sandwichId") final UUID sandwichId) throws IOException, InterruptedException {
+    public Iterable<Review> getReviewsByProductOrderByVotesWithoutPage(@PathVariable("sandwichId") final UUID sandwichId) {
         return service.getReviewsBySandwichOrderByVotesWithoutPage(sandwichId);
     }
 
     @Operation(summary = "Gets a specific review by its reviewId")
     @GetMapping(value="/reviewBySandwich/{sandwichId}")
-    public Iterable<Review> getBySandwich(@PathVariable("sandwichId") final UUID sandwichId) throws IOException, InterruptedException {
+    public Iterable<Review> getBySandwich(@PathVariable("sandwichId") final UUID sandwichId) {
         return service.getReviewsBySandwich(sandwichId);
     }
 

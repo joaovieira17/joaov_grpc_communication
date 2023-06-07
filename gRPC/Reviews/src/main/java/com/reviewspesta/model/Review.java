@@ -36,41 +36,54 @@ public class Review {
     private Date date;
 
     @Column(nullable = false)
-    private String status;
-
-    @Column(nullable = true)
     private int rating;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private int upVotes;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private int downVotes;
 
     @Column(nullable = false)
     private String funFact;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private Long userId;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private UUID sandwichId;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String language;
 
-    private Review(final UUID reviewId,final String status,final Date date, final String text) {
-        setStatus(status);
+    /*private Review(final UUID reviewId, final Date date, final String text) {
         setDate(date);
         setText(text);
-    }
+    }*/
 
-    private Review(final UUID reviewId,final String status,final Date date, final String text, final int rating, final int upVotes, final int downVotes, final String funFact, final Long userId,final UUID sandwichId, final String language) {
-        this(reviewId,status,date, text);
+
+    public Review(Date date, String text, int rating, int upVotes, int downVotes, String funFact, Long userId, UUID sandwichId, String language) {
+        setText(text);
+        setDate(date);
         setRating(rating);
         setDownVotes(downVotes);
         setUpVotes(upVotes);
-        getFunFactResponse(date);
+        setFunFact(funFact);
+        setUserId(userId);
+        setSandwichId(sandwichId);
+        setLanguage(language);
+    }
+
+    public Review(final UUID reviewId, final Date date, final String text, final int rating, final int upVotes, final int downVotes, final String funFact, final Long userId, final UUID sandwichId, final String language) {
+        //this(reviewId, date, text);
+        this.reviewId=reviewId;
+        setDate(date);
+        setText(text);
+        setRating(rating);
+        setDownVotes(downVotes);
+        setUpVotes(upVotes);
+        //getFunFactResponse(date);
+        setFunFact(funFact);
         setUserId(userId);
         setSandwichId(sandwichId);
         setLanguage(language);
@@ -118,15 +131,6 @@ public class Review {
         this.date = date;
     }
 
-    public String getStatus(){return status;}
-
-    public void setStatus(final String status){
-        if(status == null || status.isEmpty()){
-            throw new IllegalArgumentException("Status is a mandatory attribute");
-        }
-        this.status = status;
-    }
-
     public int getUpVotes() {
         return upVotes;
     }
@@ -136,6 +140,9 @@ public class Review {
     }
 
     public void setUserId(Long userId) {
+        if(userId==null){
+            throw new IllegalArgumentException("User Id is a mandatory attribute");
+        }
         this.userId = userId;
     }
 
@@ -224,6 +231,9 @@ public class Review {
     }
 
     public void setSandwichId(UUID sandwichId) {
+        if(sandwichId==null){
+            throw new IllegalArgumentException("Sandwich Id is a mandatory attribute");
+        }
         this.sandwichId = sandwichId;
     }
 
@@ -232,16 +242,14 @@ public class Review {
         long millis = System.currentTimeMillis();
         final LanguageDetector detector = LanguageDetectorBuilder.fromLanguages(ENGLISH, FRENCH, GERMAN, SPANISH, PORTUGUESE).build();
         if(!rev.getText().isEmpty() || rev.getRating() != 0){
-            obj.status = "APPROVED";
             obj.upVotes = 0;
             obj.downVotes = 0;
             obj.date = new Date(millis);
             obj.rating = rev.rating;
             obj.text = rev.text;
             obj.getFunFactResponse(obj.date);
-            //obj.productSku=sku;
             obj.language=detector.detectLanguageOf(rev.text).toString();
-            return new Review(obj.reviewId, obj.status, obj.date, obj.text, obj.rating, obj.upVotes, obj.downVotes, obj.funFact, userId,sandwichId,obj.language);
+            return new Review(obj.reviewId, obj.date, obj.text, obj.rating, obj.upVotes, obj.downVotes, obj.funFact, userId,sandwichId,obj.language);
         }
         else{
             return obj;

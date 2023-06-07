@@ -20,14 +20,11 @@ public interface ReviewRepository extends JpaRepository<Review, UUID> {
     @Query("SELECT r FROM Review r WHERE r.sandwichId = :sandwichId  ORDER BY r.date desc")
     List <Review> getReviewsBySandwichOrderByDateWithoutPage(@Param("sandwichId") UUID sandwichId);
 
-    @Query("SELECT r FROM Review r WHERE r.sandwichId = :sandwichId and r.status = 'APPROVED' ORDER BY r.upVotes desc, r.date desc")
+    @Query("SELECT r FROM Review r WHERE r.sandwichId = :sandwichId  ORDER BY r.upVotes desc, r.date desc")
     List <Review> getReviewsBySandwichOrderByVotesWithoutPage(@Param("sandwichId") UUID sandwichId);
 
     @Query("SELECT AVG(r.rating) FROM Review r WHERE r.sandwichId = :sandwichId")
     Float getAggregatedRating(@Param("sandwichId") UUID sandwichId);
-
-    /*@Query("SELECT r FROM Review r WHERE r.status ='PENDING'")
-    List <Review> getAllPendingReviews();*/
 
     @Query("SELECT r FROM Review r WHERE r.userId = :userId")
     List<Review> getAllMyReviews(@Param("userId") Long userId);

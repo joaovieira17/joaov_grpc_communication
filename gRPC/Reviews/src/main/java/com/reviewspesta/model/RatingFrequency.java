@@ -9,7 +9,7 @@ public class RatingFrequency {
     int fiveStar;
     float rating;
 
-    public RatingFrequency(){};
+    public RatingFrequency(){}
 
     public RatingFrequency(int oneStar, int twoStar, int threeStar, int fourStar, int fiveStar, float rating) {
         this.oneStar = oneStar;
