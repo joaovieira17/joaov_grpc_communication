@@ -37,7 +37,7 @@ public class Sandwich implements Serializable {
     @Size(min = 1, max = 50)
     private String designation;
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     @NotNull
     @NotBlank
     @Size(min = 1, max = 1024)
@@ -47,9 +47,6 @@ public class Sandwich implements Serializable {
     @ElementCollection
     private List<Ingredient> listOfIngredients;
 
-    private Sandwich (final UUID sandwichId) {
-    }
-
     public Sandwich(final UUID sandwichId,final String publicKey, final String designation, final String description, final List<Ingredient> listOfIngredients) {
         this.sandwichId=sandwichId;
         setPublicKey(publicKey);
@@ -58,6 +55,12 @@ public class Sandwich implements Serializable {
         setListOfIngredients(listOfIngredients);
     }
 
+    public Sandwich(String publicKey, String designation, String description, List<Ingredient> listOfIngredients) {
+        setPublicKey(publicKey);
+        setDesignation(designation);
+        setDescription(description);
+        setListOfIngredients(listOfIngredients);
+    }
 
     public Sandwich() {
     }
@@ -75,7 +78,7 @@ public class Sandwich implements Serializable {
 
     public void setPublicKey(String publicKey) {
         if (publicKey == null || publicKey.isEmpty()) {
-            throw new IllegalArgumentException("'publicKey' is a mandatory attribute of Sandwich");
+            throw new IllegalArgumentException("'publicKey' is a mandatory attribute of Ingredient");
         }
         if (publicKey.length()<3){
             throw new IllegalArgumentException("'publicKey' has a minimum of 3 characters");
@@ -83,7 +86,13 @@ public class Sandwich implements Serializable {
         if (publicKey.length()>5){
             throw new IllegalArgumentException("'publicKey' has a maximum of 5 characters");
         }
-        this.publicKey = publicKey;
+        if (publicKey.trim().length() == 0){
+            throw new IllegalArgumentException("'publicKey' cannot have white spaces");
+        }
+        if (!publicKey.matches("[a-zA-Z0-9]+")){
+            throw new IllegalArgumentException("'publicKey' has invalid characters");
+        }
+        this.publicKey = publicKey.trim();
     }
 
     public String getDesignation() {
@@ -129,7 +138,7 @@ public class Sandwich implements Serializable {
 
     public void setListOfIngredients(List<Ingredient> listOfIngredients) {
         if(listOfIngredients.size()<2){
-            throw new IllegalArgumentException("'listOfIngredients' is a mandatory attribute of Sandwich and you must choose at least two. For example: Pão com queijo");
+            throw new IllegalArgumentException("'listOfIngredients' is a mandatory attribute of Sandwich and you must choose at least two. For example: Bread and cheese");
         }
         this.listOfIngredients = listOfIngredients;
     }
