@@ -3,6 +3,7 @@ package com.votespesta.services;
 import com.votespesta.model.Vote;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 public interface VoteService {
@@ -13,4 +14,5 @@ public interface VoteService {
 
      Vote getVote(UUID reviewId);
 
+     List<Vote> getAllMyVotes();
 }

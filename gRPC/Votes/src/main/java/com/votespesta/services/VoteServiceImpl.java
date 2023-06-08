@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -83,5 +84,12 @@ public class VoteServiceImpl implements VoteService {
         }
         else
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Vote Not Found");
+    }
+
+    @Override
+    public List<Vote> getAllMyVotes() {
+        Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
+
+        return repository.getAllMyVotes(userId);
     }
 }

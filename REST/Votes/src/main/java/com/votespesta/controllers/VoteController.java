@@ -41,4 +41,9 @@ public class VoteController {
         return service.getVote(reviewId);
     }
 
+
+    @GetMapping(value = "/MyVotes")
+    public Iterable<Vote> getMyVotes(){
+        return service.getAllMyVotes();
+    }
 }
