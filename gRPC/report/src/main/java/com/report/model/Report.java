@@ -31,15 +31,15 @@ public class Report implements Serializable {
 
     public Report(UUID reportId, UUID reviewId, String text, Long userId) {
         this.reportId = reportId;
-        this.reviewId = reviewId;
+        setReviewId(reviewId);
         setText(text);
-        this.userId = userId;
+        setUserId(userId);
     }
 
     public Report(UUID reviewId, String text, Long userId) {
-        this.reviewId = reviewId;
+        setReviewId(reviewId);
         setText(text);
-        this.userId = userId;
+        setUserId(userId);
     }
 
     public Report() {
@@ -50,15 +50,14 @@ public class Report implements Serializable {
         return reportId;
     }
 
-    public void setReportId(UUID reportId) {
-        this.reportId = reportId;
-    }
-
     public UUID getReviewId() {
         return reviewId;
     }
 
     public void setReviewId(UUID reviewId) {
+        if (reviewId == null || reviewId.toString().isEmpty()){
+            throw new IllegalArgumentException("Review Id is a mandatory attribute of a Report");
+        }
         this.reviewId = reviewId;
     }
 
@@ -68,10 +67,10 @@ public class Report implements Serializable {
 
     public void setText(String text) {
         if (text.length()>2048){
-            throw new IllegalArgumentException("Review Text Length is too big");
+            throw new IllegalArgumentException("Report Text Length is too big");
         }
         if (text.trim().length()==0){
-            throw new IllegalArgumentException("Review Text cannot be white spaces or empty");
+            throw new IllegalArgumentException("Report Text cannot be white spaces or empty");
         }
         this.text = text;
     }
@@ -81,6 +80,9 @@ public class Report implements Serializable {
     }
 
     public void setUserId(Long userId) {
+        if (userId == null){
+            throw new IllegalArgumentException("User Id is a mandatory attribute of a Report");
+        }
         this.userId = userId;
     }
 }

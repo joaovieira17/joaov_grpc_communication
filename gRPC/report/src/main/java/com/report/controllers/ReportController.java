@@ -7,8 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -30,13 +28,13 @@ public class ReportController {
     }
 
     @GetMapping("/listByReview/{reviewId}")
-    public Iterable<Report> getReportsByReviewId(@PathVariable("reviewId") final UUID reviewId) throws IOException, InterruptedException {
+    public Iterable<Report> getReportsByReviewId(@PathVariable("reviewId") final UUID reviewId) {
         return service.getReportsByReviewId(reviewId);
     }
 
     @PostMapping(value = "/create/{reviewId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Report> createReport(@PathVariable final UUID reviewId, @RequestBody final String text) throws IOException, InterruptedException {
+    public ResponseEntity<Report> createReport(@PathVariable final UUID reviewId, @RequestBody final String text) {
         final Report report = service.createReport(reviewId,text);
         return ResponseEntity.status(HttpStatus.CREATED).body(report);
     }

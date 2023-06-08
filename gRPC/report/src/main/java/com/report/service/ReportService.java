@@ -1,7 +1,6 @@
 package com.report.service;
 
 import com.report.model.Report;
-import org.springframework.data.repository.query.Param;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,9 +12,9 @@ public interface ReportService {
 
     Report getReportById(UUID reportId);
 
-    List<Report> getReportsByReviewId(UUID reviewId) throws IOException, InterruptedException;
+    List<Report> getReportsByReviewId(UUID reviewId);
 
-    Report createReport(UUID reviewId, String text) throws IOException, InterruptedException;
+    Report createReport(UUID reviewId, String text);
 
     String deleteReport (UUID reportId);
 }
