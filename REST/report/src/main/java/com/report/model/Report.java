@@ -29,15 +29,15 @@ public class Report implements Serializable {
 
     public Report(UUID reportId, UUID reviewId, String text, Long userId) {
         this.reportId = reportId;
-        this.reviewId = reviewId;
+        setReviewId(reviewId);
         setText(text);
-        this.userId = userId;
+        setUserId(userId);
     }
 
     public Report(UUID reviewId, String text, Long userId) {
-        this.reviewId = reviewId;
+        setReviewId(reviewId);
         setText(text);
-        this.userId = userId;
+        setUserId(userId);
     }
 
     public Report() {

@@ -2,6 +2,8 @@ package com.category.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -76,6 +78,31 @@ public class CategoryTest {
         assertEquals("Fruta Madura", category.getName());
         Category category2 = new Category("abcde", "Fruta Madura");
         assertEquals("Fruta Madura",category2.getName());
+    }
+
+
+    @Test
+    void ensureIdMustNotBeBlankSpaces() {
+        assertThrows(IllegalArgumentException.class, () -> new Category(UUID.fromString("   "),"abcde","Fruta Madura"));
+    }
+
+    @Test
+    void ensureIdIsNotEmpty() {
+        assertThrows(IllegalArgumentException.class, () -> new Category(UUID.fromString(""),"abcde","Fruta Madura"));
+    }
+
+    @Test
+    void ensureIdIsAccepted() {
+        Category category = new Category(UUID.fromString("d828f1ce-c747-11ed-afa1-0242ac120001"),"abcde","Fruta Madura");
+        assertEquals(UUID.fromString("d828f1ce-c747-11ed-afa1-0242ac120001"), category.getCategoryId());
+    }
+
+    @Test
+    void ensureEverythingIsInPlace() {
+        Category category = new Category(UUID.fromString("d828f1ce-c747-11ed-afa1-0242ac120001"),"abcde","Fruta Madura");
+        assertEquals(UUID.fromString("d828f1ce-c747-11ed-afa1-0242ac120001"), category.getCategoryId());
+        assertEquals("abcde", category.getPublicKey());
+        assertEquals("Fruta Madura", category.getName());
     }
 
 
