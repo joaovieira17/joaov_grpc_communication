@@ -81,7 +81,7 @@ public class ReservationServiceImpl implements ReservationService{
         Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
 
         if (createReservationDTO.getPickupDate() != null && createReservationDTO.getPickupDate().before(atual)) {
-            throw new IllegalArgumentException("Pickup date cannot be before creation date");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Pickup date cannot be before creation date");
         }
 
         List<ReservationItem> reservationItemList = createReservationDTO.getItemList();
@@ -101,7 +101,7 @@ public class ReservationServiceImpl implements ReservationService{
 
 
         reservation.setCreationDate(atual);
-        reservation.setStatus(Reservation.ReservationStatus.STILL_ACTIVE);
+        reservation.setStatus(Reservation.ReservationStatus.ACTIVE);
         repository.save(reservation);
         return reservation;
     }

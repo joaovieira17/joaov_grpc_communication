@@ -22,6 +22,9 @@ public class ReservationItem {
     }
 
     public void setSandwichId(UUID sandwichId) {
+        if (sandwichId.toString().trim().length()==0){
+            throw new IllegalArgumentException("Sandwich Id cannot be white spaces or empty");
+        }
         this.sandwichId = sandwichId;
     }
 
@@ -30,6 +33,9 @@ public class ReservationItem {
     }
 
     public void setQuantity(int quantity) {
+        if(quantity<=0){
+            throw new IllegalArgumentException("Quantity should be a positive integer");
+        }
         this.quantity = quantity;
     }
 }
