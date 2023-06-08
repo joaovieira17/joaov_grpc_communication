@@ -56,9 +56,6 @@ public class Category implements Serializable {
         return publicKey;
     }
 
-    /*if (sku.length()!=12 || !sku.matches("[a-zA-Z0-9]+")) {
-            throw new IllegalArgumentException("'SKU' has not a correct format");
-        }*/
     public void setPublicKey(String publicKey) {
         if (publicKey == null || publicKey.isEmpty()) {
             throw new IllegalArgumentException("'publicKey' is a mandatory attribute of Category");
@@ -72,7 +69,10 @@ public class Category implements Serializable {
         if (!publicKey.matches("[a-zA-Z0-9]+")){
             throw new IllegalArgumentException("'publicKey' has invalid characters");
         }
-        this.publicKey = publicKey;
+        if (publicKey.trim().length() == 0){
+            throw new IllegalArgumentException("'Name' cannot have only white spaces");
+        }
+        this.publicKey = publicKey.trim();
     }
 
     public String getName() {
@@ -83,7 +83,7 @@ public class Category implements Serializable {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("'Name' is a mandatory attribute of Category");
         }
-        if (name.length()>40){
+        if (name.length()>25){
             throw new IllegalArgumentException("'Name' has a maximum of 40 characters");
         }
         if (name.trim().length() == 0){

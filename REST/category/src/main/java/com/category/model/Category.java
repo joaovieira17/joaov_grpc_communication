@@ -55,9 +55,6 @@ public class Category implements Serializable {
         return publicKey;
     }
 
-    /*if (sku.length()!=12 || !sku.matches("[a-zA-Z0-9]+")) {
-            throw new IllegalArgumentException("'SKU' has not a correct format");
-        }*/
     public void setPublicKey(String publicKey) {
         if (publicKey == null || publicKey.isEmpty()) {
             throw new IllegalArgumentException("'publicKey' is a mandatory attribute of Category");
