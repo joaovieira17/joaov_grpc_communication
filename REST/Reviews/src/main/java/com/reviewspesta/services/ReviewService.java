@@ -32,10 +32,10 @@ public interface ReviewService {
 
     List<Review> getReviewsBySandwichOrderByVotesWithoutPage(UUID sandwichId) throws IOException, InterruptedException;
 
-
     List<Review> getAllMyReviews();
 
     List<Review> getReviewByLanguage(String language);
 
+    String deleteReview(UUID reviewId);
 }
 

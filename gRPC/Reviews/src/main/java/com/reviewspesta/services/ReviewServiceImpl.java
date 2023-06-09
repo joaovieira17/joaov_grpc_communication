@@ -210,4 +210,15 @@ public class ReviewServiceImpl implements ReviewService{
         return repository.getReviewByLanguage(language);
     }
 
+
+    @Override
+    public String deleteReview(UUID reviewId) {
+        Optional<Review> review = Optional.ofNullable(repository.getReviewById(reviewId));
+        if (review.isPresent()) {
+            repository.delete(review.get());
+            return "Review Deleted";
+        }
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Review Not Found");
+    }
 }

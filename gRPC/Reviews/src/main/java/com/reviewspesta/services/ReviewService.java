@@ -35,5 +35,7 @@ public interface ReviewService {
     List<Review> getAllMyReviews();
 
     List<Review> getReviewByLanguage(String language);
+
+    String deleteReview(UUID reviewId);
 }
 

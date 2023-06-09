@@ -121,6 +121,12 @@ public class ReviewController {
         return service.getReviewByLanguage(language);
     }
 
+    @DeleteMapping(value = "/delete/{reviewId}")
+    public ResponseEntity<String> deleteReview(@PathVariable ("reviewId") final UUID reviewId){
+        String info = service.deleteReview(reviewId);
+        return ResponseEntity.ok(info);
+    }
+
 }
 
 
