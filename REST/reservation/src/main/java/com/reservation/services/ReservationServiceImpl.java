@@ -75,6 +75,16 @@ public class ReservationServiceImpl implements ReservationService{
     }
 
     @Override
+    public Reservation getMySpecificReservation(UUID reservationId) {
+        Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
+        Optional<Reservation> reservationOptional = Optional.ofNullable(repository.getMyReservationById(userId,reservationId));
+        if (reservationOptional.isPresent())
+            return reservationOptional.get();
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Reservation Not Found");
+    }
+
+    @Override
     public Reservation createReservation(CreateReservationDTO createReservationDTO) throws IOException, InterruptedException {
         long millis = System.currentTimeMillis();
         Date atual = new Date(millis);

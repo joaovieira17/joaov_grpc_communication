@@ -52,6 +52,12 @@ public class ReservationController {
         return service.getAllMyReservations();
     }
 
+    @GetMapping("/myReserv/{reservationId}")
+    public ResponseEntity<Reservation> getMyReservationById(@PathVariable("reservationId") final UUID reservationId) {
+        final Reservation reservation = service.getMySpecificReservation(reservationId);
+        return ResponseEntity.ok().body(reservation);
+    }
+
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Reservation> createReservation(@Valid @RequestBody final CreateReservationDTO createReservationDTO) throws IOException, InterruptedException {

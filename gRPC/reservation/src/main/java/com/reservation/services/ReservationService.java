@@ -9,22 +9,26 @@ import java.util.UUID;
 
 public interface ReservationService {
 
-    //MOD
+    //EMPLOYEE
     Reservation getByReservationId(UUID reservationId);
-    //MOD
+
+    //EMPLOYEE
     List<Reservation> getListOfReservations();
 
-    //MOD
+    //EMPLOYEE
     List<Reservation> getAllNonActiveReservations();
 
-    //MOD
+    //EMPLOYEE
     List<Reservation> getNonActiveReservationsOrderedByPickUpDate();
 
-    //MOD
+    //EMPLOYEE
     String changeDeliveredStatus(UUID reservationId, boolean isDelivered);
 
     //REGISTERED_USER
     List<Reservation> getAllMyReservations();
+
+    //REGISTERED_USER
+    Reservation getMySpecificReservation(UUID reservationId);
 
     //REGISTERED_USER
     Reservation createReservation(CreateReservationDTO createReservationDTO) throws IOException, InterruptedException;
@@ -32,8 +36,10 @@ public interface ReservationService {
     //REGISTERED_USER
     String cancelReservation(UUID reservationId);
 
-    //MOD
+    //EMPLOYEE
     String deleteReservation(UUID reservationId);
+
+
 
 
 }

@@ -26,6 +26,8 @@ public interface ReservationService {
     //REGISTERED_USER
     List<Reservation> getAllMyReservations();
 
+    Reservation getMySpecificReservation(UUID reservationId);
+
     //REGISTERED_USER
     Reservation createReservation(CreateReservationDTO createReservationDTO) throws IOException, InterruptedException;
 
