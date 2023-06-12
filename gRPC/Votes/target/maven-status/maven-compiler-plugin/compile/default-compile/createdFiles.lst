@@ -28,7 +28,6 @@ com\joao\votes\VotesServiceGrpc.class
 com\joao\reviews\ReviewResponse$Builder.class
 com\joao\reviews\ReviewServiceGrpc.class
 com\joao\votes\VotesRequest$1.class
-com\votespesta\model\Role.class
 com\votespesta\grpcService\ReviewGrpcService.class
 com\joao\reviews\ReviewServiceGrpc$ReviewServiceStub.class
 com\joao\votes\VotesServiceGrpc$3.class
@@ -51,7 +50,6 @@ com\joao\reviews\ReviewResponseOrBuilder.class
 com\joao\votes\VotesServiceGrpc$VotesServiceFileDescriptorSupplier.class
 com\joao\votes\VotesServiceGrpc$MethodHandlers.class
 com\votespesta\security\JwtAuthenticationEntryPoint.class
-com\votespesta\model\User.class
 com\votespesta\controllers\VoteController.class
 com\joao\votes\VotesServiceGrpc$VotesServiceImplBase.class
 com\joao\reviews\ReviewResponse$1.class

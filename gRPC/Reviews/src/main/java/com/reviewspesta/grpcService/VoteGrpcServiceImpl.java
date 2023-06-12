@@ -31,6 +31,6 @@ public class VoteGrpcServiceImpl extends VotesServiceGrpc.VotesServiceImplBase {
         responseObserver.onNext(response);
         responseObserver.onCompleted();
 
-        super.updateVote(request, responseObserver);
+        //super.updateVote(request, responseObserver);
     }
 }

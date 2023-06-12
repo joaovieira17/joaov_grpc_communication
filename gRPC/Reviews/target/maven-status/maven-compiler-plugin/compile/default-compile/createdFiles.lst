@@ -22,9 +22,7 @@ com\joao\sandwich\SandwichServiceGrpc$SandwichServiceFileDescriptorSupplier.clas
 com\joao\votes\VotesServiceGrpc$2.class
 com\joao\reviews\ReviewServiceGrpc$MethodHandlers.class
 com\joao\sandwich\SandwichServiceGrpc$2.class
-com\reviewspesta\model\Role.class
 com\reviewspesta\grpcService\AppConfig$1.class
-com\reviewspesta\model\User.class
 com\joao\reviews\ReviewServiceGrpc$ReviewServiceMethodDescriptorSupplier.class
 com\reviewspesta\security\JwtRequestFilter.class
 com\reviewspesta\security\JwtAuthenticationEntryPoint.class
@@ -59,7 +57,6 @@ com\joao\reviews\ReviewRequest.class
 com\joao\reviews\ReviewServiceGrpc$ReviewServiceBlockingStub.class
 com\joao\sandwich\SandwichServiceGrpc$SandwichServiceBlockingStub.class
 com\reviewspesta\model\RatingFrequency.class
-com\reviewspesta\model\Vote.class
 com\joao\reviews\ReviewRequestOrBuilder.class
 com\joao\votes\VotesRequestOrBuilder.class
 com\joao\sandwich\SandwichServiceGrpc$SandwichServiceStub.class

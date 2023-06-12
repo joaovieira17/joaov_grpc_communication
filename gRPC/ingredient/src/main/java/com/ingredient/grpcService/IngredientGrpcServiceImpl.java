@@ -44,6 +44,6 @@ public class IngredientGrpcServiceImpl extends IngredientServiceGrpc.IngredientS
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         }
-        super.getIngredient(request, responseObserver);
+        //super.getIngredient(request, responseObserver);
     }
 }

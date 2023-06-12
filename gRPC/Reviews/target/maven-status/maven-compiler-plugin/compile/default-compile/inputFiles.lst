@@ -1,5 +1,4 @@
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\grpcService\ReviewGrpcServiceImpl.java
-C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\model\Vote.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\grpc-java\com\joao\sandwich\SandwichServiceGrpc.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\controllers\RestResponseEntityExceptionHandler.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\repositories\ReviewRepository.java
@@ -11,8 +10,6 @@ C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Re
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\security\JwtAuthenticationEntryPoint.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\reviews\ReviewResponseOrBuilder.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\grpc-java\com\joao\votes\VotesServiceGrpc.java
-C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\model\User.java
-C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\model\Role.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\SpringConfig.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\target\generated-sources\protobuf\java\com\joao\sandwich\SandwichResponseOrBuilder.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Reviews\src\main\java\com\reviewspesta\model\ReviewDTO.java

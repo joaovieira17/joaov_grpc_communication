@@ -38,6 +38,6 @@ public class CategoryGrpcServiceImpl extends CategoryServiceGrpc.CategoryService
             responseObserver.onCompleted();
         }
 
-        super.getCategory(request, responseObserver);
+        //super.getCategory(request, responseObserver);
     }
 }

@@ -22,8 +22,6 @@ public class SandwichServiceImpl implements SandwichService{
     @Autowired
     private SandwichRepository repository;
 
-    private HttpRequestHelper helper = new HttpRequestHelper();
-
     private final IngredientGrpcService ingredientGrpcService;
 
     public SandwichServiceImpl(IngredientGrpcService ingredientGrpcService) {

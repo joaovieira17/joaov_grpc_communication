@@ -35,6 +35,6 @@ public class ReviewGrpcServiceImpl extends ReviewServiceGrpc.ReviewServiceImplBa
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         }
-        super.getReview(request, responseObserver);
+        //super.getReview(request, responseObserver);
     }
 }

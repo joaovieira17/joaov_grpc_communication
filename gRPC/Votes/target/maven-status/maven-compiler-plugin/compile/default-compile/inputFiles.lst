@@ -22,9 +22,7 @@ C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Vo
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Votes\target\generated-sources\protobuf\java\com\joao\reviews\ReviewRequestOrBuilder.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Votes\src\main\java\com\votespesta\grpcService\ReviewGrpcServiceImpl.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Votes\target\generated-sources\protobuf\java\com\joao\votes\VotesResponse.java
-C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Votes\src\main\java\com\votespesta\model\User.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Votes\target\generated-sources\protobuf\java\com\joao\votes\VotesRequest.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Votes\target\generated-sources\protobuf\grpc-java\com\joao\reviews\ReviewServiceGrpc.java
-C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Votes\src\main\java\com\votespesta\model\Role.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Votes\src\main\java\com\votespesta\security\JwtRequestFilter.java
 C:\Users\joaov\Desktop\Uni\3Ano\2semestre\PESTA\joaov_grpc_communication\gRPC\Votes\src\main\java\com\votespesta\controllers\VoteController.java

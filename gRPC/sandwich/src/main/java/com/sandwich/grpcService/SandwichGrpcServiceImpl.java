@@ -32,6 +32,6 @@ public class SandwichGrpcServiceImpl extends SandwichServiceGrpc.SandwichService
         }
         responseObserver.onNext(response);
         responseObserver.onCompleted();
-        super.getSandwich(request, responseObserver);
+        //super.getSandwich(request, responseObserver);
     }
 }
