@@ -26,7 +26,7 @@ public class IngredientGrpcServiceImpl implements IngredientGrpcService{
         ingredientServiceStub= IngredientServiceGrpc.newBlockingStub(channel);
         IngredientResponse ingredientResponse = ingredientServiceStub.getIngredient(
                 IngredientRequest.newBuilder()
-                        .setPublicKey(privateKey)
+                        .setPrivateKey(privateKey)
                         .build()
         );
         return ingredientResponse;

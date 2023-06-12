@@ -122,7 +122,9 @@ public class Reservation implements Serializable {
         if(pickupDate==null){
             throw new IllegalArgumentException("Pickup Date is a mandatory attribute of a Reservation");
         }
-        if (pickupDate.before(creationDate)) {
+        long millis = System.currentTimeMillis();
+        Date atual = new Date(millis);
+        if (pickupDate.before(atual)) {
             throw new IllegalArgumentException("Pickup date cannot be before creation date");
         }
 
