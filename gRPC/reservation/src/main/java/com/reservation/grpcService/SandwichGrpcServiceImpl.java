@@ -13,7 +13,7 @@ import java.util.UUID;
 @Service
 public class SandwichGrpcServiceImpl implements SandwichGrpcService {
 
-    @GrpcClient("Sandwich")
+    @GrpcClient("SandwichClient")
     private SandwichServiceGrpc.SandwichServiceBlockingStub sandwichServiceStub;
     private ManagedChannel channel;
 

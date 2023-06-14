@@ -1,16 +1,14 @@
 package com.reservation.model;
 
 import com.reservation.dtos.CreateReservationDTO;
+import com.reservation.utils.Utils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 public class Reservation implements Serializable {
@@ -161,6 +159,8 @@ public class Reservation implements Serializable {
         if(items.isEmpty()){
             throw new IllegalArgumentException("You have to choose at least one item");
         }
+        //To guarantee that there are no repeated sandwiches (if they want more of a specific sandwich they should change quantity)
+        Utils.verifyDuplicatedItems(items);
         this.items = items;
     }
 

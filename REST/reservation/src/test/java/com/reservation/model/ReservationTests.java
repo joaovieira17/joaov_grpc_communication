@@ -1,6 +1,8 @@
 package com.reservation.model;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -118,6 +120,25 @@ public class ReservationTests {
         ReservationItem item = new ReservationItem();
         Throwable exception = assertThrows(IllegalArgumentException.class, () ->item.setQuantity(0));
         assertEquals("Quantity should be a positive integer", exception.getMessage());
+    }
+
+    @Test
+    void ensureListOfItemsIsNotAccepted3(){
+        Reservation reservation = new Reservation();
+        List<ReservationItem> itemList = new ArrayList<>();
+
+        ReservationItem item = new ReservationItem();
+        item.setSandwichId(UUID.fromString("d728f1ce-c747-11ed-afa1-0242ac120002"));
+        item.setQuantity(3);
+        itemList.add(item);
+        ReservationItem item2 = new ReservationItem();
+        item2.setSandwichId(UUID.fromString("d728f1ce-c747-11ed-afa1-0242ac120002"));
+        item2.setQuantity(2);
+        itemList.add(item2);
+
+
+        Throwable exception = assertThrows(ResponseStatusException.class, () ->reservation.setItems(itemList));
+        assertEquals(HttpStatus.BAD_REQUEST + " \"This sandwichId is repeated: " + item2.getSandwichId()+"\"", exception.getMessage());
     }
 
     @Test

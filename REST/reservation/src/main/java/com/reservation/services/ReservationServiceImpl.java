@@ -5,6 +5,7 @@ import com.reservation.model.Reservation;
 import com.reservation.model.ReservationItem;
 import com.reservation.repositories.ReservationRepository;
 import com.reservation.security.JwtUtils;
+import com.reservation.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -95,7 +96,7 @@ public class ReservationServiceImpl implements ReservationService{
         }
 
         List<ReservationItem> reservationItemList = createReservationDTO.getItemList();
-
+        Utils.verifyDuplicatedItems(reservationItemList);
         for(int i=0; i<reservationItemList.size();i++){
             boolean sandwichExistence = helper.doesSandwichExist(createReservationDTO.getItemList().get(i).getSandwichId());
             if(!sandwichExistence){

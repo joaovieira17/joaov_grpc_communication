@@ -31,7 +31,7 @@ public interface ReservationService {
     Reservation getMySpecificReservation(UUID reservationId);
 
     //REGISTERED_USER
-    Reservation createReservation(CreateReservationDTO createReservationDTO) throws IOException, InterruptedException;
+    Reservation createReservation(CreateReservationDTO createReservationDTO);
 
     //REGISTERED_USER
     String cancelReservation(UUID reservationId);

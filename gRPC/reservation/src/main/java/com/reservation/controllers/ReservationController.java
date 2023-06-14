@@ -60,7 +60,7 @@ public class ReservationController {
 
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Reservation> createReservation(@Valid @RequestBody final CreateReservationDTO createReservationDTO) throws IOException, InterruptedException {
+    public ResponseEntity<Reservation> createReservation(@Valid @RequestBody final CreateReservationDTO createReservationDTO){
         final Reservation reservation = service.createReservation(createReservationDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(reservation);
     }
