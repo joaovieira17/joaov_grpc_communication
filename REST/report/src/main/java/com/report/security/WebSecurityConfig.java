@@ -38,9 +38,9 @@ public class WebSecurityConfig {
                     .csrf().disable()
                     .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                    .authorizeHttpRequests().requestMatchers("/authenticate").permitAll()
-                    //.requestMatchers("/ingredient/list").hasAuthority("MODERATOR")
-                    .anyRequest().permitAll()
+                    .authorizeHttpRequests().requestMatchers("/review/report/create/**").hasAnyAuthority("MODERATOR","REG_USER","ADMIN")
+                    .requestMatchers("/review/report/delete/**").hasAnyAuthority("ADMIN")
+                    .requestMatchers("/review/report/**").hasAnyAuthority("MODERATOR","ADMIN")
                     .and().headers().frameOptions().disable()
                     .and().addFilterBefore(authenticationJwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
 
