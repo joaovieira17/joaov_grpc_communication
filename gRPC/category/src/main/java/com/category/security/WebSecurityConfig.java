@@ -54,7 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/category/create","/category/delete/**").hasAuthority("ADMIN")
-                .antMatchers("/authenticate","/swagger-ui/**","/v3/api-docs/**","/h2/**","/category/list","/category/**","/category/getByKey/**","/category/existence/**", "/category/existenceByKey/**").permitAll();
+                .antMatchers("/authenticate","/swagger-ui/**","/v3/api-docs/**","/h2/**","/category/list","/category/**","/category/getByKey/**","/category/existence/**", "/category/existenceByKey/**", "/category/getToSend/**").permitAll();
 
 
         httpSecurity.headers().frameOptions().disable();
