@@ -39,7 +39,7 @@ public class WebSecurityConfig {
                     .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                     .authorizeHttpRequests().requestMatchers("/category/create","/category/delete/**").hasAuthority("ADMIN")
-                    .requestMatchers("/category/list","/category/**","/category/getByKey/**","/category/existence/**", "/category/existenceByKey/**").permitAll()
+                    .requestMatchers("/category/list","/category/**","/category/getByKey/**","/category/existence/**", "/category/existenceByKey/**", "/category/getToSend/**").permitAll()
                     .anyRequest().permitAll()
                     .and().headers().frameOptions().disable()
                     .and().addFilterBefore(authenticationJwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
