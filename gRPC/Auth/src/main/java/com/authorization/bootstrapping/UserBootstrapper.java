@@ -39,13 +39,13 @@ public class UserBootstrapper implements CommandLineRunner {
 
         if (userRepo.findByUsername("Joao") == null) {
             User u3 = new User("Joao", encoder.encode("passdojoao"),"joao@gmail.com","");
-            u3.addAuthority(new Role(Role.REG_USER));
+            u3.addAuthority(new Role(Role.ADMIN));
             userRepo.save(u3);
         }
 
         if (userRepo.findByUsername("Joana") == null) {
             User u4 = new User("Joana", encoder.encode("passdajoana"),"joana@gmail.com","");
-            u4.addAuthority(new Role(Role.REG_USER));
+            u4.addAuthority(new Role(Role.EMPLOYEE));
             userRepo.save(u4);
         }
 
