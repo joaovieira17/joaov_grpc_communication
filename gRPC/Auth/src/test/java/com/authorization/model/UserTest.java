@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserTest {
 
@@ -17,7 +15,7 @@ public class UserTest {
         assertEquals("Albert", user.getUsername());
         User user1 = new User();
         user1.setUsername("Albert");
-        assertEquals("Albert", user.getUsername());
+        assertEquals("Albert", user1.getUsername());
     }
 
     @Test

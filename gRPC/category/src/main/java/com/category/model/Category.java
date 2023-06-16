@@ -66,11 +66,11 @@ public class Category implements Serializable {
         if (publicKey.length()>5){
             throw new IllegalArgumentException("'publicKey' has a maximum of 5 characters");
         }
+        if (publicKey.trim().length() == 0){
+            throw new IllegalArgumentException("'publicKey' cannot have only white spaces");
+        }
         if (!publicKey.matches("[a-zA-Z0-9]+")){
             throw new IllegalArgumentException("'publicKey' has invalid characters");
-        }
-        if (publicKey.trim().length() == 0){
-            throw new IllegalArgumentException("'Name' cannot have only white spaces");
         }
         this.publicKey = publicKey.trim();
     }

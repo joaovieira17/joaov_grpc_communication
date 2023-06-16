@@ -43,7 +43,8 @@ public class CategoryTest {
 
     @Test
     void ensurePublicKeyMustNotBeBlankSpaces() {
-        assertThrows(IllegalArgumentException.class, () -> new Category("    ","Fruta Madura"));
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> new Category("    ","Fruta Madura"));
+        assertEquals("'publicKey' cannot have only white spaces", exception.getMessage());
     }
 
     @Test
@@ -61,7 +62,8 @@ public class CategoryTest {
 
     @Test
     void ensureNameMustNotBeBlankSpaces() {
-        assertThrows(IllegalArgumentException.class, () -> new Category("abcde","      "));
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> new Category("abcde","      "));
+        assertEquals("'Name' cannot have only white spaces", exception.getMessage());
     }
 
     @Test
