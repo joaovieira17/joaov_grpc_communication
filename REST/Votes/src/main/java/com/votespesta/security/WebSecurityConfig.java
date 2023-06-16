@@ -35,10 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/authenticate","/swagger-ui/**","/v3/api-docs/**","/h2/**").permitAll()
-                .antMatchers("/review/**/approve/**","/review/pending","/product/**/photo","/product/**/photos").hasAuthority("MODERATOR")
-                .antMatchers("/review/**/create","review/myReview","review/**/remove","/vote/updateVote").hasAnyAuthority("MODERATOR","REG_USER")
-                .anyRequest().permitAll();
+                .authorizeRequests().anyRequest().hasAnyAuthority("MODERATOR","REG_USER","ADMIN");
 
         httpSecurity.headers().frameOptions().disable();
         httpSecurity.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
