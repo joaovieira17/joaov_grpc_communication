@@ -61,7 +61,7 @@ public class IngredientController {
     //@Operation(summary = "Create a ingredient")
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Ingredient> createIngredient(@Valid @RequestBody final CreateIngredientDTO ingredient) throws IOException, InterruptedException {
+    public ResponseEntity<Ingredient> createIngredient(@Valid @RequestBody final CreateIngredientDTO ingredient) {
         final Ingredient ingredient1 = service.createIngredient(ingredient);
         return ResponseEntity.status(HttpStatus.CREATED).body(ingredient1);
     }

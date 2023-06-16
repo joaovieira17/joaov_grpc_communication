@@ -60,14 +60,6 @@ public class ReviewServiceImpl implements ReviewService{
 
         Long userId = Long.valueOf(jwtUtils.getUserFromJwtToken(jwtUtils.getJwt()));
 
-        List<String> forbiddenWords = List.of("cafe", "morango", "colher");
-
-        for (int i=0; i<forbiddenWords.size();i++){
-            if (rev.getText().toLowerCase().contains(forbiddenWords.get(i))){
-                throw new ResponseStatusException(HttpStatus.CONFLICT,"You can't use that word:"+ forbiddenWords.get(i));
-            }
-        }
-
         if (helper.doesSandwichExist(sandwichId)){
             final Review obj = Review.newFrom(rev,sandwichId,userId);
 

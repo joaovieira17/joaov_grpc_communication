@@ -3,6 +3,8 @@ package com.reviewspesta.model;
 import com.github.pemistahl.lingua.api.*;
 import static com.github.pemistahl.lingua.api.Language.*;
 import org.hibernate.annotations.Type;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 
 import javax.persistence.*;
@@ -12,8 +14,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.Normalizer;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -107,6 +111,13 @@ public class Review {
         }
         if (text.trim().length()==0){
             throw new IllegalArgumentException("Review Text cannot be white spaces");
+        }
+        List<String> forbiddenWords = List.of("cafe", "morango", "colher");
+        String textNormalized= Normalizer.normalize(text, Normalizer.Form.NFD).replaceAll("\\p{Mn}", "");
+        for (int i=0; i<forbiddenWords.size();i++){
+            if (textNormalized.toLowerCase().contains(forbiddenWords.get(i))){
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"You can't use that word:"+ forbiddenWords.get(i));
+            }
         }
         this.text = text;
     }

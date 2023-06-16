@@ -93,7 +93,7 @@ public class IngredientServiceImpl implements IngredientService{
     }
 
     @Override
-    public Ingredient createIngredient(CreateIngredientDTO createIngredientDTO) throws IOException, InterruptedException {
+    public Ingredient createIngredient(CreateIngredientDTO createIngredientDTO) {
         String publicKey = createIngredientDTO.getPublicKey().toLowerCase();
 
         if(repository.getByPublicKey(publicKey)!=null){

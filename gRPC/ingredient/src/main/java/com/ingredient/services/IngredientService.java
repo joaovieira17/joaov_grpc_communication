@@ -28,7 +28,7 @@ public interface IngredientService {
     boolean ingredientExistenceByKey(String publicKey);
 
     //creates an Ingredient
-    Ingredient createIngredient(CreateIngredientDTO createIngredientDTO) throws IOException, InterruptedException;
+    Ingredient createIngredient(CreateIngredientDTO createIngredientDTO);
 
     //deletes an Ingredient
     String deleteIngredient (UUID ingredientId);

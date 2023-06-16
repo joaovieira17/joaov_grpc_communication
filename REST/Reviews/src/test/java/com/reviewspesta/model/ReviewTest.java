@@ -3,6 +3,7 @@ package com.reviewspesta.model;
 import com.github.pemistahl.lingua.api.LanguageDetector;
 import com.github.pemistahl.lingua.api.LanguageDetectorBuilder;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Date;
 import java.util.UUID;
@@ -26,6 +27,13 @@ public class ReviewTest {
         Review rev = new Review();
         Throwable exception = assertThrows(IllegalArgumentException.class, () ->rev.setText("          "));
         assertEquals("Review Text cannot be white spaces", exception.getMessage());
+    }
+
+    @Test
+    void ensureReviewTextDoesNotHaveForbiddenWords(){
+        Review rev = new Review();
+        Throwable exception = assertThrows(ResponseStatusException.class, () ->rev.setText("O café é muito mau"));
+        assertEquals("400 BAD_REQUEST " + "\"You can't use that word:"+"cafe\"", exception.getMessage());
     }
 
     @Test
