@@ -35,8 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/review/myReview","/review/**/remove","/review/downvote/**","/review/upvote/**","/review/**/create").hasAnyAuthority("MODERATOR","REG_USER","ADMIN")
-                .antMatchers("/review/delete/**").hasAnyAuthority("MODERATOR","ADMIN")
+                .authorizeRequests().antMatchers("/review/myReview","/review/**/remove","/review/**/create").hasAnyAuthority("MODERATOR","REG_USER","ADMIN","EMPLOYEE")
+                .antMatchers("/review/delete/**").hasAnyAuthority("MODERATOR","ADMIN","EMPLOYEE")
                 .anyRequest().permitAll();
 
         httpSecurity.headers().frameOptions().disable();

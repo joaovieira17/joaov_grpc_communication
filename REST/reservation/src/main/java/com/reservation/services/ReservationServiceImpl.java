@@ -44,12 +44,14 @@ public class ReservationServiceImpl implements ReservationService{
 
     @Override
     public List<Reservation> getAllNonActiveReservations() {
-        return repository.getAllNonActiveReservations();
+        Reservation.ReservationStatus status = Reservation.ReservationStatus.INACTIVE;
+        return repository.getAllNonActiveReservations(status);
     }
 
     @Override
     public List<Reservation> getNonActiveReservationsOrderedByPickUpDate() {
-        return repository.getAllNonActiveReservationsOrderedByPickUpDate();
+        Reservation.ReservationStatus status = Reservation.ReservationStatus.INACTIVE;
+        return repository.getAllNonActiveReservationsOrderedByPickUpDate(status);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/reservation/allMyReservations","/reservation/myReserv/**","/reservation/create","/reservation/**/cancelReservation").hasAnyAuthority("EMPLOYEE","ADMIN","REG_USER")
+                .authorizeRequests().antMatchers("/reservation/allMyReservations","/reservation/myReserv/**","/reservation/create","/reservation/**/cancelReservation").hasAnyAuthority("EMPLOYEE","ADMIN","REG_USER","MODERATOR")
                 .anyRequest().hasAnyAuthority("EMPLOYEE","ADMIN");
 
         httpSecurity.headers().frameOptions().disable();

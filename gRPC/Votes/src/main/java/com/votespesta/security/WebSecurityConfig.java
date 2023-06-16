@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().anyRequest().hasAnyAuthority("MODERATOR","REG_USER","ADMIN");
+                .authorizeRequests().anyRequest().hasAnyAuthority("MODERATOR","REG_USER","ADMIN","EMPLOYEE");
 
         httpSecurity.headers().frameOptions().disable();
         httpSecurity.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);

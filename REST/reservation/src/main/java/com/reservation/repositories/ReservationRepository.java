@@ -16,11 +16,11 @@ public interface ReservationRepository extends JpaRepository<Reservation, UUID> 
     @Query("SELECT  f FROM Reservation f")
     List<Reservation> getListOfReservations();
 
-    @Query("SELECT r FROM Reservation r WHERE r.status ='INACTIVE'")
-    List<Reservation> getAllNonActiveReservations();
+    @Query("SELECT r FROM Reservation r WHERE r.status = :inactiveStatus")
+    List<Reservation> getAllNonActiveReservations(@Param("inactiveStatus") Reservation.ReservationStatus inactiveStatus);
 
-    @Query("SELECT r FROM Reservation r WHERE r.status ='INACTIVE' ORDER BY r.pickupDate asc")
-    List<Reservation> getAllNonActiveReservationsOrderedByPickUpDate();
+    @Query("SELECT r FROM Reservation r WHERE r.status = :inactiveStatus ORDER BY r.pickupDate asc")
+    List<Reservation> getAllNonActiveReservationsOrderedByPickUpDate(@Param("inactiveStatus") Reservation.ReservationStatus inactiveStatus);
 
     @Query("SELECT r FROM Reservation r WHERE r.userId = :userId")
     List<Reservation> getAllMyReservations(@Param("userId") Long userId);

@@ -38,7 +38,7 @@ public class WebSecurityConfig {
                     .csrf().disable()
                     .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                    .authorizeHttpRequests().requestMatchers("/reservation/allMyReservations","/reservation/myReserv/**","/reservation/create","/reservation/**/cancelReservation").hasAnyAuthority("EMPLOYEE","ADMIN","REG_USER")
+                    .authorizeHttpRequests().requestMatchers("/reservation/allMyReservations","/reservation/myReserv/**","/reservation/create","/reservation/**/cancelReservation").hasAnyAuthority("EMPLOYEE","ADMIN","REG_USER","MODERATOR")
                     .anyRequest().hasAnyAuthority("EMPLOYEE","ADMIN")
                     .and().headers().frameOptions().disable()
                     .and().addFilterBefore(authenticationJwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
