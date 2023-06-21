@@ -1,7 +1,7 @@
 # joaov_grpc_communication
 Application development using gRPC for inter-service communication and performance comparison with REST
 
-The prototype is developed using gRPC but also with REST. Each one has multiple services : Authentication, Category, Ingredient, Sandwich, Reviews, Votes, Reservations, Reports.
+The prototype is developed using gRPC but also with REST for performance comparison using JMeter. Each one has multiple services : Authentication, Category, Ingredient, Sandwich, Reviews, Votes, Reservations, Reports.
 Since the focus of the project was to explore gRPC as service-to-service communication, the diagrams provided are only for the gRPC prototype.
 
 ## Context of the project
