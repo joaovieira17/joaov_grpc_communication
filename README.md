@@ -2,7 +2,8 @@
 Application development using gRPC for inter-service communication and performance comparison with REST
 
 The prototype is developed using gRPC but also with REST for performance comparison using JMeter. Each one has multiple services : Authentication, Category, Ingredient, Sandwich, Reviews, Votes, Reservations, Reports.
-Since the focus of the project was to explore gRPC as service-to-service communication, the diagrams provided are only for the gRPC prototype.
+The focus of the project was to explore gRPC as service-to-service communication.
+To ensure that both prototypes are equal in terms of funcionality and most importante, that they are full functioning there are 641 integration tests (in Postman Collection provided) and 113 Unitary Tests across all services (226 if we sum both protorypes).
 
 ## Context of the project
 
@@ -14,9 +15,10 @@ The administrator is responsible for creating and removing sandwiches, ingredien
 
 The moderator is responsible for reviewing customer reviews and can remove them if any violations are found. Additionally, they can view reports made by other users regarding reviews and decide if these reports indeed involve any violations.
 
-The project is developed using REST and gRPC, but since the main focus is on studying and exploring gRPC, all the documentation will be for the application that uses gRPC as the communication method between services.
+Since the developed application is a prototype, it will not be possible to register new users, and the existing users will be defined and created in advance through bootstrap. Additionally, no limits have been set for reservations on a specific date or for ingredient and sandwich stock.
 
-Since the developed application is a prototype in practice, it will not be possible to register new users, and the existing users will be defined and created in advance through bootstrap. Additionally, no limits have been set for reservations on a specific date or for ingredient and sandwich stock.
+Since the project is developed using REST and gRPC, there is documentation, following the C4 and 4+1 principles, for both prototypes.
+
 
 ## Analysis
 
@@ -45,6 +47,8 @@ Since the developed application is a prototype in practice, it will not be possi
 
 ## Design
 
+### gRPC Documentation
+
 Here, the architectural representation of the application will be presented and two models will be used for this, C4 and 4+1.
 In the diagrams made for this project, not all levels of abstraction are explored since they are not relevant to the understanding of the project.
 
@@ -56,7 +60,7 @@ Level 1:
 
 Level 2:
 
-![VistaLogicaLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/e16a07d8-fefe-4b79-9fdc-b3661e39ed7c)
+![VistaLogicaLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/a6be1df6-38b7-4cc4-b912-a7f075341ea2)
 
  State Diagram of Reservations:
 
@@ -64,11 +68,13 @@ Level 2:
 
 ### Physical View
 
-![VistaFisica](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/0c07ee18-5f74-4222-a700-884338a460fa)
+![VistaFisica](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/4b4f6761-9fd6-4d95-a803-9c7b5a86a2ca)
+
+
 
 The database per service pattern:
 
-![Arquitetura](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/43c2b842-b1d7-4535-be02-ecd106ab536b)
+![DatabasePerService](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/879d52de-05cf-4cda-bf20-3e11df7929c7)
 
 
 ### Process View
@@ -85,8 +91,48 @@ Create Reservation (Level 2):
 
 Create Reservation (Level 3):
 
-![CreateReservationSequencegRPCLv3-Teste](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/c426ecce-99d4-4112-b394-492ca8055e9e)
+![CreateReservationSequencegRPCLv3](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/29351d9b-1cc1-4e93-a37e-fada3437b512)
 
+
+### Development View
+
+![ImplementacaoGrpc](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/2d43b653-bba1-46ae-81da-bb3d3ba5f5c4)
+
+
+### REST Documentation
+
+### Logic View
+
+Level 1: The same as in gRPC
+
+Level 2:
+
+![RESTVistaLogicaLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/37a9a997-c481-4186-9460-d358feb4c489)
+
+State Diagram: The same as in gRPC
+
+### Physical View
+
+![RESTVistaFisica](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/f5d728dc-09c1-4ff0-b722-e1dbc742692c)
+
+### Process View
+
+Get catalog of sandwiches (Level 3): The same as in gRPC
+
+Create Reservation (Level 2):
+
+![RESTcreateReservationSequenceLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/c79ab957-0e8a-47ed-8eee-ead34a0407f1)
+
+
+Create Reservation (Level 3):
+
+![RESTCreateReservationSequenceLv3](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/24c0f370-18e1-4d70-89d0-04eb70c3a1a4)
+
+
+
+### Development View
+
+![ImplementacaoREST](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/7d6e8a8d-3fa0-4ebb-95bf-4823e1ef4dd2)
 
 
 
