@@ -1,4 +1,4 @@
-# joaov_grpc_communication
+# gRPC for service-to-service communication 
 Application development using gRPC for inter-service communication and performance comparison with REST
 
 The prototype is developed using gRPC but also with REST (both in Java Spring Boot) for performance comparison using JMeter. Each one has multiple services : Authentication, Category, Ingredient, Sandwich, Reviews, Votes, Reservations, Reports.
@@ -24,7 +24,8 @@ Since the project is developed using REST and gRPC, there is documentation, foll
 
 ### Domain Model:
 
-![ModeloDeDominio](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/ddc489ab-d39c-4416-bc8e-94e275df1fcf)
+![ModeloDeDominio](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/c207f97b-3bbb-4fc1-a8c3-ff3fabb0368f)
+
 
 ### Use Case Diagrams 
 
