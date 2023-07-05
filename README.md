@@ -1,4 +1,4 @@
-# joaov_grpc_communication
+# gRPC for service-to-service communication 
 Application development using gRPC for inter-service communication and performance comparison with REST
 
 The prototype is developed using gRPC but also with REST (both in Java Spring Boot) for performance comparison using JMeter. Each one has multiple services : Authentication, Category, Ingredient, Sandwich, Reviews, Votes, Reservations, Reports.
@@ -24,25 +24,26 @@ Since the project is developed using REST and gRPC, there is documentation, foll
 
 ### Domain Model:
 
-![ModeloDeDominio](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/2ad1a841-2e98-438b-95f9-bf3d7532ec88)
+![ModeloDeDominio](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/c207f97b-3bbb-4fc1-a8c3-ff3fabb0368f)
+
 
 ### Use Case Diagrams 
 
-![CasosDeUsoAuthentication](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/496931d0-35c5-419d-9504-514a1e0d89b9)
+![CasosDeUsoAuthentication](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/ef011d9b-6d45-4e0e-9267-d390607b8230)
 
-![CasosDeUsoCategory](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/d072146f-62ae-4a9b-9cb5-a7cb9caa1fe4)
+![CasosDeUsoCategory](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/b66d0c06-ae03-4df1-9869-e4f433a80cbe)
 
-![CasosDeUsoIngredient](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/e8a94434-1472-486d-88ac-2263cb05a98d)
+![CasosDeUsoIngredient](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/0c79f4d5-622e-49e0-94ac-eb5dc226735d)
 
-![CasosDeUsoSandwich](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/36225ad7-e22f-44b4-8fa6-d4ac1586257e)
+![CasosDeUsoSandwich](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/eb07a489-9700-4d73-b567-142e9acd7ebe)
 
-![CasosDeUsoReview](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/db9ef18d-2c56-4f94-8a91-e45fad11ea6d)
+![CasosDeUsoReview](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/e6d757ed-ce17-4141-ada1-b80a17dc4bea)
 
-![CasosDeUsoReservation](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/a6661963-3c82-4693-a50e-d88ff39cda28)
+![CasosDeUsoReservation](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/0e0bf075-a7cb-41d9-ac3f-5850f83153e6)
 
-![CasosDeUsoReport](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/9b6ed47d-61b4-449a-891a-797638d86c6f)
+![CasosDeUsoReport](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/452b3370-aab3-4238-b9af-252e55510450)
 
-![CasosDeUsoVotes](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/009ac84e-44b4-4c5b-a23e-88fcae60b533)
+![CasosDeUsoVotes](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/1f874c28-c842-4ebb-abdf-7f5251d9fa4d)
 
 
 ## Design
@@ -56,25 +57,26 @@ In the diagrams made for this project, not all levels of abstraction are explore
 
 Level 1:
 
-![VistaLogicaLv1](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/d52d150c-fa0e-4e3d-8ec2-72adefdf56b4)
+![VistaLogicaLv1](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/8ef80cb0-b88d-46ae-8960-8d69fae93b9b)
+
 
 Level 2:
 
-![VistaLogicaLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/a6be1df6-38b7-4cc4-b912-a7f075341ea2)
+![VistaLogicaLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/e3d304f3-5367-4efd-a12d-f805a95e5c8f)
+
 
  State Diagram of Reservations:
 
-![StateDiagramReservation](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/144587c5-3f19-4b6f-9731-d16dbf7796a5)
+![StateDiagramReservation](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/8fe9549b-a4db-443a-aa03-0b79c30ad08f)
 
 ### Physical View
 
-![VistaFisica](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/4b4f6761-9fd6-4d95-a803-9c7b5a86a2ca)
-
+![VistaFisica](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/899317b0-7def-466b-99da-0cb69b1a4ee9)
 
 
 The database per service pattern:
 
-![DatabasePerService](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/879d52de-05cf-4cda-bf20-3e11df7929c7)
+![DatabasePerService](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/fef104a7-93a4-4331-b2c9-a311bcd039fb)
 
 
 ### Process View
@@ -83,21 +85,21 @@ Here there will be only three diagrams to provide example.
 
 Get catalog of sandwiches (Level 3):
 
-![getCatalogOfSandwichSequenceLv3](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/5b0710de-a1e0-4d1d-908a-6e7ec1ce64a9)
+![getCatalogOfSandwichSequenceLv3](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/946ae759-498b-4890-aa18-0217bda00510)
+
 
 Create Reservation (Level 2):
 
-![createReservationSequencegRPCLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/a582409c-1cdd-4861-b662-8d0b5fd440e5)
+![createReservationSequencegRPCLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/4ed43bc5-af86-482b-806d-3a624011aa32)
+
 
 Create Reservation (Level 3):
 
-![CreateReservationSequencegRPCLv3](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/29351d9b-1cc1-4e93-a37e-fada3437b512)
-
+![CreateReservationSequencegRPCLv3](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/8aaa0c43-0b95-40de-8a13-3662c37d9b10)
 
 ### Development View
 
-![ImplementacaoGrpc](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/2d43b653-bba1-46ae-81da-bb3d3ba5f5c4)
-
+![ImplementacaoGrpc](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/ab0928ea-2278-495e-8821-de2cff17c8d9)
 
 ### REST Documentation
 
@@ -107,13 +109,14 @@ Level 1: The same as in gRPC
 
 Level 2:
 
-![RESTVistaLogicaLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/37a9a997-c481-4186-9460-d358feb4c489)
+![RESTVistaLogicaLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/695397fa-a836-4e19-ba7b-5f6a27715d86)
+
 
 State Diagram: The same as in gRPC
 
 ### Physical View
 
-![RESTVistaFisica](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/f5d728dc-09c1-4ff0-b722-e1dbc742692c)
+![RESTVistaFisica](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/1ad3120f-5af5-4149-8221-4aa93d8d06c7)
 
 ### Process View
 
@@ -121,18 +124,16 @@ Get catalog of sandwiches (Level 3): The same as in gRPC
 
 Create Reservation (Level 2):
 
-![RESTcreateReservationSequenceLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/c79ab957-0e8a-47ed-8eee-ead34a0407f1)
+![RESTcreateReservationSequenceLv2](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/dee36a40-6a55-421b-a953-083c8b2ecff4)
 
 
 Create Reservation (Level 3):
 
-![RESTCreateReservationSequenceLv3](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/24c0f370-18e1-4d70-89d0-04eb70c3a1a4)
-
+![RESTCreateReservationSequenceLv3](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/d8250a15-0e1a-4c87-9227-3fe1ea94efee)
 
 
 ### Development View
 
-![ImplementacaoREST](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/7d6e8a8d-3fa0-4ebb-95bf-4823e1ef4dd2)
-
+![ImplementacaoREST](https://github.com/joaovieira17/joaov_grpc_communication/assets/84910996/b948f740-5a40-47f3-b525-6cec9f03ce68)
 
 
