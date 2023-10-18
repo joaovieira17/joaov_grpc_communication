@@ -82,7 +82,7 @@ public class Category implements Serializable {
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("'Name' is a mandatory attribute of Category");
         }
-        if (name.length()>25){
+        if (name.length()>40){
             throw new IllegalArgumentException("'Name' has a maximum of 40 characters");
         }
         if (name.trim().length() == 0){
